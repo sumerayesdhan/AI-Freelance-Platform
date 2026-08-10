@@ -1,0 +1,183 @@
+.analysis-container{
+
+    min-height:100vh;
+
+    background:#0f172a;
+
+    padding:40px;
+
+    color:white;
+
+}
+
+
+
+.analysis-card{
+
+    max-width:800px;
+
+    margin:auto;
+
+    background:#111827;
+
+    padding:35px;
+
+    border-radius:20px;
+
+}
+
+
+
+.analysis-card h1{
+
+    text-align:center;
+
+    color:#38bdf8;
+
+}
+
+
+
+.analysis-card section{
+
+    margin:25px 0;
+
+}
+
+
+
+.analysis-card li{
+
+    margin:8px;
+
+}
+
+
+
+.primary-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#38bdf8;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+.metric-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+
+    margin:30px 0;
+
+}
+
+
+
+.metric-card{
+
+    background:#1e293b;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+
+
+.metric-card h1{
+
+    color:#38bdf8;
+
+}
+
+
+
+.info-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:15px 0;
+
+}
+
+
+.complexity-section{
+
+    margin-top:40px;
+
+}
+
+
+.loading{
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.summary-card{
+
+    background:#111827;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    margin:30px auto;
+
+    max-width:800px;
+
+}
+
+
+
+.summary-card h2{
+
+    color:#38bdf8;
+
+    text-align:center;
+
+}
+
+
+
+.summary-item{
+
+    margin:20px 0;
+
+}
+
+
+
+.summary-item h3{
+
+    color:#94a3b8;
+
+}
+
+
+
+.summary-item li{
+
+    margin:8px;
+
+}
