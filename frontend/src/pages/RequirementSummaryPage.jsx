@@ -8,9 +8,7 @@ import {
     useState
 } from "react";
 
-
 import api from "../services/api";
-
 
 import "../styles/summary.css";
 
@@ -29,9 +27,17 @@ function RequirementSummaryPage(){
 
 
 
-    const [requirement,setRequirement] = useState(null);
+    const [
+        requirement,
+        setRequirement
+    ] = useState(null);
 
-    const [loading,setLoading] = useState(true);
+
+
+    const [
+        loading,
+        setLoading
+    ] = useState(true);
 
 
 
@@ -65,7 +71,6 @@ function RequirementSummaryPage(){
                     response.data.requirement_analysis
 
                 );
-
 
 
             }
@@ -105,7 +110,6 @@ function RequirementSummaryPage(){
 
 
 
-
     if(loading){
 
 
@@ -120,8 +124,6 @@ function RequirementSummaryPage(){
         );
 
     }
-
-
 
 
 
@@ -170,6 +172,7 @@ function RequirementSummaryPage(){
             <div className="summary-card">
 
 
+
                 <h3>
 
                     Domain
@@ -182,6 +185,8 @@ function RequirementSummaryPage(){
                     {requirement.project_domain}
 
                 </p>
+
+
 
 
 
@@ -204,6 +209,7 @@ function RequirementSummaryPage(){
 
 
 
+
                 <h3>
 
                     Platform
@@ -216,6 +222,7 @@ function RequirementSummaryPage(){
                     {requirement.platform}
 
                 </p>
+
 
 
 
@@ -252,6 +259,7 @@ function RequirementSummaryPage(){
 
 
                 </ul>
+
 
 
 
@@ -297,6 +305,7 @@ function RequirementSummaryPage(){
 
 
 
+
                 <h3>
 
                     Technology Preference
@@ -324,6 +333,10 @@ function RequirementSummaryPage(){
 
 
 
+
+                {/* Complexity Prediction Button */}
+
+
                 <button
 
 
@@ -348,7 +361,43 @@ function RequirementSummaryPage(){
 
 
 
+
+
+
+                {/* Freelancer Recommendation Button */}
+
+
+                <button
+
+
+                    onClick={()=>
+
+
+                        navigate(
+
+                            `/freelancers/${projectId}`
+
+                        )
+
+
+                    }
+
+
+                >
+
+
+                    Find Freelancers
+
+
+                </button>
+
+
+
+
+
             </div>
+
+
         </div>
 
 
