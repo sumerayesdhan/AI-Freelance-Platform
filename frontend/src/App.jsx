@@ -15,10 +15,11 @@ import RequirementAssistance from "./pages/RequirementAssistance";
 import RequirementSummaryPage from "./pages/RequirementSummaryPage";
 
 import ProjectAnalysis from "./pages/ProjectAnalysis";
+import FreelancerRecommendationPage
+  from "./pages/FreelancerRecommendationPage";
 
 
-
-function App(){
+function App() {
 
 
   return (
@@ -50,7 +51,7 @@ function App(){
           path="/register"
 
           element={
-            <Register/>
+            <Register />
           }
 
         />
@@ -62,7 +63,7 @@ function App(){
           path="/login"
 
           element={
-            <Login/>
+            <Login />
           }
 
         />
@@ -78,7 +79,7 @@ function App(){
           path="/dashboard"
 
           element={
-            <Dashboard/>
+            <Dashboard />
           }
 
         />
@@ -94,7 +95,7 @@ function App(){
           path="/requirement-assistance/:projectId"
 
           element={
-            <RequirementAssistance/>
+            <RequirementAssistance />
           }
 
         />
@@ -110,7 +111,7 @@ function App(){
           path="/requirement-summary/:projectId"
 
           element={
-            <RequirementSummaryPage/>
+            <RequirementSummaryPage />
           }
 
         />
@@ -126,13 +127,21 @@ function App(){
           path="/project/:projectId/analysis"
 
           element={
-            <ProjectAnalysis/>
+            <ProjectAnalysis />
           }
 
         />
 
 
+        <Route
 
+          path="/freelancers/:projectId"
+
+          element={
+            <FreelancerRecommendationPage />
+          }
+
+        />
 
 
         {/* Unknown URLs */}
@@ -142,7 +151,7 @@ function App(){
           path="*"
 
           element={
-            <Navigate to="/register"/>
+            <Navigate to="/register" />
           }
 
         />

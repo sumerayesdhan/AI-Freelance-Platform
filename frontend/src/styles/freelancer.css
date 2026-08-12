@@ -1,0 +1,97 @@
+.freelancer-container{
+
+    padding:40px;
+
+    background:#111827;
+
+    min-height:100vh;
+
+}
+
+
+
+.freelancer-container h1{
+
+    color:white;
+
+}
+
+
+
+.freelancer-card{
+
+
+    background:white;
+
+    color:#111827;
+
+    padding:25px;
+
+    margin:25px 0;
+
+    border-radius:15px;
+
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.2);
+
+
+}
+
+
+
+.freelancer-card h2{
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.freelancer-card p{
+
+    color:#374151;
+
+    font-size:16px;
+
+}
+
+
+
+.freelancer-card div{
+
+    margin-top:10px;
+
+    color:#111827;
+
+}
+
+
+
+.freelancer-card button{
+
+
+    margin-top:20px;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+
+    padding:12px 20px;
+
+
+    border:none;
+
+
+    border-radius:8px;
+
+
+    cursor:pointer;
+
+
+}

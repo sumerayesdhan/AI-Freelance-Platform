@@ -7,7 +7,7 @@ from app.database.mongodb import db
 from app.routes.auth import router as auth_router
 from app.routes.project import router as project_router
 from app.routes.conversation import router as conversation_router
-
+from app.routes.freelancer import router as freelancer_router
 from app.utils.auth import get_current_user
 
 
@@ -92,7 +92,9 @@ app.include_router(
 
 )
 
-
+app.include_router(
+    freelancer_router
+)
 
 # -----------------------------
 # Startup Check

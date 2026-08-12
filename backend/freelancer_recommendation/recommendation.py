@@ -1,4 +1,5 @@
 import re
+import os
 import joblib
 import numpy as np
 import pandas as pd
@@ -8,20 +9,62 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 # ============================================================
+# BASE DIRECTORY
+# ============================================================
+
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+
+# ============================================================
 # STEP 1: LOAD DATA
 # ============================================================
 
 print("Loading freelancer data...")
-freelancers = pd.read_csv("data/freelancers.csv")
-print("Freelancers loaded:", len(freelancers))
+
+
+DATA_PATH = os.path.join(
+    BASE_DIR,
+    "data",
+    "freelancers.csv"
+)
+
+
+freelancers = pd.read_csv(
+    DATA_PATH
+)
+
+
+print(
+    "Freelancers loaded:",
+    len(freelancers)
+)
+
+
 
 # ============================================================
 # STEP 2: LOAD TRAINED XGBOOST MODEL
 # ============================================================
 
 print("Loading XGBoost model...")
-model = joblib.load("xgboost_freelancer_model.pkl")
-print("XGBoost model loaded!")
+
+
+MODEL_PATH = os.path.join(
+    BASE_DIR,
+    "xgboost_freelancer_model.pkl"
+)
+
+
+model = joblib.load(
+    MODEL_PATH
+)
+
+
+print(
+    "XGBoost model loaded!"
+)
+
 
 
 # ============================================================
@@ -29,12 +72,16 @@ print("XGBoost model loaded!")
 # ============================================================
 
 print("Loading Sentence Transformer...")
+
+
 embedding_model = SentenceTransformer(
     "all-MiniLM-L6-v2"
 )
-print("Embedding model loaded!")
 
 
+print(
+    "Embedding model loaded!"
+)
 # ============================================================
 # STEP 4: CLEAN TEXT
 # ============================================================
@@ -886,22 +933,46 @@ def recommend_freelancers(
     # XGBOOST PREDICTION
     # ========================================================
 
+    # Fix numeric columns
+    if "hourly_low" in X_new.columns:
+
+        X_new["hourly_low"] = pd.to_numeric(
+            X_new["hourly_low"],
+            errors="coerce"
+        )
+
+    if "hourly_high" in X_new.columns:
+
+        X_new["hourly_high"] = pd.to_numeric(
+            X_new["hourly_high"],
+            errors="coerce"
+        )
+
+    if "hourly_low" in X_new.columns:
+
+        X_new["hourly_low"] = (
+            X_new["hourly_low"]
+            .fillna(0)
+        )
+
+    if "hourly_high" in X_new.columns:
+
+        X_new["hourly_high"] = (
+            X_new["hourly_high"]
+            .fillna(0)
+        )
+
     print(
         "\nRunning XGBoost predictions..."
     )
-
 
     probabilities = model.predict_proba(
         X_new
     )[:, 1]
 
-
-    predictions = (
-        model.predict(
-            X_new
-        )
+    predictions = model.predict(
+        X_new
     )
-
 
     # ========================================================
     # ADD PREDICTIONS
@@ -1063,17 +1134,21 @@ def recommend_freelancers(
     # SAVE RESULTS
     # ========================================================
 
-    results.to_csv(
-        "data/recommendation_results.csv",
-        index=False
+    RESULT_PATH = os.path.join(
+        BASE_DIR,
+        "data",
+        "recommendation_results.csv"
     )
 
+    results.to_csv(
+        RESULT_PATH,
+        index=False
+    )
 
     print(
         "\nFull results saved to:"
         " data/recommendation_results.csv"
     )
-
 
     return top_results
 
