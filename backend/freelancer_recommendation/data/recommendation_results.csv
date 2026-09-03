@@ -1,156 +1,156 @@
 freelancer_id,freelancer_name,title,matching_skills,required_skills,cosine_similarity,skill_match,experience_score,job_success,hourly_rate,budget_compatibility,country_match,recommendation_probability,prediction,rank
-40,Mfonabasi I.,expert data entry specialist - data manager - web researcher,,,0.42926061153411865,0.0,0.9464700535299465,0.99,20.0,0.5,0,0.9932267,1,1
-32,Mahmoud D.,"excel, pbi, sql expert, data analyst, loughborough engineering, mba",,,0.2879500389099121,0.0,1.0,1.0,30.0,0.5,0,0.985601,1,2
-56,Sumy A.,"b2b lead generation, contact list building, prospect list, data mining",,,0.3868952989578247,0.0,0.861024138975861,0.83,6.5,0.5,0,0.9839881,1,3
-29,Muhammad Gulraiz H.,"web researcher, lead generation, real estate, data entry, va",,,0.3591582179069519,0.0,0.7155842844157156,0.99,5.5,0.5,0,0.97889984,1,4
-63,Naveen K.,motivated seller leads - usa real estate list building,,,0.2509405016899109,0.0,0.8433491566508434,1.0,4.44,0.5,0,0.97752506,1,5
-24,Sakshi B.,"writer: article, blog, academic writing expert+ data analyst, power bi",,,0.223761647939682,0.0,0.7808302191697809,1.0,7.99,0.5,0,0.97417194,1,6
-133,Ehtisham R.,excel   vba   zapier   google sheets   access   mac   power bi,,,0.27675992250442505,0.0,0.952934047065953,0.93,40.0,0.5,0,0.96941906,1,7
-153,Antu C.,"b2b email finder, business email lookup, email, corporate email search",,,0.3423798084259033,0.0,0.594889405110595,0.97,6.0,0.5,0,0.94543314,1,8
-64,Michael E.,"certified project manager, analytics guru, business improvement junkie",,,0.3857811689376831,0.0,0.4218765781234219,1.0,125.0,0.5,0,0.9440047,1,9
-111,Zahida A.,market research   data analysis   virtual assistant   lead generation,,,0.3213646411895752,0.0,0.5015654984345016,1.0,7.0,0.5,0,0.9409101,1,10
-43,Md Omor Faruk B.,web scraping  data scraping  data mining   data analysis,,,0.31129539012908936,0.0,0.7492172507827493,1.0,20.0,0.5,0,0.9364924,1,11
-38,Bashir A.,"virtual assistant   website maintenance, lead generation, seo expert",,,0.39507293701171875,0.0,0.34319765680234326,0.98,5.99,0.5,0,0.9318819,1,12
-30,Muhammad U.,b2b lead generation/zoominfo/contact list/sales leads/linkedin sales,,,0.42623084783554077,0.0,0.33612766387233617,0.96,18.0,0.5,0,0.9192324,1,13
-51,Eishwar c.,expert lead generation-data entry-email finding-list building,,,0.3023475110530853,0.0,0.5716594283405717,0.97,5.0,0.5,0,0.88907874,1,14
-49,Muhammad M.,lead generation and data entry expert,,,0.374716192483902,0.0,0.45651954348045654,1.0,10.0,0.5,0,0.86375046,1,15
-136,Sk. Shahidul I.,"senior product researcher   amazon, shopify - pl, wholesale   datadive",,,0.31859833002090454,0.0,0.593980406019594,1.0,14.95,0.5,0,0.8628527,1,16
-3,"Ramil, Jr. A.",excel   vba   macros   google sheets expert,,,0.2285359799861908,0.0,0.7051812948187053,1.0,60.0,0.5,0,0.85124177,1,17
-143,Robert O.,battle-tested upwork strategy - earn more. free up time to enjoy life,,,0.17917115986347198,0.0,0.6648823351176649,0.99,77.77,0.5,0,0.8315548,1,18
-147,Faizan S.,"lead generation , list building & data entry expert",,,0.2847016751766205,0.0,0.38703161296838706,0.91,3.0,0.5,0,0.82864136,1,19
-13,Ajay B.,python full stack- dashboard  data science  analytics  ai/ml  nlp  api,,,0.34605079889297485,0.0,0.5881224118775882,0.92,25.0,0.5,0,0.7782239,1,20
-39,Ajit T.,tech admin va - excel & gsheets   data entry   etl   email lists,,,0.451095849275589,0.0,0.21573578426421572,1.0,22.5,0.5,0,0.7501636,1,21
-36,Sana S.,graphic design & presentation design   data entry & admin support,,,0.26060181856155396,0.0,0.4732855267144733,1.0,38.0,0.5,0,0.7319962,1,22
-25,Rajveer S.,full stack developer   web application development   google workspace,,,0.3232768774032593,0.0,0.5397434602565397,0.95,35.0,0.5,0,0.72115713,1,23
-99,Abdul W.,zoominfo pro   lexisnexis   tlo   linkedin   lead generation   emails,,,0.2172042429447174,0.0,0.5150994849005152,1.0,7.0,0.5,0,0.6944869,1,24
-14,Shankar M.,open ai   gen ai   chatgpt   blockchain architect   cto   azure   aws,,,0.25297197699546814,0.0,0.42793657206342794,0.97,100.0,0.5,0,0.6912409,1,25
-141,Misty M.,b2b lead generation  web research  list building  sourcing specialist,,,0.3494184613227844,0.0,0.2711847288152712,1.0,33.0,0.5,0,0.6693648,1,26
-155,Parthsarthi D.,expert social media manager   youtube   instagram   twitter   fb,,,0.288874089717865,0.0,0.3914756085243915,1.0,20.0,0.5,0,0.61218137,1,27
-151,Ali Y.,research expert   web research   virtual assistant   lead generation,,,0.24611252546310425,0.0,0.40854459145540856,0.94,10.0,0.5,0,0.5299516,1,28
-126,Roy L.,"vba, microsoft access, excel, sql server, sharepoint, azure, dataverse",,,0.3683856129646301,0.0,0.4096555903444097,0.89,25.0,0.5,0,0.51851285,1,29
-16,Wasi U.,full-stack web developer  django  react  node  python web scraping,,,0.3359355926513672,0.0,0.33360266639733366,1.0,20.0,0.5,0,0.5147043,1,30
-130,Terrence C.,statistical consultant   data analyst   researcher,,,0.1610056608915329,0.0,0.5347944652055348,1.0,50.0,0.5,0,0.49564937,0,31
-4,Jason K.,data science & ai expert- senior machine learning engineer at linkedin,,,0.2992492616176605,0.0,0.2847187152812848,1.0,500.0,0.5,0,0.45697147,0,32
-7,Devendra R.,odoo expert   odoo consultant   ai & ml   data scientist,,,0.32472220063209534,0.0,0.3785476214523786,0.97,35.0,0.5,0,0.41297168,0,33
-109,Faizan Z.,creative freelancer: helping businesses grow and succeed,,,0.2600908577442169,0.0,0.2302797697202303,0.9,12.0,0.5,0,0.40646774,0,34
-142,Md Mujammel H.,"digital marketing, online research, writing, web development",,,0.2805172801017761,0.0,0.31320068679931323,0.98,18.0,0.5,0,0.40310544,0,35
-50,Pratik D.,"seasoned backend developer/ technical writer/ java, sql, nosql, r, etl",,,0.257108211517334,0.0,0.37703262296737705,1.0,29.0,0.5,0,0.39881572,0,36
-21,Mani V.,"python, data science, analytics, ai/ml, dashboard, etl pipeline, nlp",,,0.3241879642009735,0.0,0.3590546409453591,0.94,30.0,0.5,0,0.30218834,0,37
-42,Rajab S.,lead generation   information retrieval   remote support   crm_entries,,,0.39804935455322266,0.0,0.14947985052014948,0.93,4.0,0.5,0,0.27397126,0,38
-44,Noushad A.,"web scraper, data scientist, python developer",,,0.2708795964717865,0.0,0.34420765579234425,1.0,25.0,0.5,0,0.24927288,0,39
-108,Rohit K.,"expert database, code & devops architect   full stack developer",,,0.2759304642677307,0.0,0.30501969498030507,1.0,35.0,0.5,0,0.23347388,0,40
-27,Pavel A.,"gpt-4, chatgpt, llms, generative ai product expert",,,0.21868973970413208,0.0,0.3906676093323907,0.84,150.0,0.5,0,0.21020566,0,41
-117,Shubham S.,data extraction django/flask,,,0.3207661211490631,0.0,0.29259670740329263,0.93,25.0,0.5,0,0.20323116,0,42
-53,Fahad A.,"expert in power bi, excel, data analysis, sql, word, powerpoint &visio",,,0.1940426230430603,0.0,0.5411574588425412,0.71,30.0,0.5,0,0.20109548,0,43
-55,Ahmed o.,ph.d inorganic and analytical chemistry and chemical formulator,,,0.17313605546951294,0.0,0.3804666195333805,1.0,20.0,0.5,0,0.19934992,0,44
-123,James S.,ph.d. data analyst/statistician - program evaluator - editor/reviewer,,,0.14562153816223145,0.0,0.31320068679931323,1.0,125.0,0.5,0,0.18830857,0,45
-112,Soban A.,data scientist   machine learning expert,,,0.2162475436925888,0.0,0.24522775477224523,1.0,15.0,0.5,0,0.17335528,0,46
-106,Priyanka R.,"full stack developer - python, node, ai/ml, analytics, dashboard, api",,,0.22561949491500854,0.0,0.3435006564993435,0.99,25.0,0.5,0,0.1710194,0,47
-2,Nikola M.,researcher,,,0.2419520616531372,0.0,0.23623876376123623,0.97,15.0,0.5,0,0.15206069,0,48
-17,Uttam A.,data engineer   sql   ai/ml   nlp  power bi   kibana   dashboard   api,,,0.33763372898101807,0.0,0.3312796687203313,0.87,25.0,0.5,0,0.15202813,0,49
-33,Parv Y.,"data scientist (web scrapping, etl, ml, nlp)",,,0.38279181718826294,0.0,0.07574992425007575,0.96,15.0,0.5,0,0.14315744,0,50
-35,Zeeshan A.,senior full stack developer   python   node.js   react.js   ai,,,0.34811508655548096,0.0,0.09706090293909707,0.98,30.0,0.5,0,0.13997053,0,51
-47,Malik Haseeb H.,saas developer   deep learning   open ai   nlp   saas mvp,,,0.24840208888053894,0.0,0.1635188364811635,1.0,36.0,0.5,0,0.13605414,0,52
-58,Ugonna B.,"detailed va    expert in web mining, ai data scraping, and research.",,,0.34076642990112305,0.0,0.004443995556004443,1.0,15.0,0.5,0,0.13336088,0,53
-46,vikas k.,ror   node   next   angular   react   aws   spree   data scraping,,,0.2548949122428894,0.0,0.2213917786082214,1.0,25.0,0.5,0,0.13237111,0,54
-116,Paulo O.,microsoft certified   power bi expert   report   dashboard consultant,,,0.24444404244422913,0.0,0.18240581759418242,1.0,55.0,0.5,0,0.10355772,0,55
-52,Marvin S.,individualized data analysis - we offer a scientific approach for you.,,,0.34090593457221985,0.0,0.048176951823048174,1.0,40.0,0.5,0,0.09835902,0,56
-1,Abeer K.,data scientist   web scraping engineer,,,0.24073949456214905,0.0,0.25371174628825377,0.97,25.0,0.5,0,0.094887726,0,57
-20,Muhammad Ameer H.,python/flask/chatgpt   machine learning   ai   web scraping,,,0.24713875353336334,0.0,0.35602464397535605,0.89,45.0,0.5,0,0.08814749,0,58
-62,Arjun V.,power bi   tableau   nlp   etl   azure   aws   8+ yoe,,,0.3075042963027954,0.0,0.15917584082415917,1.0,45.0,0.5,0,0.08774093,0,59
-96,Abdul R.,expert data scientist & full stack developer: generative ai specialist,,,0.29720544815063477,0.0,0.09302090697909303,1.0,35.0,0.5,0,0.07925499,0,60
-65,Marlon B.,"financial auditor, certified public accountant & data analysis",,,0.3229497969150543,0.0,0.08615291384708615,1.0,7.0,0.5,0,0.07837098,0,61
-9,Mahabubur R.,"metabase expert, data analyst, sql + google looker studio +bigquery",,,0.3090246021747589,0.0,0.13917786082213918,1.0,30.0,0.5,0,0.07149692,0,62
-154,Adnane R.,"automation & ai expert (python, gpt, ml, excel, data visual, rpa, js)",,,0.3002825379371643,0.0,0.0703969296030704,1.0,50.0,0.5,0,0.0686775,0,63
-8,Dr . M Mansoor M.,expert medical writer   medical researcher  academic writer  doctor,,,0.1288325935602188,0.0,0.31643268356731646,0.98,59.99,0.5,0,0.066392906,0,64
-26,Muhammad N.,website and linkedin data scrapping and lead generation expert,,,0.346885621547699,0.0,0.13018886981113018,0.77,10.0,0.5,0,0.06252755,0,65
-95,Ali A.,data analyst   sql   python   automation   machine learning,,,0.28514477610588074,0.0,0.10423189576810424,1.0,25.0,0.5,0,0.06203709,0,66
-150,Virender B.,senior software developer with 6+ yoe in java & python,,,0.3260887861251831,0.0,0.057771942228057774,1.0,30.0,0.5,0,0.060587402,0,67
-115,Dave C.,ai specialist   machine learning engineer   data science expert,,,0.3133074641227722,0.0,0.035854964145035854,1.0,45.0,0.5,0,0.0588566,0,68
-28,Snehit D.,python developer & web scraping expert who speaks argentinian spanish,,,0.2699505686759949,0.0,0.13917786082213918,1.0,10.0,0.5,0,0.056402862,0,69
-19,Doreen B.,"adept phd copyeditor, white paper, business plan and academic writer.",,,0.11543004959821701,0.0,0.33370366629633375,0.95,40.0,0.5,0,0.055637173,0,70
-134,Manish A.,"project manager - pmp, csm",,,0.2916009724140167,0.0,0.0812039187960812,0.94,25.0,0.5,0,0.054132707,0,71
-145,Muhammad Junaid A.,full stack   python   django   javascript   react   node.js   laravel,,,0.30397510528564453,0.0,0.07181092818907181,1.0,25.0,0.5,0,0.053882536,0,72
-104,Muhammad Faheem S.,cloud engineer   big data engineer,,,0.25697338581085205,0.0,0.1322088677911322,1.0,30.0,0.5,0,0.049126588,0,73
-140,Sahaj G.,expert - full stack software engineer   mobile app   web app   ai/ml,,,0.35676997900009155,0.0,0.045247954752045245,0.66,15.0,0.5,0,0.046595685,0,74
-23,Nick V.,analytics wizard for cloud-based   ph.d. data engineer & analyst,,,0.255062997341156,0.0,0.11382688617311382,1.0,65.0,0.5,0,0.044551965,0,75
-127,Chris H.,healthcare ai and app expert   harvard health data scientist,,,0.28731369972229004,0.0,0.05969094030905969,1.0,120.0,0.5,0,0.043397374,0,76
-103,Madjid E.,web scraping expert   etl developer,,,0.33083537220954895,0.0,0.037874962125037874,0.93,38.0,0.5,0,0.042563904,0,77
-48,Varun D.,"consulting   outsourcing   it staffing - software, web, app , e-com",,,0.278594970703125,0.0,0.03777396222603777,0.96,28.0,0.5,0,0.040630892,0,78
-34,Junaid U.,data engineer,,,0.23778830468654633,0.0,0.15584284415715585,1.0,30.0,0.5,0,0.039153244,0,79
-18,Emmanuel O.,data analyst   sql   tableau   excel   python   power bi,,,0.3207636773586273,0.0,0.08019391980608019,0.89,14.99,0.5,0,0.035180654,0,80
-97,Khan Bahadar K.,academic writing expert   academic (copy) editing and proofreading,,,0.17249326407909393,0.0,0.06665993334006666,1.0,25.0,0.5,0,0.03505987,0,81
-60,Bakht M.,"experienced coding, data science & machine learning instructor",,,0.2600761651992798,0.0,0.08847591152408847,1.0,20.0,0.5,0,0.0335145,0,82
-22,Nidhi B.,"data scientist, ai/ml enthusiast and technical content writer",,,0.22938202321529388,0.0,0.11150388849611151,1.0,40.0,0.5,0,0.032897003,0,83
-12,Islam A.,"transforming data into profit: python, data science, and ai expertise",,,0.3034994304180145,0.0,0.05524694475305525,0.91,60.0,0.5,0,0.03288222,0,84
-45,Nabeel F.,data engineer   databricks   gcp   azure   aws   snowflake   ai,,,0.19542399048805237,0.0,0.15786284213715787,1.0,30.0,0.5,0,0.03181637,0,85
-105,Ishaan N.,"data science, quant modelling   finance   ex-morgan stanley, jp morgan",,,0.2590802013874054,0.0,0.08615291384708615,1.0,50.0,0.5,0,0.030871015,0,86
-125,Musabbir Ahmed A.,robotics and automation engineer,,,0.25016775727272034,0.0,0.13624886375113623,0.92,30.0,0.5,0,0.03071268,0,87
-144,Muhammad Umer F.,data science aficionado   data analyst   automation engineer,,,0.37164926528930664,0.0,0.004948995051004949,0.87,25.0,0.5,0,0.029785108,0,88
-54,MD. Shahriar Al Kasib Khan S.,tableau   looker   dbt   google data studio   power bi   sql expert,,,0.24368928372859955,0.0,0.11766488233511765,0.96,35.0,0.5,0,0.029678613,0,89
-129,Khan M.,data scraping & analysis   machine learning   google sheets   python,,,0.23698528110980988,0.0,0.05140894859105141,1.0,45.0,0.5,0,0.02695605,0,90
-122,Mohammed A.,data analyst   python  sql  web scraping & browser automation expert,,,0.266017347574234,0.0,0.03444096555903444,1.0,16.0,0.5,0,0.02667056,0,91
-131,Ehab K.,senior ai engineer,,,0.20600982010364532,0.0,0.06706393293606706,1.0,50.0,0.5,0,0.023099339,0,92
-98,Muhammad Sarwar Jahan M.,expert applied data scientist & analyst,,,0.24129652976989746,0.0,0.036965963034036965,1.0,60.0,0.5,0,0.022373807,0,93
-11,Fasih U.,data engineer   big data   airflow   python   etl   pyspark   sql,,,0.23473256826400757,0.0,0.10190889809110192,1.0,15.0,0.5,0,0.021316322,0,94
-148,Olusegun F.,proficient data analyst   engineer,,,0.21731030941009521,0.0,0.04878295121704878,1.0,30.0,0.5,0,0.02077982,0,95
-124,Faiz R.,data scientist   machine learning   computer vision   nlp   aws   sql,,,0.28168433904647827,0.0,0.014745985254014746,0.97,20.0,0.5,0,0.019618606,0,96
-66,Ishtiaque A.,data analyst   tibco spotfire   power bi   tableau   singlestore   etl,,,0.28304386138916016,0.0,0.019492980507019492,0.97,20.0,0.5,0,0.017448336,0,97
-41,Ahmad I.,machine learning   artificial intelligence   python development,,,0.21306195855140686,0.0,0.09221290778709221,1.0,10.0,0.5,0,0.017110568,0,98
-135,Hossam H.,data scientist  data analyst  data visualization,,,0.22589482367038727,0.0,0.09584890415109584,1.0,10.0,0.5,0,0.016657555,0,99
-120,Arif S.,generative ai engineer   webflow   wized   xano,,,0.2845311760902405,0.0,0.036056963943036056,0.89,35.0,0.5,0,0.016371205,0,100
-37,Zeyad M.,data scientist   machine learning engineer,,,0.18403220176696777,0.0,0.0407029592970407,1.0,40.0,0.5,0,0.01609631,0,101
-6,Pragyesh S.,professional academic writer and coach,,,0.13595038652420044,0.0,0.14533885466114535,0.86,20.0,0.5,0,0.015949914,0,102
-132,Konstantin B.,"aws-certified devops architect   cloud solutions   aws, gcp, azure",,,0.1422354280948639,0.0,0.08615291384708615,1.0,60.0,0.5,0,0.013099709,0,103
-149,Meer Naib K.,"full stack python developer , data and ml engineer",,,0.2615097165107727,0.0,0.001312998687001312,1.0,21.0,0.5,0,0.012151393,0,104
-119,Mohamed A.,data scientist,,,0.23825107514858246,0.0,0.022623977376022626,1.0,25.0,0.5,0,0.010258973,0,105
-107,yassine g.,data scientist,,,0.279693603515625,0.0,0.11221088778911222,0.83,20.0,0.5,0,0.009665496,0,106
-113,Salma H.,machine learning engineer,,,0.23721250891685486,0.0,0.005554994445005555,1.0,30.0,0.5,0,0.008824437,0,107
-5,Muhammad Noman B.,data science   python projects   machine learning ai assignments r gui,,,0.3252737522125244,0.0,0.015048984951015048,0.82,25.0,0.5,0,0.0067976406,0,108
-114,Ahlem K.,business intelligence developer,,,0.29513248801231384,0.0,0.022320977679022323,0.86,50.0,0.5,0,0.006706204,0,109
-121,K R.,certified data scientist i python expert   ai/ml   4+ years experience,,,0.19139356911182404,0.0,0.007574992425007577,0.98,50.0,0.5,0,0.006639823,0,110
-152,Matias W.,"ai & machine learning   machine learning model, machine learning, sql",,,0.18167078495025635,0.0,0.006867993132006868,1.0,15.0,0.5,0,0.0054226574,0,111
-137,Nesma A.,machine learning   artificial intelligence,,,0.19037479162216187,0.0,0.0104029895970104,0.9,20.0,0.5,0,0.0046165567,0,112
-128,Matthew S.,epidemiologist and data scientist,,,0.10857891291379929,0.0,0.004342995657004343,1.0,75.0,0.5,0,0.0036298027,0,113
-138,Abdul M.,data engineer & analytics expert   aws   quicksight/datastudio pro,,,0.30995461344718933,0.0,0.057569942430057565,0.23,11.11,0.5,0,0.0034504873,0,114
-146,Amaury H.,machine learning/data science expert,,,0.19063861668109894,0.0,0.2988587011412989,0.0,22.22,0.5,0,0.0030888154,0,115
-110,Ismail H.,data science-ml-dl-rl-ai-mathematics-hpc- statistics-quant trading,,,0.2640399932861328,0.0,0.049691950308049695,0.32,50.0,0.5,0,0.00114351,0,116
-139,AILYAH .,python developer   django/flask   web scraping   automation,,,0.3248176574707031,0.0,0.05635794364205636,0.0,17.0,0.5,0,0.0011044192,0,117
-57,Aamir I.,data scientist/analyst   statistician   quantitative researcher,,,0.2782661020755768,0.0,0.07968892031107969,0.0,70.0,0.5,0,0.0010263044,0,118
-61,Ebrahim A.,senior data engineer,,,0.29020631313323975,0.0,0.07968892031107969,0.0,20.0,0.5,0,0.00095512567,0,119
-100,Aleksei Z.,data analysis & visualization   data science,,,0.2518805265426636,0.0,0.0817089182910817,0.0,20.0,0.5,0,0.000749229,0,120
-101,Ahmed S.,"data scientist, python developer",,,0.29967427253723145,0.0,0.0008079991920008084,0.0,25.0,0.5,0,0.00070708146,0,121
-15,Yabebal F.,generative ai & prompt engineer + ai developer & consultant,,,0.26875609159469604,0.0,0.025047974952025043,0.0,25.0,0.5,0,0.00070108246,0,122
-118,Sergio P.,"ai & machine learning   c, c++, python, data science, nlp, statistics",,,0.20904992520809174,0.0,0.07968892031107969,0.0,18.0,0.5,0,0.000634767,0,123
-10,Trenton S.,data analysis and insights   transforming data actionable business,,,0.28076493740081787,0.0,0.013836986163013836,0.0,45.0,0.5,0,0.00063460396,0,124
-102,Yousef W.,rpa developer  ai & automation engineer   data scientist,,,0.162918359041214,0.0,0.0817089182910817,0.0,5.0,0.5,0,0.00059861655,0,125
-59,Ashraful Islam E.,data analyst    excel expert    powerpoint presentation,,,0.26211172342300415,0.0,0.0,0.0,10.0,0.5,0,0.0005640876,0,126
-31,Aveen F.,senior data scientist,,,0.23706483840942383,0.0,0.004342995657004343,0.0,30.0,0.5,0,0.00051435,0,127
-76,    wikipedia.org botany close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,128
-87,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,129
-89,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,130
-91,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,131
-84,    wikipedia.org biology close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,132
-77,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,133
-73,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,134
-75,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,135
-88,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,136
-78,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,137
-86,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,138
-90,    wikipedia.org botany close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,139
-68,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,140
-83,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,141
-82,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,142
-80,  a product description is a structured format of presenting information about a product. article writing close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,143
-72,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,144
-70,    wikipedia.org biology close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,145
-69,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,146
-74,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,147
-79,    wikipedia.org product description close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,148
-94,"  a product description is a structured format of presenting information about a product. ar...""",,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,149
-92,  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,150
-93,    wikipedia.org product description close the tooltip  ,,,,0.13442930579185486,0.0,,,,0.5,0,0.0003414607,0,151
-81,"  an article is ...""",20,,,0.10710831731557846,0.0,,,99.0,0.5,0,0.00028292282,0,152
-67,Syeda F.,"articles, seo content, and scientific writing pro",,,0.09451914578676224,0.0,,,,0.5,0,0.00025548218,0,153
-85,  biology is a natural science concerned with the study of life and living organisms, including their structure,,,0.0655967965722084,0.0,,,,0.5,0,0.0001815612,0,154
-71,  biology is a natural science concerned with the study of life and living organisms, including their structure,,,0.0655967965722084,0.0,,,,0.5,0,0.0001815612,0,155
+40,Mfonabasi I.,expert data entry specialist - data manager - web researcher,,,0.34117591381073,0.0,0.9464700535299465,0.99,20.0,0.5,0,0.9870723,1,1
+32,Mahmoud D.,"excel, pbi, sql expert, data analyst, loughborough engineering, mba",,,0.27130329608917236,0.0,1.0,1.0,30.0,0.5,0,0.9842376,1,2
+29,Muhammad Gulraiz H.,"web researcher, lead generation, real estate, data entry, va",,,0.33833396434783936,0.0,0.7155842844157156,0.99,5.5,0.5,0,0.9768858,1,3
+56,Sumy A.,"b2b lead generation, contact list building, prospect list, data mining",,,0.298739492893219,0.0,0.861024138975861,0.83,6.5,0.5,0,0.97541445,1,4
+63,Naveen K.,motivated seller leads - usa real estate list building,,,0.22223156690597534,0.0,0.8433491566508434,1.0,4.44,0.5,0,0.9751077,1,5
+24,Sakshi B.,"writer: article, blog, academic writing expert+ data analyst, power bi",,,0.18138262629508972,0.0,0.7808302191697809,1.0,7.99,0.5,0,0.9717648,1,6
+133,Ehtisham R.,excel   vba   zapier   google sheets   access   mac   power bi,,,0.2682136297225952,0.0,0.952934047065953,0.93,40.0,0.5,0,0.96863514,1,7
+111,Zahida A.,market research   data analysis   virtual assistant   lead generation,,,0.2593614459037781,0.0,0.5015654984345016,1.0,7.0,0.5,0,0.9251006,1,8
+153,Antu C.,"b2b email finder, business email lookup, email, corporate email search",,,0.25732752680778503,0.0,0.594889405110595,0.97,6.0,0.5,0,0.9220111,1,9
+136,Sk. Shahidul I.,"senior product researcher   amazon, shopify - pl, wholesale   datadive",,,0.3722470700740814,0.0,0.593980406019594,1.0,14.95,0.5,0,0.9185713,1,10
+43,Md Omor Faruk B.,web scraping  data scraping  data mining   data analysis,,,0.26319295167922974,0.0,0.7492172507827493,1.0,20.0,0.5,0,0.9184715,1,11
+64,Michael E.,"certified project manager, analytics guru, business improvement junkie",,,0.3179890513420105,0.0,0.4218765781234219,1.0,125.0,0.5,0,0.8741609,1,12
+51,Eishwar c.,expert lead generation-data entry-email finding-list building,,,0.23032459616661072,0.0,0.5716594283405717,0.97,5.0,0.5,0,0.85567474,1,13
+3,"Ramil, Jr. A.",excel   vba   macros   google sheets expert,,,0.2163987159729004,0.0,0.7051812948187053,1.0,60.0,0.5,0,0.8427019,1,14
+38,Bashir A.,"virtual assistant   website maintenance, lead generation, seo expert",,,0.34299570322036743,0.0,0.34319765680234326,0.98,5.99,0.5,0,0.83965117,1,15
+147,Faizan S.,"lead generation , list building & data entry expert",,,0.24881111085414886,0.0,0.38703161296838706,0.91,3.0,0.5,0,0.80825937,1,16
+49,Muhammad M.,lead generation and data entry expert,,,0.34267592430114746,0.0,0.45651954348045654,1.0,10.0,0.5,0,0.78017676,1,17
+30,Muhammad U.,b2b lead generation/zoominfo/contact list/sales leads/linkedin sales,,,0.33886533975601196,0.0,0.33612766387233617,0.96,18.0,0.5,0,0.7654378,1,18
+13,Ajay B.,python full stack- dashboard  data science  analytics  ai/ml  nlp  api,,,0.3225119113922119,0.0,0.5881224118775882,0.92,25.0,0.5,0,0.76312333,1,19
+25,Rajveer S.,full stack developer   web application development   google workspace,,,0.3021959066390991,0.0,0.5397434602565397,0.95,35.0,0.5,0,0.71362126,1,20
+14,Shankar M.,open ai   gen ai   chatgpt   blockchain architect   cto   azure   aws,,,0.24954837560653687,0.0,0.42793657206342794,0.97,100.0,0.5,0,0.6912409,1,21
+99,Abdul W.,zoominfo pro   lexisnexis   tlo   linkedin   lead generation   emails,,,0.21289581060409546,0.0,0.5150994849005152,1.0,7.0,0.5,0,0.6459421,1,22
+36,Sana S.,graphic design & presentation design   data entry & admin support,,,0.20205292105674744,0.0,0.4732855267144733,1.0,38.0,0.5,0,0.59866196,1,23
+130,Terrence C.,statistical consultant   data analyst   researcher,,,0.1794857680797577,0.0,0.5347944652055348,1.0,50.0,0.5,0,0.5704818,1,24
+143,Robert O.,battle-tested upwork strategy - earn more. free up time to enjoy life,,,0.09073542058467865,0.0,0.6648823351176649,0.99,77.77,0.5,0,0.5628942,1,25
+16,Wasi U.,full-stack web developer  django  react  node  python web scraping,,,0.3185654580593109,0.0,0.33360266639733366,1.0,20.0,0.5,0,0.4935045,0,26
+126,Roy L.,"vba, microsoft access, excel, sql server, sharepoint, azure, dataverse",,,0.35294365882873535,0.0,0.4096555903444097,0.89,25.0,0.5,0,0.46995813,0,27
+141,Misty M.,b2b lead generation  web research  list building  sourcing specialist,,,0.28039395809173584,0.0,0.2711847288152712,1.0,33.0,0.5,0,0.4680065,0,28
+155,Parthsarthi D.,expert social media manager   youtube   instagram   twitter   fb,,,0.19906815886497498,0.0,0.3914756085243915,1.0,20.0,0.5,0,0.43978387,0,29
+142,Md Mujammel H.,"digital marketing, online research, writing, web development",,,0.28663358092308044,0.0,0.31320068679931323,0.98,18.0,0.5,0,0.40512285,0,30
+39,Ajit T.,tech admin va - excel & gsheets   data entry   etl   email lists,,,0.351379930973053,0.0,0.21573578426421572,1.0,22.5,0.5,0,0.39763996,0,31
+4,Jason K.,data science & ai expert- senior machine learning engineer at linkedin,,,0.22875995934009552,0.0,0.2847187152812848,1.0,500.0,0.5,0,0.39600104,0,32
+50,Pratik D.,"seasoned backend developer/ technical writer/ java, sql, nosql, r, etl",,,0.2232670783996582,0.0,0.37703262296737705,1.0,29.0,0.5,0,0.39549705,0,33
+151,Ali Y.,research expert   web research   virtual assistant   lead generation,,,0.19131304323673248,0.0,0.40854459145540856,0.94,10.0,0.5,0,0.3894692,0,34
+109,Faizan Z.,creative freelancer: helping businesses grow and succeed,,,0.22259964048862457,0.0,0.2302797697202303,0.9,12.0,0.5,0,0.3587789,0,35
+7,Devendra R.,odoo expert   odoo consultant   ai & ml   data scientist,,,0.2830459177494049,0.0,0.3785476214523786,0.97,35.0,0.5,0,0.299603,0,36
+21,Mani V.,"python, data science, analytics, ai/ml, dashboard, etl pipeline, nlp",,,0.3198383152484894,0.0,0.3590546409453591,0.94,30.0,0.5,0,0.29779887,0,37
+123,James S.,ph.d. data analyst/statistician - program evaluator - editor/reviewer,,,0.17143839597702026,0.0,0.31320068679931323,1.0,125.0,0.5,0,0.2672421,0,38
+44,Noushad A.,"web scraper, data scientist, python developer",,,0.27927133440971375,0.0,0.34420765579234425,1.0,25.0,0.5,0,0.26699218,0,39
+52,Marvin S.,individualized data analysis - we offer a scientific approach for you.,,,0.4005098342895508,0.0,0.048176951823048174,1.0,40.0,0.5,0,0.20774359,0,40
+106,Priyanka R.,"full stack developer - python, node, ai/ml, analytics, dashboard, api",,,0.27376359701156616,0.0,0.3435006564993435,0.99,25.0,0.5,0,0.20728737,0,41
+53,Fahad A.,"expert in power bi, excel, data analysis, sql, word, powerpoint &visio",,,0.1946863979101181,0.0,0.5411574588425412,0.71,30.0,0.5,0,0.20109548,0,42
+108,Rohit K.,"expert database, code & devops architect   full stack developer",,,0.2304733395576477,0.0,0.30501969498030507,1.0,35.0,0.5,0,0.19374397,0,43
+46,vikas k.,ror   node   next   angular   react   aws   spree   data scraping,,,0.27713334560394287,0.0,0.2213917786082214,1.0,25.0,0.5,0,0.17203088,0,44
+117,Shubham S.,data extraction django/flask,,,0.3029949963092804,0.0,0.29259670740329263,0.93,25.0,0.5,0,0.16352668,0,45
+2,Nikola M.,researcher,,,0.24290451407432556,0.0,0.23623876376123623,0.97,15.0,0.5,0,0.15206069,0,46
+55,Ahmed o.,ph.d inorganic and analytical chemistry and chemical formulator,,,0.14553354680538177,0.0,0.3804666195333805,1.0,20.0,0.5,0,0.14325257,0,47
+17,Uttam A.,data engineer   sql   ai/ml   nlp  power bi   kibana   dashboard   api,,,0.3130001425743103,0.0,0.3312796687203313,0.87,25.0,0.5,0,0.13864715,0,48
+42,Rajab S.,lead generation   information retrieval   remote support   crm_entries,,,0.2924113869667053,0.0,0.14947985052014948,0.93,4.0,0.5,0,0.11835248,0,49
+116,Paulo O.,microsoft certified   power bi expert   report   dashboard consultant,,,0.22162595391273499,0.0,0.18240581759418242,1.0,55.0,0.5,0,0.10021129,0,50
+112,Soban A.,data scientist   machine learning expert,,,0.16346612572669983,0.0,0.24522775477224523,1.0,15.0,0.5,0,0.09910459,0,51
+47,Malik Haseeb H.,saas developer   deep learning   open ai   nlp   saas mvp,,,0.2131596803665161,0.0,0.1635188364811635,1.0,36.0,0.5,0,0.09828101,0,52
+95,Ali A.,data analyst   sql   python   automation   machine learning,,,0.323137491941452,0.0,0.10423189576810424,1.0,25.0,0.5,0,0.09688368,0,53
+1,Abeer K.,data scientist   web scraping engineer,,,0.24737896025180817,0.0,0.25371174628825377,0.97,25.0,0.5,0,0.094887726,0,54
+58,Ugonna B.,"detailed va    expert in web mining, ai data scraping, and research.",,,0.3083740472793579,0.0,0.004443995556004443,1.0,15.0,0.5,0,0.09081792,0,55
+35,Zeeshan A.,senior full stack developer   python   node.js   react.js   ai,,,0.30742257833480835,0.0,0.09706090293909707,0.98,30.0,0.5,0,0.090592764,0,56
+62,Arjun V.,power bi   tableau   nlp   etl   azure   aws   8+ yoe,,,0.3081158399581909,0.0,0.15917584082415917,1.0,45.0,0.5,0,0.08948404,0,57
+27,Pavel A.,"gpt-4, chatgpt, llms, generative ai product expert",,,0.12035786360502243,0.0,0.3906676093323907,0.84,150.0,0.5,0,0.08892823,0,58
+20,Muhammad Ameer H.,python/flask/chatgpt   machine learning   ai   web scraping,,,0.22310924530029297,0.0,0.35602464397535605,0.89,45.0,0.5,0,0.07765938,0,59
+33,Parv Y.,"data scientist (web scrapping, etl, ml, nlp)",,,0.30824756622314453,0.0,0.07574992425007575,0.96,15.0,0.5,0,0.0607668,0,60
+96,Abdul R.,expert data scientist & full stack developer: generative ai specialist,,,0.27146846055984497,0.0,0.09302090697909303,1.0,35.0,0.5,0,0.06012997,0,61
+104,Muhammad Faheem S.,cloud engineer   big data engineer,,,0.26416105031967163,0.0,0.1322088677911322,1.0,30.0,0.5,0,0.05114747,0,62
+145,Muhammad Junaid A.,full stack   python   django   javascript   react   node.js   laravel,,,0.2935096323490143,0.0,0.07181092818907181,1.0,25.0,0.5,0,0.04947114,0,63
+65,Marlon B.,"financial auditor, certified public accountant & data analysis",,,0.2822732925415039,0.0,0.08615291384708615,1.0,7.0,0.5,0,0.049019404,0,64
+23,Nick V.,analytics wizard for cloud-based   ph.d. data engineer & analyst,,,0.2506645619869232,0.0,0.11382688617311382,1.0,65.0,0.5,0,0.044551965,0,65
+9,Mahabubur R.,"metabase expert, data analyst, sql + google looker studio +bigquery",,,0.25954514741897583,0.0,0.13917786082213918,1.0,30.0,0.5,0,0.044402298,0,66
+34,Junaid U.,data engineer,,,0.24573716521263123,0.0,0.15584284415715585,1.0,30.0,0.5,0,0.040772006,0,67
+150,Virender B.,senior software developer with 6+ yoe in java & python,,,0.30693531036376953,0.0,0.057771942228057774,1.0,30.0,0.5,0,0.03978727,0,68
+140,Sahaj G.,expert - full stack software engineer   mobile app   web app   ai/ml,,,0.36524927616119385,0.0,0.045247954752045245,0.66,15.0,0.5,0,0.039307285,0,69
+28,Snehit D.,python developer & web scraping expert who speaks argentinian spanish,,,0.24007880687713623,0.0,0.13917786082213918,1.0,10.0,0.5,0,0.038205933,0,70
+154,Adnane R.,"automation & ai expert (python, gpt, ml, excel, data visual, rpa, js)",,,0.2538604736328125,0.0,0.0703969296030704,1.0,50.0,0.5,0,0.036886834,0,71
+144,Muhammad Umer F.,data science aficionado   data analyst   automation engineer,,,0.3828560709953308,0.0,0.004948995051004949,0.87,25.0,0.5,0,0.03317206,0,72
+45,Nabeel F.,data engineer   databricks   gcp   azure   aws   snowflake   ai,,,0.20611320436000824,0.0,0.15786284213715787,1.0,30.0,0.5,0,0.03242137,0,73
+54,MD. Shahriar Al Kasib Khan S.,tableau   looker   dbt   google data studio   power bi   sql expert,,,0.24418804049491882,0.0,0.11766488233511765,0.96,35.0,0.5,0,0.029678613,0,74
+26,Muhammad N.,website and linkedin data scrapping and lead generation expert,,,0.27946123480796814,0.0,0.13018886981113018,0.77,10.0,0.5,0,0.028063444,0,75
+122,Mohammed A.,data analyst   python  sql  web scraping & browser automation expert,,,0.2633238136768341,0.0,0.03444096555903444,1.0,16.0,0.5,0,0.026501782,0,76
+103,Madjid E.,web scraping expert   etl developer,,,0.292736291885376,0.0,0.037874962125037874,0.93,38.0,0.5,0,0.02564759,0,77
+19,Doreen B.,"adept phd copyeditor, white paper, business plan and academic writer.",,,0.0467362143099308,0.0,0.33370366629633375,0.95,40.0,0.5,0,0.02547818,0,78
+134,Manish A.,"project manager - pmp, csm",,,0.22297781705856323,0.0,0.0812039187960812,0.94,25.0,0.5,0,0.024323715,0,79
+18,Emmanuel O.,data analyst   sql   tableau   excel   python   power bi,,,0.28263187408447266,0.0,0.08019391980608019,0.89,14.99,0.5,0,0.023948645,0,80
+129,Khan M.,data scraping & analysis   machine learning   google sheets   python,,,0.22992461919784546,0.0,0.05140894859105141,1.0,45.0,0.5,0,0.023858588,0,81
+148,Olusegun F.,proficient data analyst   engineer,,,0.23721984028816223,0.0,0.04878295121704878,1.0,30.0,0.5,0,0.023807414,0,82
+127,Chris H.,healthcare ai and app expert   harvard health data scientist,,,0.22214040160179138,0.0,0.05969094030905969,1.0,120.0,0.5,0,0.023761246,0,83
+8,Dr . M Mansoor M.,expert medical writer   medical researcher  academic writer  doctor,,,0.03948861360549927,0.0,0.31643268356731646,0.98,59.99,0.5,0,0.023402903,0,84
+48,Varun D.,"consulting   outsourcing   it staffing - software, web, app , e-com",,,0.24464738368988037,0.0,0.03777396222603777,0.96,28.0,0.5,0,0.023200944,0,85
+115,Dave C.,ai specialist   machine learning engineer   data science expert,,,0.25057488679885864,0.0,0.035854964145035854,1.0,45.0,0.5,0,0.022771481,0,86
+124,Faiz R.,data scientist   machine learning   computer vision   nlp   aws   sql,,,0.3064277768135071,0.0,0.014745985254014746,0.97,20.0,0.5,0,0.021149922,0,87
+132,Konstantin B.,"aws-certified devops architect   cloud solutions   aws, gcp, azure",,,0.17746782302856445,0.0,0.08615291384708615,1.0,60.0,0.5,0,0.020311596,0,88
+105,Ishaan N.,"data science, quant modelling   finance   ex-morgan stanley, jp morgan",,,0.2258729487657547,0.0,0.08615291384708615,1.0,50.0,0.5,0,0.019807186,0,89
+11,Fasih U.,data engineer   big data   airflow   python   etl   pyspark   sql,,,0.23181398212909698,0.0,0.10190889809110192,1.0,15.0,0.5,0,0.01887788,0,90
+125,Musabbir Ahmed A.,robotics and automation engineer,,,0.20450419187545776,0.0,0.13624886375113623,0.92,30.0,0.5,0,0.01848417,0,91
+12,Islam A.,"transforming data into profit: python, data science, and ai expertise",,,0.25387081503868103,0.0,0.05524694475305525,0.91,60.0,0.5,0,0.017901216,0,92
+60,Bakht M.,"experienced coding, data science & machine learning instructor",,,0.21016092598438263,0.0,0.08847591152408847,1.0,20.0,0.5,0,0.016816776,0,93
+41,Ahmad I.,machine learning   artificial intelligence   python development,,,0.19463910162448883,0.0,0.09221290778709221,1.0,10.0,0.5,0,0.016704297,0,94
+66,Ishtiaque A.,data analyst   tibco spotfire   power bi   tableau   singlestore   etl,,,0.2764020562171936,0.0,0.019492980507019492,0.97,20.0,0.5,0,0.01496881,0,95
+22,Nidhi B.,"data scientist, ai/ml enthusiast and technical content writer",,,0.1452694833278656,0.0,0.11150388849611151,1.0,40.0,0.5,0,0.014665957,0,96
+98,Muhammad Sarwar Jahan M.,expert applied data scientist & analyst,,,0.20366643369197845,0.0,0.036965963034036965,1.0,60.0,0.5,0,0.014343669,0,97
+135,Hossam H.,data scientist  data analyst  data visualization,,,0.1875958889722824,0.0,0.09584890415109584,1.0,10.0,0.5,0,0.013156481,0,98
+97,Khan Bahadar K.,academic writing expert   academic (copy) editing and proofreading,,,0.09108924865722656,0.0,0.06665993334006666,1.0,25.0,0.5,0,0.011051461,0,99
+107,yassine g.,data scientist,,,0.2583214342594147,0.0,0.11221088778911222,0.83,20.0,0.5,0,0.008374242,0,100
+120,Arif S.,generative ai engineer   webflow   wized   xano,,,0.2049550861120224,0.0,0.036056963943036056,0.89,35.0,0.5,0,0.007197068,0,101
+131,Ehab K.,senior ai engineer,,,0.09776212275028229,0.0,0.06706393293606706,1.0,50.0,0.5,0,0.00708748,0,102
+113,Salma H.,machine learning engineer,,,0.20373019576072693,0.0,0.005554994445005555,1.0,30.0,0.5,0,0.0068139858,0,103
+37,Zeyad M.,data scientist   machine learning engineer,,,0.09048427641391754,0.0,0.0407029592970407,1.0,40.0,0.5,0,0.0058469498,0,104
+149,Meer Naib K.,"full stack python developer , data and ml engineer",,,0.21452994644641876,0.0,0.001312998687001312,1.0,21.0,0.5,0,0.005761399,0,105
+6,Pragyesh S.,professional academic writer and coach,,,0.06440821290016174,0.0,0.14533885466114535,0.86,20.0,0.5,0,0.0053897877,0,106
+152,Matias W.,"ai & machine learning   machine learning model, machine learning, sql",,,0.16765710711479187,0.0,0.006867993132006868,1.0,15.0,0.5,0,0.0046722377,0,107
+114,Ahlem K.,business intelligence developer,,,0.23850566148757935,0.0,0.022320977679022323,0.86,50.0,0.5,0,0.0045230375,0,108
+119,Mohamed A.,data scientist,,,0.15783394873142242,0.0,0.022623977376022626,1.0,25.0,0.5,0,0.0044987984,0,109
+121,K R.,certified data scientist i python expert   ai/ml   4+ years experience,,,0.15084794163703918,0.0,0.007574992425007577,0.98,50.0,0.5,0,0.003684151,0,110
+5,Muhammad Noman B.,data science   python projects   machine learning ai assignments r gui,,,0.23946785926818848,0.0,0.015048984951015048,0.82,25.0,0.5,0,0.0033097158,0,111
+138,Abdul M.,data engineer & analytics expert   aws   quicksight/datastudio pro,,,0.28470391035079956,0.0,0.057569942430057565,0.23,11.11,0.5,0,0.0024281174,0,112
+137,Nesma A.,machine learning   artificial intelligence,,,0.1133102998137474,0.0,0.0104029895970104,0.9,20.0,0.5,0,0.0022525801,0,113
+128,Matthew S.,epidemiologist and data scientist,,,0.07435952872037888,0.0,0.004342995657004343,1.0,75.0,0.5,0,0.0021735323,0,114
+146,Amaury H.,machine learning/data science expert,,,0.1213952898979187,0.0,0.2988587011412989,0.0,22.22,0.5,0,0.0017009962,0,115
+139,AILYAH .,python developer   django/flask   web scraping   automation,,,0.3324618935585022,0.0,0.05635794364205636,0.0,17.0,0.5,0,0.0013676728,0,116
+57,Aamir I.,data scientist/analyst   statistician   quantitative researcher,,,0.264589786529541,0.0,0.07968892031107969,0.0,70.0,0.5,0,0.00094591826,0,117
+110,Ismail H.,data science-ml-dl-rl-ai-mathematics-hpc- statistics-quant trading,,,0.20760071277618408,0.0,0.049691950308049695,0.32,50.0,0.5,0,0.00080092764,0,118
+61,Ebrahim A.,senior data engineer,,,0.24213337898254395,0.0,0.07968892031107969,0.0,20.0,0.5,0,0.0007725438,0,119
+101,Ahmed S.,"data scientist, python developer",,,0.28032535314559937,0.0,0.0008079991920008084,0.0,25.0,0.5,0,0.000644648,0,120
+100,Aleksei Z.,data analysis & visualization   data science,,,0.19826209545135498,0.0,0.0817089182910817,0.0,20.0,0.5,0,0.0006139035,0,121
+10,Trenton S.,data analysis and insights   transforming data actionable business,,,0.25910598039627075,0.0,0.013836986163013836,0.0,45.0,0.5,0,0.000569312,0,122
+59,Ashraful Islam E.,data analyst    excel expert    powerpoint presentation,,,0.2559016942977905,0.0,0.0,0.0,10.0,0.5,0,0.0005168414,0,123
+102,Yousef W.,rpa developer  ai & automation engineer   data scientist,,,0.11541213095188141,0.0,0.0817089182910817,0.0,5.0,0.5,0,0.00051380246,0,124
+118,Sergio P.,"ai & machine learning   c, c++, python, data science, nlp, statistics",,,0.15211603045463562,0.0,0.07968892031107969,0.0,18.0,0.5,0,0.0004961849,0,125
+15,Yabebal F.,generative ai & prompt engineer + ai developer & consultant,,,0.19562608003616333,0.0,0.025047974952025043,0.0,25.0,0.5,0,0.00049447315,0,126
+31,Aveen F.,senior data scientist,,,0.14228859543800354,0.0,0.004342995657004343,0.0,30.0,0.5,0,0.0003141701,0,127
+81,"  an article is ...""",20,,,0.09180518239736557,0.0,,,99.0,0.5,0,0.00025709934,0,128
+87,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,129
+86,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,130
+90,    wikipedia.org botany close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,131
+67,Syeda F.,"articles, seo content, and scientific writing pro",,,0.08703042566776276,0.0,,,,0.5,0,0.00025548218,0,132
+75,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,133
+89,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,134
+91,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,135
+88,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,136
+78,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,137
+76,    wikipedia.org botany close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,138
+84,    wikipedia.org biology close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,139
+83,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,140
+82,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,141
+73,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,142
+74,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,143
+72,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,144
+70,    wikipedia.org biology close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,145
+69,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,146
+68,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,147
+77,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,148
+94,"  a product description is a structured format of presenting information about a product. ar...""",,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,149
+80,  a product description is a structured format of presenting information about a product. article writing close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,150
+79,    wikipedia.org product description close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,151
+92,  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,152
+93,    wikipedia.org product description close the tooltip  ,,,,0.09455446898937225,0.0,,,,0.5,0,0.00025548218,0,153
+85,  biology is a natural science concerned with the study of life and living organisms, including their structure,,,0.07773692905902863,0.0,,,,0.5,0,0.0002235114,0,154
+71,  biology is a natural science concerned with the study of life and living organisms, including their structure,,,0.07773692905902863,0.0,,,,0.5,0,0.0002235114,0,155

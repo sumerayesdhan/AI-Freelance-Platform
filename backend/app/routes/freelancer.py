@@ -151,16 +151,9 @@ def recommend(project_id:str):
 
 @router.post("/negotiate/{project_id}")
 def negotiate(project_id: str, data: dict):
-
-    requirement_doc = requirement_analysis_collection.find_one(
-        {"project_id": project_id}
-    )
-
+    requirement_doc = requirement_analysis_collection.find_one({"project_id": project_id})
     if not requirement_doc:
-        raise HTTPException(
-            status_code=404,
-            detail="Requirement analysis not found"
-        )
+        raise HTTPException(status_code=404, detail="Requirement analysis not found")
 
     freelancer = data.get("freelancer") or {}
     requirement = requirement_doc.get("analysis", {})
@@ -172,12 +165,8 @@ def negotiate(project_id: str, data: dict):
         match = re.search(r"\d+(?:\.\d+)?", str(value or ""))
         return float(match.group()) if match else fallback
 
-    budget_value = requirement.get("budget_range")
-    budget_text = str(budget_value or "")
-    budget_tokens = re.findall(
-        r"\d[\d,]*(?:\.\d+)?\s*[kK]?",
-        budget_text
-    )
+    budget_text = str(requirement.get("budget_range") or "")
+    budget_tokens = re.findall(r"\d[\d,]*(?:\.\d+)?\s*[kK]?", budget_text)
     budget_values = []
     for token in budget_tokens:
         value = float(token.replace(",", "").lower().replace("k", "").strip())
@@ -186,29 +175,27 @@ def negotiate(project_id: str, data: dict):
         budget_values.append(value)
     if "k" in budget_text.lower() and budget_values and max(budget_values) < 1000:
         budget_values = [value * 1000 for value in budget_values]
+
     budget_floor = min(budget_values, default=0)
     budget_ceiling = max(budget_values, default=0)
-
     hourly_rate = number(freelancer.get("hourly_rate"), 1000)
     estimated_hours = max(20, round(number(
         freelancer.get("estimated_hours") or freelancer.get("working_hours"),
         40
     )))
-    # Only the selected freelancer's hourly rate influences the fixed price.
+    rate_adjustment = min(0, round((hourly_rate - 35) * 300))
     if budget_ceiling > 0:
         client_offer = round(budget_floor, -2)
-        rate_adjustment = min(0, round((hourly_rate - 35) * 300))
         final_price = round(max(budget_floor, budget_ceiling + rate_adjustment), -2)
         initial_price = round(final_price + 3000, -2)
     else:
         client_offer = 50000
-        rate_adjustment = min(0, round((hourly_rate - 35) * 300))
         final_price = round(max(40000, 50000 + rate_adjustment), -2)
         initial_price = round(final_price + 3000, -2)
+
     scope = ", ".join(str(feature) for feature in features[:4]) or "the agreed core functionality"
     deadline = requirement.get("deadline") or "the agreed project deadline"
     name = freelancer.get("freelancer_name") or "the selected freelancer"
-
     messages = [
         {"speaker": "Client", "content": f"I would like to move forward on {scope}. My total project budget is {requirement.get('budget_range') or 'limited'}, so can we keep the full core scope within ₹{client_offer:,.0f}?"},
         {"speaker": "Freelancer", "content": f"I understand the budget constraint. Considering the functionality, testing, and quality checks, my initial fixed project proposal is ₹{initial_price:,.0f}, which is ₹3,000 above the top of your range."},
@@ -221,7 +208,6 @@ def negotiate(project_id: str, data: dict):
         {"speaker": "Client", "content": f"₹{final_price:,.0f} is a fair balance for the scope and timeline. I accept the fixed price, with optional features handled separately."},
         {"speaker": "Freelancer", "content": f"I agree to ₹{final_price:,.0f} for the defined scope, payable against milestones. We have reached an agreement."}
     ]
-
     agreement = {
         "project_id": project_id,
         "freelancer_id": str(freelancer.get("freelancer_id") or "demo-freelancer"),
@@ -237,31 +223,13 @@ def negotiate(project_id: str, data: dict):
         "client_approved": False,
         "freelancer_approved": False
     }
-    agreements_collection.update_one(
-        {"project_id": project_id},
-        {"$set": agreement},
-        upsert=True
-    )
-
-    return {
-        "project_id": project_id,
-        "messages": messages,
-        "final_agreed_price": final_price,
-        "estimated_hours": estimated_hours,
-        "freelancer_hourly_rate": round(final_price / estimated_hours),
-        "final_scope": f"{scope}; implementation, testing, and reasonable defect fixes",
-        "deadline": deadline,
-        "status": "Agreement Reached",
-        "freelancer_name": name
-    }
+    agreements_collection.update_one({"project_id": project_id}, {"$set": agreement}, upsert=True)
+    return {**agreement, "status": "Agreement Reached"}
 
 
 @router.post("/agreements/{project_id}/client-approve")
 def approve_agreement(project_id: str):
-    result = agreements_collection.update_one(
-        {"project_id": project_id},
-        {"$set": {"client_approved": True}}
-    )
+    result = agreements_collection.update_one({"project_id": project_id}, {"$set": {"client_approved": True}})
     if not result.matched_count:
         raise HTTPException(status_code=404, detail="Agreement not found")
     agreement = agreements_collection.find_one({"project_id": project_id})
@@ -287,10 +255,7 @@ def freelancer_approve(project_id: str):
         raise HTTPException(status_code=404, detail="Agreement not found")
     if not agreement.get("client_approved", False):
         raise HTTPException(status_code=400, detail="Client approval is required first")
-    result = agreements_collection.update_one(
-        {"project_id": project_id, "freelancer_email": "freelancer@demo.com"},
-        {"$set": {"freelancer_approved": True}}
-    )
+    agreements_collection.update_one({"project_id": project_id, "freelancer_email": "freelancer@demo.com"}, {"$set": {"freelancer_approved": True}})
     agreement = agreements_collection.find_one({"project_id": project_id})
     agreement.pop("_id", None)
     return agreement
@@ -309,14 +274,7 @@ def get_agreement(project_id: str):
 
 @router.get("/agreements/{project_id}/status")
 def agreement_status(project_id: str):
-    agreement = agreements_collection.find_one(
-        {"project_id": project_id},
-        {
-            "_id": 0,
-            "client_approved": 1,
-            "freelancer_approved": 1
-        }
-    )
+    agreement = agreements_collection.find_one({"project_id": project_id}, {"_id": 0, "client_approved": 1, "freelancer_approved": 1})
     if not agreement:
         raise HTTPException(status_code=404, detail="Agreement not found")
     return agreement
@@ -324,15 +282,7 @@ def agreement_status(project_id: str):
 
 @router.delete("/agreements/{project_id}")
 def delete_agreement(project_id: str):
-    result = agreements_collection.delete_one(
-        {
-            "project_id": project_id,
-            "freelancer_email": "freelancer@demo.com"
-        }
-    )
+    result = agreements_collection.delete_one({"project_id": project_id, "freelancer_email": "freelancer@demo.com"})
     if not result.deleted_count:
         raise HTTPException(status_code=404, detail="Agreement not found")
-    return {
-        "message": "Agreement deleted",
-        "project_id": project_id
-    }
+    return {"message": "Agreement deleted", "project_id": project_id}
