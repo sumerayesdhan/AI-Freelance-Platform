@@ -81,7 +81,7 @@ function NegotiationPage() {
     if (error) return <main className="negotiation-page"><p className="negotiation-error">{error}</p></main>;
     if (!negotiation) return <main className="negotiation-page"><p className="negotiation-loading">Starting AI negotiation...</p></main>;
 
-	return (
+    return (
         <main className="negotiation-page">
             <header className="negotiation-header"><div className="negotiation-topbar"><p className="eyebrow">AI-assisted agreement</p><button className="negotiation-logout" onClick={logout}>Logout</button></div><h1>Negotiation in progress</h1><p>{negotiation.freelancer_name} and the client are aligning on a fair fixed price.</p></header>
             <section className="negotiation-layout">
