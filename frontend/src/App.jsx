@@ -17,6 +17,7 @@ import RequirementSummaryPage from "./pages/RequirementSummaryPage";
 import ProjectAnalysis from "./pages/ProjectAnalysis";
 import FreelancerRecommendationPage
   from "./pages/FreelancerRecommendationPage";
+import NegotiationPage from "./pages/NegotiationPage";
 
 
 function App() {
@@ -141,6 +142,11 @@ function App() {
             <FreelancerRecommendationPage />
           }
 
+        />
+
+        <Route
+          path="/negotiation/:projectId"
+          element={<NegotiationPage />}
         />
 
 

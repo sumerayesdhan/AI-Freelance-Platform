@@ -95,3 +95,25 @@
 
 
 }
+
+.freelancer-card.selected{
+    outline:3px solid #38bdf8;
+}
+
+.freelancer-card{
+    cursor:pointer;
+}
+
+.select-freelancer-btn{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#1d4ed8;
+    color:white;
+}
+
+.start-negotiation-btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
