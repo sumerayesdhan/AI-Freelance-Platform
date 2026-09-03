@@ -19,6 +19,8 @@ import FreelancerRecommendationPage
   from "./pages/FreelancerRecommendationPage";
 import NegotiationPage from "./pages/NegotiationPage";
 
+import FreelancerDashboard from "./pages/FreelancerDashboard";
+import ContractPage from "./pages/ContractPage";
 
 function App() {
 
@@ -34,7 +36,6 @@ function App() {
         {/* Default */}
 
         <Route
-
           path="/"
 
           element={
@@ -81,6 +82,26 @@ function App() {
 
           element={
             <Dashboard />
+          }
+
+        />
+
+        <Route
+
+          path="/freelancer-dashboard"
+
+          element={
+            <FreelancerDashboard />
+          }
+
+        />
+
+        <Route
+
+          path="/contract/:projectId"
+
+          element={
+            <ContractPage />
           }
 
         />

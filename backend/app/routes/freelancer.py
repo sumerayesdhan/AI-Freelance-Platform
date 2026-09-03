@@ -7,12 +7,15 @@ from fastapi import APIRouter, HTTPException
 
 from app.database.mongodb import (
     requirement_analysis_collection,
-    complexity_analysis_collection
+    complexity_analysis_collection,
+    agreements_collection
 )
 
 from app.services.freelancer_service import (
     get_freelancer_recommendations
 )
+
+from app.utils.auth import get_current_user
 
 
 router = APIRouter(
@@ -219,6 +222,27 @@ def negotiate(project_id: str, data: dict):
         {"speaker": "Freelancer", "content": f"I agree to ₹{final_price:,.0f} for the defined scope, payable against milestones. We have reached an agreement."}
     ]
 
+    agreement = {
+        "project_id": project_id,
+        "freelancer_id": str(freelancer.get("freelancer_id") or "demo-freelancer"),
+        "freelancer_email": "freelancer@demo.com",
+        "freelancer_name": name,
+        "project_status": "ongoing",
+        "messages": messages,
+        "final_agreed_price": final_price,
+        "estimated_hours": estimated_hours,
+        "freelancer_hourly_rate": round(final_price / estimated_hours),
+        "final_scope": f"{scope}; implementation, testing, and reasonable defect fixes",
+        "deadline": deadline,
+        "client_approved": False,
+        "freelancer_approved": False
+    }
+    agreements_collection.update_one(
+        {"project_id": project_id},
+        {"$set": agreement},
+        upsert=True
+    )
+
     return {
         "project_id": project_id,
         "messages": messages,
@@ -229,4 +253,86 @@ def negotiate(project_id: str, data: dict):
         "deadline": deadline,
         "status": "Agreement Reached",
         "freelancer_name": name
+    }
+
+
+@router.post("/agreements/{project_id}/client-approve")
+def approve_agreement(project_id: str):
+    result = agreements_collection.update_one(
+        {"project_id": project_id},
+        {"$set": {"client_approved": True}}
+    )
+    if not result.matched_count:
+        raise HTTPException(status_code=404, detail="Agreement not found")
+    agreement = agreements_collection.find_one({"project_id": project_id})
+    agreement.pop("_id", None)
+    return agreement
+
+
+@router.get("/agreements/freelancer/{email}")
+def freelancer_agreements(email: str):
+    if email.lower() != "freelancer@demo.com":
+        raise HTTPException(status_code=403, detail="Demo freelancer account required")
+    agreements = list(agreements_collection.find({"freelancer_email": email.lower()}))
+    for agreement in agreements:
+        agreement["project_status"] = "completed" if agreement.get("client_approved") and agreement.get("freelancer_approved") else "ongoing"
+        agreement.pop("_id", None)
+    return {"agreements": agreements}
+
+
+@router.post("/agreements/{project_id}/freelancer-approve")
+def freelancer_approve(project_id: str):
+    agreement = agreements_collection.find_one({"project_id": project_id})
+    if not agreement:
+        raise HTTPException(status_code=404, detail="Agreement not found")
+    if not agreement.get("client_approved", False):
+        raise HTTPException(status_code=400, detail="Client approval is required first")
+    result = agreements_collection.update_one(
+        {"project_id": project_id, "freelancer_email": "freelancer@demo.com"},
+        {"$set": {"freelancer_approved": True}}
+    )
+    agreement = agreements_collection.find_one({"project_id": project_id})
+    agreement.pop("_id", None)
+    return agreement
+
+
+@router.get("/agreements/{project_id}")
+def get_agreement(project_id: str):
+    agreement = agreements_collection.find_one({"project_id": project_id})
+    if not agreement:
+        raise HTTPException(status_code=404, detail="Agreement not found")
+    if not agreement.get("client_approved") or not agreement.get("freelancer_approved"):
+        raise HTTPException(status_code=403, detail="Both parties must approve before downloading the contract")
+    agreement.pop("_id", None)
+    return agreement
+
+
+@router.get("/agreements/{project_id}/status")
+def agreement_status(project_id: str):
+    agreement = agreements_collection.find_one(
+        {"project_id": project_id},
+        {
+            "_id": 0,
+            "client_approved": 1,
+            "freelancer_approved": 1
+        }
+    )
+    if not agreement:
+        raise HTTPException(status_code=404, detail="Agreement not found")
+    return agreement
+
+
+@router.delete("/agreements/{project_id}")
+def delete_agreement(project_id: str):
+    result = agreements_collection.delete_one(
+        {
+            "project_id": project_id,
+            "freelancer_email": "freelancer@demo.com"
+        }
+    )
+    if not result.deleted_count:
+        raise HTTPException(status_code=404, detail="Agreement not found")
+    return {
+        "message": "Agreement deleted",
+        "project_id": project_id
     }

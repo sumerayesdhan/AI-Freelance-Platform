@@ -101,3 +101,15 @@
     background:#7dd3fc;
 
 }
+
+.summary-container{background:var(--canvas);color:var(--ink);padding:clamp(28px,5vw,64px)}
+.summary-container h1{color:var(--brand-dark);font-size:clamp(2rem,5vw,3.4rem)}
+.summary-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);color:var(--ink)}
+.summary-card h3{color:var(--accent)}
+.summary-card p,.summary-card li{color:var(--muted)}
+.summary-card button{background:var(--brand);color:#fff}
+
+.summary-card h3{font-size:1rem;letter-spacing:.04em;text-transform:uppercase}
+.summary-card ul{background:#f0f5f1;border:1px solid #dce8df;border-radius:10px;padding:14px 14px 14px 34px}
+.summary-card button{font-size:15px;margin-top:14px}
+@media(max-width:600px){.summary-container{padding:28px 16px}.summary-container h1{font-size:2rem}.summary-card{padding:22px}.summary-card button{font-size:14px}}

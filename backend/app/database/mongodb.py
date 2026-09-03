@@ -120,3 +120,8 @@ requirement_analysis_collection = (
 complexity_analysis_collection = (
     db["complexity_analysis"]
 )
+
+
+agreements_collection = (
+    db["agreements"]
+)

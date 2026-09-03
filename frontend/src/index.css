@@ -96,3 +96,30 @@ ul{
 
 
 }
+
+:root{
+    --ink:#17211b;
+    --muted:#647067;
+    --paper:#fbfaf6;
+    --canvas:#eef1ec;
+    --line:#d9dfd8;
+    --brand:#1d5b4f;
+    --brand-dark:#123d35;
+    --accent:#c8643d;
+    --shadow:0 16px 40px rgba(22,43,35,.10);
+    --radius:14px;
+}
+
+html{background:var(--canvas)}
+body{background:var(--canvas);color:var(--ink);font-family:"Segoe UI",Tahoma,sans-serif;line-height:1.5}
+button,input,textarea{font-size:15px}
+button{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,opacity .18s ease}
+button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 7px 16px rgba(22,43,35,.14)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(200,100,61,.35);outline-offset:2px}
+h1,h2,h3{letter-spacing:0;font-family:Georgia,"Times New Roman",serif}
+
+::selection{background:#c9ded2;color:var(--ink)}
+button:disabled{opacity:.5;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+input::placeholder,textarea::placeholder{color:#93a098;opacity:1}
+label{display:block;margin-top:18px;color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.03em}
+ul{color:var(--muted)}

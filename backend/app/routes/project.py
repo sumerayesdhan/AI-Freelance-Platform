@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.schemas.project_schema import ProjectCreate
 
@@ -6,8 +6,11 @@ from app.models.project import project_document
 
 from app.services.project_service import (
     create_project,
-    get_project_by_id
+    get_project_by_id,
+    get_client_projects
 )
+
+from app.database.mongodb import agreements_collection, projects_collection
 
 from app.utils.auth import get_current_user
 
@@ -144,3 +147,45 @@ def get_project(
         )
 
     }
+
+
+
+@router.get("/history/list")
+def project_history(
+    user_email: str = Depends(get_current_user)
+):
+    projects = get_client_projects(user_email)
+    history = []
+    for project in projects:
+        agreement = agreements_collection.find_one(
+            {"project_id": str(project["_id"])}
+        )
+        completed = bool(
+            agreement
+            and agreement.get("client_approved")
+            and agreement.get("freelancer_approved")
+        )
+        history.append({
+            "project_id": str(project["_id"]),
+            "title": project.get("title", "Untitled project"),
+            "description": project.get("description", ""),
+            "status": "completed" if completed else project.get("status", "ongoing"),
+            "budget": agreement.get("final_agreed_price") if agreement else None,
+            "freelancer_name": agreement.get("freelancer_name") if agreement else None,
+            "contract_ready": completed
+        })
+    return {"projects": history}
+
+
+@router.delete("/{project_id}")
+def delete_project(
+    project_id: str,
+    user_email: str = Depends(get_current_user)
+):
+    project = get_project_by_id(project_id)
+    if not project or project.get("client_email") != user_email:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    projects_collection.delete_one({"_id": project["_id"]})
+    agreements_collection.delete_one({"project_id": project_id})
+    return {"message": "Project deleted", "project_id": project_id}

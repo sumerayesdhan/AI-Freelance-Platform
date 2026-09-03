@@ -134,6 +134,19 @@
 
 }
 
+.analysis-container{background:var(--canvas);color:var(--ink);padding:clamp(28px,5vw,64px)}
+.analysis-container>h1{color:var(--brand-dark);font-size:clamp(2rem,5vw,3.4rem);text-align:center}
+.analysis-card,.summary-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);color:var(--ink)}
+.metric-card{background:#e0ebe4;border:1px solid #c8dbce;border-radius:12px;color:var(--ink)}
+.metric-card h1,.analysis-card h1{color:var(--brand)}
+.info-item{border-bottom:1px solid var(--line);padding-bottom:12px}
+
+.analysis-card h2,.complexity-section>h2{color:var(--brand-dark);font-size:1.45rem}
+.analysis-card h3{color:var(--accent);font-size:1rem;margin-top:24px}
+.analysis-card p{color:var(--muted);line-height:1.65}
+.analysis-card li{color:var(--muted);line-height:1.5}
+@media(max-width:700px){.analysis-container{padding:28px 16px}.metric-grid{grid-template-columns:1fr;gap:12px}.metric-card{padding:18px}.info-item{gap:18px;align-items:flex-start}.info-item span{text-align:right}}
+
 .summary-card{
 
     background:#111827;

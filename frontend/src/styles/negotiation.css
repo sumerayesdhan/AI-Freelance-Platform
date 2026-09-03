@@ -5,6 +5,8 @@
     background: #f3f0e8;
 }
 .negotiation-header { max-width: 820px; margin: 0 auto 42px; }
+.negotiation-topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.negotiation-logout { border: 0; padding: 10px 16px; background: #1f3328; color: #fffdf8; font-weight: 700; cursor: pointer; }
 .negotiation-header h1 { margin: 8px 0 12px; font: 700 clamp(2.2rem, 5vw, 4.8rem)/.98 Georgia, serif; letter-spacing: 0; }
 .negotiation-header p:last-child { color: #59665e; font-size: 1.05rem; }
 .eyebrow { color: #a44a2f; font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
@@ -26,6 +28,17 @@
 .scope-block { margin-top: 25px; }
 .scope-block p { margin-top: 9px; color: #e1e9df; line-height: 1.5; }
 .status { display: block; margin-top: 26px; padding-top: 16px; border-top: 1px solid #4b6252; color: #f4c36a; text-transform: uppercase; font-size: .78rem; letter-spacing: .08em; }
+.agreement-action { width: 100%; margin-top: 20px; background: #f4c36a; color: #1f3328; }
+.approval-note { margin-top: 18px; color: #afc6b4; font-size: .9rem; }
 .negotiation-loading, .negotiation-error { max-width: 820px; margin: 20vh auto; text-align: center; font-size: 1.2rem; }
 .negotiation-error { color: #a44a2f; }
 @media (max-width: 760px) { .negotiation-page { padding: 34px 16px; } .negotiation-layout { grid-template-columns: 1fr; } .agreement-panel { position: static; order: -1; } .negotiation-message.freelancer { margin-left: 0; } }
+.negotiation-page{background:var(--canvas)}
+.negotiation-header h1{color:var(--brand-dark)}
+.negotiation-message{border-radius:12px;box-shadow:0 5px 14px rgba(22,43,35,.07)}
+.agreement-panel{border-radius:var(--radius);box-shadow:var(--shadow)}
+.negotiation-header p:last-child{max-width:620px;line-height:1.6}
+.negotiation-message{transition:transform .18s ease,box-shadow .18s ease}
+.negotiation-message:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(22,43,35,.1)}
+.agreement-panel h2{color:#fffdf8}
+@media(max-width:600px){.negotiation-topbar{align-items:flex-start}.negotiation-header h1{font-size:2.5rem}.agreement-panel{padding:22px}.agreement-panel dl div{align-items:flex-start}.agreement-panel dd{max-width:55%}}

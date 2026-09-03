@@ -9,6 +9,7 @@ from app.routes.project import router as project_router
 from app.routes.conversation import router as conversation_router
 from app.routes.freelancer import router as freelancer_router
 from app.utils.auth import get_current_user
+from app.services.auth_service import get_client_by_email
 
 
 
@@ -234,6 +235,15 @@ def dashboard(
 
 
         "email":
-        current_user
+        current_user,
+
+        "full_name":
+        (get_client_by_email(current_user) or {}).get(
+            "full_name",
+            current_user.split("@")[0].title()
+        ),
+
+        "role":
+        "client"
 
     }

@@ -127,6 +127,37 @@ def login(
     client: ClientLogin
 ):
 
+    selected_role = (client.role or "client").lower()
+
+    if (
+        selected_role == "freelancer"
+        and client.email.lower() == "freelancer@demo.com"
+        and client.password == "freelancer123"
+    ):
+        token = create_access_token(
+            {
+                "sub": client.email.lower(),
+                "role": "freelancer"
+            }
+        )
+        return {
+            "message": "Freelancer demo login successful",
+            "access_token": token,
+            "token_type": "bearer",
+            "user": {
+                "email": client.email.lower(),
+                "role": "freelancer",
+                "full_name": "Freelancer"
+            }
+        }
+
+
+    if selected_role == "freelancer":
+        raise HTTPException(
+            status_code=403,
+            detail="Freelancer account not found"
+        )
+
 
     db_client = get_client_by_email(
 
@@ -179,7 +210,10 @@ def login(
         {
 
             "sub":
-            db_client["email"]
+            db_client["email"],
+
+            "role":
+            "client"
 
         }
 
@@ -207,7 +241,13 @@ def login(
         {
 
             "email":
-            db_client["email"]
+            db_client["email"],
+
+            "role":
+            "client",
+
+            "full_name":
+            db_client.get("full_name", "Client")
 
         }
 

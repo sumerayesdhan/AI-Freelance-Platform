@@ -176,17 +176,17 @@ function Register(){
 
 
 
-                <h1>
-
-                    AI Freelance Platform
-
-                </h1>
+                <div className="auth-intro">
+                    <p className="auth-kicker">FreelanceConnect</p>
+                    <h1>Join the marketplace</h1>
+                    <p>Bring your project or expertise to a professional workspace built for clear collaboration and fair agreements.</p>
+                </div>
 
 
 
                 <h2>
 
-                    Create Account
+                    Create your account
 
                 </h2>
 

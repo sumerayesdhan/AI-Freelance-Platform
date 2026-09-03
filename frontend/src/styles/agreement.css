@@ -1,0 +1,19 @@
+.agreement-page,.contract-page{min-height:100vh;padding:32px clamp(18px,6vw,90px);background:#f3f0e8;color:#17211b}.agreement-nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d8d4c9;padding-bottom:20px}.agreement-nav h1{font:700 1.4rem Georgia,serif}.agreement-nav button,.agreement-actions button,.print-contract,.agreement-action{border:0;background:#a44a2f;color:#fff;padding:12px 18px;font-weight:700;cursor:pointer}.agreement-heading{max-width:850px;margin:55px auto 30px}.agreement-heading h2{font:700 clamp(2rem,5vw,4rem)/1 Georgia,serif;margin:8px 0}.agreement-heading p:last-child,.agreement-error,.agreement-empty{color:#59665e}.freelancer-agreement{max-width:850px;margin:16px auto;padding:24px;background:#fffdf8;border:1px solid #d8d4c9;display:flex;justify-content:space-between;gap:24px}.freelancer-agreement h3{margin:8px 0;font:700 1.5rem Georgia,serif}.freelancer-agreement p{line-height:1.5}.agreement-actions{display:flex;align-items:center;white-space:nowrap}.contract-page{display:grid;place-items:center}.contract-document{width:min(760px,100%);padding:clamp(28px,6vw,70px);background:#fffdf8;box-shadow:0 4px 20px #d8d4c9}.contract-document h1{font:700 clamp(2.4rem,6vw,4.5rem)/1 Georgia,serif;margin:10px 0}.contract-document h2{margin-top:32px;font-size:1rem;text-transform:uppercase;letter-spacing:.08em}.contract-id,.contract-note{color:#59665e}.contract-document hr{border:0;border-top:1px solid #d8d4c9}.contract-document dl{display:grid;gap:15px}.contract-document dl div{display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid #e4e0d7;padding-bottom:12px}.contract-document dt{font-weight:700}.contract-document dd{margin:0}.print-contract{margin-top:24px}@media print{.print-contract{display:none}.contract-page{padding:0;background:#fff}.contract-document{box-shadow:none}}@media(max-width:650px){.freelancer-agreement{display:block}.agreement-actions{margin-top:20px}.contract-document dl div{grid-template-columns:1fr;gap:5px}}
+@media(max-width:650px){.freelancer-agreement{display:block}.agreement-actions{margin-top:20px}.contract-document dl div{grid-template-columns:1fr;gap:5px}.delete-agreement{background-color:#7f1d1d;color:#fff;padding:10px 15px;border:none;cursor:pointer;}.agreement-actions button:disabled{opacity:.45;cursor:not-allowed;}}
+
+.agreement-page{padding-bottom:70px}
+.agreement-nav{background:var(--brand-dark);color:#fff;border:0;padding:18px clamp(18px,6vw,90px);margin:-32px clamp(-90px,-6vw,-18px) 0}
+.agreement-nav button{border-radius:9px;background:var(--accent)}
+.agreement-heading{width:min(850px,100%)}
+.agreement-heading h2{color:var(--brand-dark)}
+.freelancer-agreement{border-radius:var(--radius);box-shadow:var(--shadow)}
+.agreement-actions{gap:8px;flex-wrap:wrap}
+.agreement-actions button{border-radius:9px}
+.agreement-actions button:disabled{opacity:.45;cursor:not-allowed}
+.role-badge{margin-left:auto;margin-right:16px;padding:5px 10px;border:1px solid #719185;border-radius:99px;color:#dcebe3;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.history-section>h3{margin-bottom:14px}
+.freelancer-agreement{transition:transform .18s ease,box-shadow .18s ease}
+.freelancer-agreement:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(22,43,35,.14)}
+.agreement-actions button{min-height:42px}
+.delete-agreement{background:#8f3d2b!important}
+@media(max-width:650px){.agreement-nav{margin-left:-18px;margin-right:-18px}.agreement-nav h1{font-size:1.1rem}.role-badge{display:none}.agreement-actions{display:grid;grid-template-columns:1fr;width:100%}.agreement-actions button{width:100%}}

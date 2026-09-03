@@ -48,6 +48,8 @@ class ClientLogin(BaseModel):
 
     password: str
 
+    role: Optional[str] = "client"
+
 
 
 

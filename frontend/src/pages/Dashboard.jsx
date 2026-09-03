@@ -30,6 +30,8 @@ function Dashboard(){
 
     const [loading,setLoading] = useState(false);
 
+    const [projectHistory,setProjectHistory] = useState([]);
+
 
 
 
@@ -52,7 +54,14 @@ function Dashboard(){
 
 
                 setUser(
-                    response.data.email
+                    response.data.full_name || response.data.email
+                );
+
+                const historyResponse = await api.get(
+                    "/projects/history/list"
+                );
+                setProjectHistory(
+                    historyResponse.data.projects
                 );
 
 
@@ -223,6 +232,17 @@ function Dashboard(){
 
     };
 
+    const deleteProject = async(projectId)=>{
+        if(!window.confirm("Delete this project from your history?")) return;
+        try{
+            await api.delete(`/projects/${projectId}`);
+            setProjectHistory((current)=>current.filter((item)=>item.project_id !== projectId));
+        }
+        catch(error){
+            setMessage(error.response?.data?.detail || "Project deletion failed");
+        }
+    };
+
 
 
 
@@ -295,11 +315,7 @@ function Dashboard(){
 
 
 
-                <h1>
-
-                    Welcome 👋
-
-                </h1>
+                    <h1>Welcome back, {user}! 👋</h1>
 
 
 
@@ -432,6 +448,35 @@ function Dashboard(){
 
 
             </div>
+
+            <section className="project-history">
+                <h2>Project History</h2>
+                <div className="history-columns">
+                    <div>
+                        <h3>Ongoing Projects</h3>
+                        {projectHistory.filter((item)=>item.status !== "completed").map((item)=>(
+                            <article className="history-item" key={item.project_id}>
+                                <b>{item.title}</b>
+                                <span>{item.status}</span>
+                                <button type="button" onClick={()=>deleteProject(item.project_id)}>Delete</button>
+                            </article>
+                        ))}
+                        {!projectHistory.some((item)=>item.status !== "completed") && <p>No ongoing projects.</p>}
+                    </div>
+                    <div>
+                        <h3>Completed Projects</h3>
+                        {projectHistory.filter((item)=>item.status === "completed").map((item)=>(
+                            <article className="history-item" key={item.project_id}>
+                                <b>{item.title}</b>
+                                <span>Completed{item.budget ? ` · ₹${Number(item.budget).toLocaleString("en-IN")}` : ""}</span>
+                                <button type="button" disabled={!item.contract_ready} onClick={()=>navigate(`/contract/${item.project_id}`)}>Download Contract</button>
+                                <button type="button" onClick={()=>deleteProject(item.project_id)}>Delete</button>
+                            </article>
+                        ))}
+                        {!projectHistory.some((item)=>item.status === "completed") && <p>No completed projects.</p>}
+                    </div>
+                </div>
+            </section>
 
 
 

@@ -119,3 +119,78 @@
     color:#f87171;
 
 }
+
+.project-history{
+    max-width:1000px;
+    margin:40px auto;
+    padding:30px;
+    background:#111827;
+}
+
+.history-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:20px;
+}
+
+.project-history h3{
+    margin:0 0 12px;
+    color:#38bdf8;
+}
+
+.history-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px;
+    margin:8px 0;
+    background:#1f2937;
+}
+
+.history-item span,.project-history p{
+    color:#94a3b8;
+}
+
+.history-item button{
+    padding:7px 10px;
+    border:0;
+    color:white;
+    background:#991b1b;
+    cursor:pointer;
+}
+
+.history-item button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+@media(max-width:700px){
+    .history-columns{grid-template-columns:1fr}
+    .project-history{margin:24px 16px}
+}
+
+@media(max-width:600px){
+    .dashboard-nav{padding:16px 18px}
+    .dashboard-card{padding:24px;margin-top:24px}
+    .history-item{align-items:flex-start;flex-wrap:wrap}
+    .history-item button{margin-left:auto}
+}
+
+.dashboard-card h1{font-size:clamp(1.8rem,5vw,2.6rem);color:var(--brand-dark);margin-bottom:10px}
+.dashboard-card h2{font-size:1.35rem;color:var(--brand-dark);margin:30px 0 8px}
+.dashboard-card label{color:var(--muted)}
+.dashboard-card input,.dashboard-card textarea{font-size:16px;line-height:1.5}
+.history-item b{color:#fff;line-height:1.35}
+.history-item button:not(:last-child){background:var(--brand)}
+
+.dashboard-container{background:var(--canvas);color:var(--ink);padding-bottom:48px}
+.dashboard-nav{padding:18px clamp(20px,6vw,70px);background:var(--brand-dark);color:#fff;align-items:center;box-shadow:0 4px 16px rgba(18,61,53,.14)}
+.dashboard-nav h2{font-size:1.2rem}
+.dashboard-nav button{background:var(--accent);border-radius:9px;padding:10px 18px}
+.dashboard-card{width:min(680px,calc(100% - 32px));margin:44px auto 28px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);color:var(--ink)}
+.dashboard-card input,.dashboard-card textarea{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px}
+.dashboard-card button{background:var(--brand);color:#fff;border-radius:10px}
+.project-history{width:min(1000px,calc(100% - 32px));border:1px solid #264d43;border-radius:var(--radius);box-shadow:var(--shadow)}
+.history-item{border:1px solid #344457;border-radius:9px}

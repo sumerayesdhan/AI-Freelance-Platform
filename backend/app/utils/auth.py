@@ -104,3 +104,19 @@ def get_current_user(
             detail="Invalid or expired token"
 
         )
+
+
+def get_token_payload(
+    credentials: HTTPAuthorizationCredentials = Depends(security)
+):
+    try:
+        return jwt.decode(
+            credentials.credentials,
+            SECRET_KEY,
+            algorithms=[ALGORITHM]
+        )
+    except JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token"
+        )
