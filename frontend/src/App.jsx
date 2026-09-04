@@ -11,13 +11,18 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 
 import RequirementAssistance from "./pages/RequirementAssistance";
-
+import FreelancerLogin from "./pages/FreelancerLogin";
 import RequirementSummaryPage from "./pages/RequirementSummaryPage";
 
 import ProjectAnalysis from "./pages/ProjectAnalysis";
 import FreelancerRecommendationPage
   from "./pages/FreelancerRecommendationPage";
 
+import FreelancerRegister
+  from "./pages/FreelancerRegister";
+
+import FreelancerDashboard
+  from "./pages/FreelancerDashboard";
 
 function App() {
 
@@ -69,8 +74,34 @@ function App() {
         />
 
 
+        {/* Freelancer Authentication */}
+
+        <Route
+
+          path="/freelancer-register"
+
+          element={
+            <FreelancerRegister />
+          }
+
+        />
 
 
+        {/* Freelancer Dashboard */}
+
+        <Route
+
+          path="/freelancer-dashboard/:freelancerId"
+
+          element={
+            <FreelancerDashboard />
+          }
+
+        />
+        <Route
+          path="/freelancer-login"
+          element={<FreelancerLogin />}
+        />
 
         {/* Dashboard */}
 
