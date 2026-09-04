@@ -11,11 +11,16 @@ import {
 import api from "../services/api";
 
 import "../styles/freelancer.css";
+import ClientHeader from "../components/ClientHeader";
+import ClientSidebar from "../components/ClientSidebar";
 
 
 function FreelancerRecommendationPage() {
 
-    const { projectId } = useParams();
+    const {
+        projectId
+    } = useParams();
+
 
     const navigate = useNavigate();
 
@@ -59,17 +64,16 @@ function FreelancerRecommendationPage() {
 
 
             setFreelancers(
-                response.data.recommendations || []
+                response.data.recommendations || response.data || []
             );
 
         }
 
         catch (error) {
 
-            console.error(error);
+            console.log(error);
 
             setMessage(
-                error.response?.data?.detail ||
                 "Failed to load freelancer recommendations"
             );
 
@@ -79,7 +83,7 @@ function FreelancerRecommendationPage() {
 
 
     // =========================================================
-    // START AUTONOMOUS NEGOTIATION
+    // START NEGOTIATION
     // =========================================================
 
     const startNegotiation = async (person) => {
@@ -93,158 +97,94 @@ function FreelancerRecommendationPage() {
             setMessage("");
 
 
-            // =================================================
-            // STEP 1:
+            // -------------------------------------------------
             // CREATE NEGOTIATION REQUEST
-            // =================================================
+            // -------------------------------------------------
 
-            const requestResponse =
-                await api.post(
+            const response = await api.post(
 
-                    "/negotiation/request",
+                "/negotiation/request",
 
-                    {
+                {
 
-                        freelancer_id:
-                            Number(
-                                person.freelancer_id
-                            ),
+                    freelancer_id:
+                        Number(person.freelancer_id),
 
-                        project_id:
-                            String(projectId)
+                    project_id:
+                        String(projectId)
 
-                    }
+                }
 
-                );
-
-
-            const requestId =
-                requestResponse.data.request_id;
-
-
-            if (!requestId) {
-
-                throw new Error(
-                    "Negotiation request ID was not returned"
-                );
-
-            }
+            );
 
 
             console.log(
                 "Negotiation request created:",
-                requestResponse.data
+                response.data
             );
 
 
-            // =================================================
-            // STEP 2:
-            // RUN AUTONOMOUS AI NEGOTIATION
-            // =================================================
+            // -------------------------------------------------
+            // NEGOTIATION REQUEST CREATED SUCCESSFULLY
+            // -------------------------------------------------
             //
-            // IMPORTANT:
+            // At this point the backend has:
             //
-            // The human freelancer does NOT negotiate here.
+            // 1. Found the freelancer
             //
-            // Client Agent
-            //       ↕
-            // Freelancer Agent
+            // 2. Created the freelancer account
+            //    if it does not already exist
             //
-            // negotiate automatically.
+            // 3. Generated:
             //
-            // =================================================
+            //    freelancer<ID>@example.com
+            //
+            // 4. Set demo password:
+            //
+            //    123456
+            //
+            // 5. Stored the negotiation request
+            //    in MongoDB
+            //
+            // -------------------------------------------------
 
-            setMessage(
-                "AI agents are negotiating automatically..."
+
+            // -------------------------------------------------
+            // SAVE SELECTED FREELANCER INFORMATION
+            // -------------------------------------------------
+
+            localStorage.setItem(
+                "selected_freelancer",
+                JSON.stringify(person)
             );
 
 
-            const negotiationResponse =
-                await api.post(
-
-                    "/negotiation/auto-negotiate",
-
-                    null,
-
-                    {
-
-                        params: {
-
-                            request_id:
-                                requestId
-
-                        }
-
-                    }
-
-                );
-
-
-            console.log(
-                "Autonomous negotiation result:",
-                negotiationResponse.data
+            localStorage.setItem(
+                "negotiation_request_id",
+                response.data.request_id
             );
 
 
-            // =================================================
-            // STEP 3:
-            // CHECK RESULT
-            // =================================================
-
-            if (
-                negotiationResponse.data.status ===
-                "NEGOTIATION_COMPLETED"
-            ) {
-
-                // Save selected freelancer locally.
-                // This does NOT replace MongoDB.
-                localStorage.setItem(
-                    "selected_freelancer",
-                    JSON.stringify(person)
-                );
+            localStorage.setItem(
+                "negotiation_project_id",
+                String(projectId)
+            );
 
 
-                localStorage.setItem(
-                    "negotiation_request_id",
-                    requestId
-                );
+            // -------------------------------------------------
+            // GO DIRECTLY TO FREELANCER LOGIN
+            // -------------------------------------------------
 
+            navigate(
+                "/freelancer-login"
+            );
 
-                localStorage.setItem(
-                    "negotiation_project_id",
-                    String(projectId)
-                );
-
-
-                // =================================================
-                // STEP 4:
-                // SHOW FINAL TERMS TO CLIENT
-                // =================================================
-
-                navigate(
-                    `/negotiation/${requestId}?role=client`
-                );
-
-
-            }
-
-            else {
-
-                setMessage(
-
-                    negotiationResponse.data.message ||
-
-                    "Autonomous negotiation could not be completed"
-
-                );
-
-            }
 
         }
 
         catch (error) {
 
-            console.error(
+            console.log(
                 "Start negotiation error:",
                 error
             );
@@ -254,9 +194,7 @@ function FreelancerRecommendationPage() {
 
                 error.response?.data?.detail ||
 
-                error.message ||
-
-                "Failed to start autonomous negotiation"
+                "Failed to start negotiation"
 
             );
 
@@ -279,6 +217,10 @@ function FreelancerRecommendationPage() {
 
         <div className="recommend-container">
 
+            <ClientSidebar />
+
+            <ClientHeader />
+
 
             <h1>
                 Top Freelancer Recommendations
@@ -291,154 +233,137 @@ function FreelancerRecommendationPage() {
                 <p className="message">
                     {message}
                 </p>
-
             }
 
 
             {
-                freelancers.length === 0
+                freelancers.length === 0 && !message ? (
+                    <p className="recommend-empty">No matching freelancers were found for this project.</p>
+                ) : freelancers.map((person) => (
 
-                    ?
+                    <div
+                        className="freelancer-card"
+                        key={person.freelancer_id}
+                    >
 
-                    (
 
-                        <p>
-                            No freelancer recommendations found.
+                        <h2>
+
+                            #{person.rank}
+
+                            {" "}
+
+                            {person.freelancer_name}
+
+                        </h2>
+
+
+                        <p className="title">
+
+                            {person.title}
+
                         </p>
 
-                    )
 
-                    :
-
-                    (
-
-                        freelancers.map((person) => (
-
-                            <div
-                                className="freelancer-card"
-                                key={person.freelancer_id}
-                            >
+                        <div className="details">
 
 
-                                <h2>
+                            <p>
 
-                                    #{person.rank}
+                                ⭐ Match Probability:
 
-                                    {" "}
+                                {" "}
 
-                                    {person.freelancer_name}
-
-                                </h2>
-
-
-                                <p className="title">
-
-                                    {person.title}
-
-                                </p>
-
-
-                                <div className="details">
-
-
-                                    <p>
-
-                                        ⭐ Match Probability:
-
-                                        {" "}
-
-                                        <b>
-
-                                            {
-                                                (
-                                                    person.recommendation_probability
-                                                    *
-                                                    100
-                                                ).toFixed(2)
-                                            }%
-
-                                        </b>
-
-                                    </p>
-
-
-                                    <p>
-
-                                        🏆 Job Success:
-
-                                        {" "}
-
-                                        <b>
-
-                                            {person.job_success}
-
-                                        </b>
-
-                                    </p>
-
-
-                                    <p>
-
-                                        💰 Hourly Rate:
-
-                                        {" "}
-
-                                        <b>
-
-                                            ${person.hourly_rate}
-
-                                        </b>
-
-                                    </p>
-
-
-                                </div>
-
-
-                                {/* =================================
-                                    CLIENT STARTS NEGOTIATION
-                                ================================= */}
-
-
-                                <button
-
-                                    className="start-negotiation-btn"
-
-                                    onClick={() =>
-                                        startNegotiation(person)
-                                    }
-
-                                    disabled={
-                                        loadingId ===
-                                        person.freelancer_id
-                                    }
-
-                                >
+                                <b>
 
                                     {
+                                        (
+                                            person.recommendation_probability
+                                            *
+                                            100
+                                        ).toFixed(2)
+                                    }%
 
-                                        loadingId ===
-                                        person.freelancer_id
+                                </b>
 
-                                            ?
-
-                                            "AI Negotiating..."
-
-                                            :
-
-                                            "Start Negotiation"
-
-                                    }
-
-                                </button>
+                            </p>
 
 
-                            </div>
+                            <p>
 
-                        ))
+                                🏆 Job Success:
 
-                    )
+                                {" "}
 
+                                <b>
+
+                                    {person.job_success}
+
+                                </b>
+
+                            </p>
+
+
+                            <p>
+
+                                💰 Hourly Rate:
+
+                                {" "}
+
+                                <b>
+
+                                    $
+                                    {person.hourly_rate}
+
+                                </b>
+
+                            </p>
+
+
+                        </div>
+
+
+                        {/* =================================
+                            START NEGOTIATION
+                        ================================= */}
+
+
+                        <button
+
+                            className="start-negotiation-btn"
+
+                            onClick={() =>
+                                startNegotiation(person)
+                            }
+
+                            disabled={
+                                loadingId ===
+                                person.freelancer_id
+                            }
+
+                        >
+
+                            {
+
+                                loadingId ===
+                                person.freelancer_id
+
+                                    ?
+
+                                    "Starting..."
+
+                                    :
+
+                                    "Start Negotiation"
+
+                            }
+
+                        </button>
+
+
+                    </div>
+
+                ))
             }
 
 

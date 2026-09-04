@@ -207,7 +207,10 @@ def login(
         {
 
             "email":
-            db_client["email"]
+            db_client["email"],
+
+            "full_name":
+            db_client.get("full_name", "")
 
         }
 
