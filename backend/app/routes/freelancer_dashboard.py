@@ -22,7 +22,7 @@ def freelancer_dashboard(
 ):
 
     # --------------------------------------------------------
-    # Get freelancer profile
+    # 1. GET FREELANCER PROFILE
     # --------------------------------------------------------
 
     freelancer = freelancers_collection.find_one(
@@ -35,7 +35,6 @@ def freelancer_dashboard(
         }
     )
 
-
     if freelancer is None:
 
         raise HTTPException(
@@ -45,32 +44,76 @@ def freelancer_dashboard(
 
 
     # --------------------------------------------------------
-    # Get pending negotiation requests
+    # 2. GET NEGOTIATIONS THAT REQUIRE /
+    #    ALLOW FREELANCER TO SEE FINAL TERMS
     # --------------------------------------------------------
+    #
+    # Possible states:
+    #
+    # NEGOTIATION_COMPLETED
+    #     -> AI negotiation finished
+    #     -> both humans still need to decide
+    #
+    # CLIENT_ACCEPTED
+    #     -> client accepted
+    #     -> freelancer still needs to decide
+    #
+    # FREELANCER_ACCEPTED
+    #     -> freelancer accepted
+    #     -> client still needs to decide
+    #
+    # BOTH_ACCEPTED
+    #     -> both accepted
+    #     -> contract can be generated
+    #
+    # We intentionally DO NOT show PENDING here because
+    # the freelancer does not participate in AI negotiation.
+    #
+    # --------------------------------------------------------
+
+    visible_statuses = [
+        "NEGOTIATION_COMPLETED",
+        "CLIENT_ACCEPTED",
+        "FREELANCER_ACCEPTED",
+        "BOTH_ACCEPTED"
+    ]
+
 
     requests = list(
         negotiation_requests_collection.find(
             {
                 "freelancer_id": freelancer_id,
-                "status": "PENDING"
+
+                "status": {
+                    "$in": visible_statuses
+                }
             },
             {
                 "_id": 0
             }
+        ).sort(
+            "updated_at",
+            -1
         )
     )
 
 
     # --------------------------------------------------------
-    # Return dashboard data
+    # 3. RETURN DASHBOARD DATA
     # --------------------------------------------------------
 
     return {
 
-        "freelancer": freelancer,
+        "freelancer":
+            freelancer,
 
-        "negotiation_requests": requests,
+        "negotiation_requests":
+            requests,
+
+        "completed_negotiations":
+            len(requests),
 
         "pending_requests":
-            len(requests)
+            0
+
     }

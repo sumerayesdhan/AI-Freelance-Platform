@@ -4,11 +4,14 @@ from rule_based_negotiation.agents.client_agent import ClientAgent
 from rule_based_negotiation.agents.freelancer_agent import FreelancerAgent
 
 
+DEFAULT_MAX_ROUNDS = 10
+
+
 class NegotiationEngine:
     """
     Autonomous two-agent rule-based negotiation engine.
 
-    Negotiation flow:
+    Flow:
 
         Client initial offer
               ↓
@@ -20,23 +23,17 @@ class NegotiationEngine:
               ↓
         Client counter
               ↓
-            repeat
+        Repeat
               ↓
         Agreement / Failure
 
-    The engine handles:
-    - Hard budget constraints
-    - Hard timeline constraints
-    - Reservation values
-    - Multi-round negotiation
-    - Controlled concessions
-    - Compromise detection
-    - Duplicate offers
-    - Oscillation prevention
-    - Invalid values
-    - Impossible negotiations
-    - Maximum rounds
-    - Complete negotiation history
+    Important:
+
+    This engine only performs autonomous agent negotiation.
+
+    Human client/freelancer acceptance is NOT handled here.
+    Human acceptance will happen later after the final
+    negotiation result is displayed.
     """
 
     def __init__(
@@ -49,9 +46,7 @@ class NegotiationEngine:
         freelancer_preferred_price,
         freelancer_min_days,
         freelancer_preferred_days,
-        max_rounds=10,
-        client_quality_requirement=0.0,
-        freelancer_quality_score=1.0,
+        max_rounds=DEFAULT_MAX_ROUNDS,
     ):
 
         # =====================================================
@@ -60,93 +55,91 @@ class NegotiationEngine:
 
         self.client_budget = self._validate_number(
             client_budget,
-            "client_budget"
+            "client_budget",
         )
 
         self.client_target_budget = self._validate_number(
             client_target_budget,
-            "client_target_budget"
+            "client_target_budget",
         )
 
         self.client_desired_days = self._validate_number(
             client_desired_days,
-            "client_desired_days"
+            "client_desired_days",
         )
 
         self.client_maximum_days = self._validate_number(
             client_maximum_days,
-            "client_maximum_days"
+            "client_maximum_days",
         )
 
         self.freelancer_min_price = self._validate_number(
             freelancer_min_price,
-            "freelancer_min_price"
+            "freelancer_min_price",
         )
 
         self.freelancer_preferred_price = self._validate_number(
             freelancer_preferred_price,
-            "freelancer_preferred_price"
+            "freelancer_preferred_price",
         )
 
         self.freelancer_min_days = self._validate_number(
             freelancer_min_days,
-            "freelancer_min_days"
+            "freelancer_min_days",
         )
 
         self.freelancer_preferred_days = self._validate_number(
             freelancer_preferred_days,
-            "freelancer_preferred_days"
+            "freelancer_preferred_days",
         )
 
         self.max_rounds = max(
             1,
-            int(max_rounds)
+            int(max_rounds),
         )
 
         # =====================================================
-        # NORMALIZE PREFERENCES
+        # NORMALIZE
         # =====================================================
 
         self.client_target_budget = min(
             self.client_target_budget,
-            self.client_budget
+            self.client_budget,
         )
 
         self.client_desired_days = min(
             self.client_desired_days,
-            self.client_maximum_days
+            self.client_maximum_days,
         )
 
         self.freelancer_preferred_price = max(
             self.freelancer_preferred_price,
-            self.freelancer_min_price
+            self.freelancer_min_price,
         )
 
         self.freelancer_preferred_days = max(
             self.freelancer_preferred_days,
-            self.freelancer_min_days
+            self.freelancer_min_days,
         )
 
         # =====================================================
-        # AGENTS
+        # CREATE AGENTS
         # =====================================================
 
         self.client_agent = ClientAgent(
-            maximum_budget=self.client_budget,
-            target_budget=self.client_target_budget,
-            desired_days=self.client_desired_days,
-            maximum_days=self.client_maximum_days,
-            minimum_quality_score=client_quality_requirement,
+            client_budget=self.client_budget,
+            client_target_budget=self.client_target_budget,
+            client_desired_days=self.client_desired_days,
+            client_maximum_days=self.client_maximum_days,
             max_rounds=self.max_rounds,
         )
 
         self.freelancer_agent = FreelancerAgent(
-            minimum_price=self.freelancer_min_price,
-            preferred_price=self.freelancer_preferred_price,
-            minimum_days=self.freelancer_min_days,
-            preferred_days=self.freelancer_preferred_days,
-            maximum_rounds=self.max_rounds,
-            quality_score=freelancer_quality_score,
+            freelancer_min_price=self.freelancer_min_price,
+            freelancer_preferred_price=self.freelancer_preferred_price,
+            freelancer_min_days=self.freelancer_min_days,
+            freelancer_preferred_days=self.freelancer_preferred_days,
+            max_rounds=self.max_rounds,
         )
 
         # =====================================================
@@ -154,34 +147,27 @@ class NegotiationEngine:
         # =====================================================
 
         self.history = []
-
         self.previous_offers = []
 
         self.agreement = False
-
         self.final_price = None
-
         self.final_timeline_days = None
-
         self.failure_reason = None
 
     # =========================================================
-    # VALIDATE NUMBER
+    # NUMBER VALIDATION
     # =========================================================
 
     @staticmethod
     def _validate_number(
         value,
-        field_name
+        field_name,
     ):
 
         try:
             value = float(value)
 
-        except (
-            TypeError,
-            ValueError
-        ):
+        except (TypeError, ValueError):
 
             raise ValueError(
                 f"{field_name} must be a valid number."
@@ -202,17 +188,15 @@ class NegotiationEngine:
         return value
 
     # =========================================================
-    # VALIDATE OFFER
+    # OFFER VALIDATION
     # =========================================================
 
-    def _validate_offer(
-        self,
-        offer
-    ):
+    @staticmethod
+    def _validate_offer(offer):
 
         if not isinstance(
             offer,
-            dict
+            dict,
         ):
             return False
 
@@ -232,10 +216,7 @@ class NegotiationEngine:
                 offer["timeline_days"]
             )
 
-        except (
-            TypeError,
-            ValueError
-        ):
+        except (TypeError, ValueError):
 
             return False
 
@@ -260,7 +241,7 @@ class NegotiationEngine:
     def _is_feasible(
         self,
         price,
-        timeline_days
+        timeline_days,
     ):
 
         price = float(price)
@@ -280,11 +261,12 @@ class NegotiationEngine:
 
         return (
             price_ok
-            and timeline_ok
+            and
+            timeline_ok
         )
 
     # =========================================================
-    # PRICE RANGE
+    # FEASIBLE RANGE CHECK
     # =========================================================
 
     def _price_range_exists(self):
@@ -294,10 +276,6 @@ class NegotiationEngine:
             <= self.client_budget
         )
 
-    # =========================================================
-    # TIMELINE RANGE
-    # =========================================================
-
     def _timeline_range_exists(self):
 
         return (
@@ -306,14 +284,50 @@ class NegotiationEngine:
         )
 
     # =========================================================
-    # DUPLICATE OFFER
+    # CLAMP OFFER
+    # =========================================================
+
+    def _clamp_offer(
+        self,
+        offer,
+    ):
+
+        price = max(
+            self.freelancer_min_price,
+            min(
+                self.client_budget,
+                float(offer["price"]),
+            ),
+        )
+
+        days = max(
+            self.freelancer_min_days,
+            min(
+                self.client_maximum_days,
+                float(offer["timeline_days"]),
+            ),
+        )
+
+        return {
+            "price": round(
+                price,
+                2,
+            ),
+            "timeline_days": round(
+                days,
+                2,
+            ),
+        }
+
+    # =========================================================
+    # DUPLICATE CHECK
     # =========================================================
 
     def _is_duplicate_offer(
         self,
         price,
         timeline_days,
-        tolerance=0.01
+        tolerance=0.01,
     ):
 
         price = float(price)
@@ -321,49 +335,29 @@ class NegotiationEngine:
 
         for previous in self.previous_offers:
 
-            price_same = (
+            same_price = (
                 abs(
                     previous["price"]
-                    - price
+                    -
+                    price
                 )
                 <= tolerance
             )
 
-            days_same = (
+            same_days = (
                 abs(
                     previous["timeline_days"]
-                    - timeline_days
+                    -
+                    timeline_days
                 )
                 <= tolerance
             )
 
-            if price_same and days_same:
+            if same_price and same_days:
 
                 return True
 
         return False
-
-    # =========================================================
-    # LAST OFFER BY AGENT
-    # =========================================================
-
-    def _last_offer_by_agent(
-        self,
-        agent_name
-    ):
-
-        for record in reversed(
-            self.history
-        ):
-
-            if record["agent"] == agent_name:
-
-                return {
-                    "price": record["price"],
-                    "timeline_days": record["timeline_days"]
-                }
-
-        return None
 
     # =========================================================
     # RECORD OFFER
@@ -374,106 +368,103 @@ class NegotiationEngine:
         round_number,
         agent,
         action,
-        offer
+        offer,
     ):
 
         record = {
-
-            "round": int(
-                round_number
-            ),
-
+            "round": int(round_number),
             "agent": agent,
-
             "action": action,
-
             "price": round(
-                float(
-                    offer["price"]
-                ),
-                2
+                float(offer["price"]),
+                2,
             ),
-
             "timeline_days": round(
-                float(
-                    offer["timeline_days"]
-                ),
-                2
-            )
+                float(offer["timeline_days"]),
+                2,
+            ),
         }
 
         self.history.append(
             record
         )
 
-        self.previous_offers.append({
-
-            "price": float(
-                offer["price"]
-            ),
-
-            "timeline_days": float(
-                offer["timeline_days"]
-            )
-        })
+        self.previous_offers.append(
+            {
+                "price": float(
+                    offer["price"]
+                ),
+                "timeline_days": float(
+                    offer["timeline_days"]
+                ),
+            }
+        )
 
     # =========================================================
-    # SET AGREEMENT
+    # LAST OFFER
     # =========================================================
 
-    def _set_agreement(
+    def _last_offer_by_agent(
         self,
-        price,
-        timeline_days
+        agent_name,
     ):
 
-        self.agreement = True
+        for record in reversed(
+            self.history
+        ):
 
-        self.final_price = round(
-            float(price),
-            2
-        )
+            if record["agent"] == agent_name:
 
-        self.final_timeline_days = round(
-            float(timeline_days),
-            2
-        )
+                return {
+                    "price": record["price"],
+                    "timeline_days": record["timeline_days"],
+                }
 
-        self.failure_reason = None
+        return None
 
     # =========================================================
-    # DISTANCE BETWEEN OFFERS
+    # OFFER DISTANCE
     # =========================================================
 
     def _offer_distance(
         self,
         offer_a,
-        offer_b
+        offer_b,
     ):
 
         price_range = max(
             self.client_budget
-            - self.freelancer_min_price,
-            1.0
+            -
+            self.freelancer_min_price,
+            1.0,
         )
 
         days_range = max(
             self.client_maximum_days
-            - self.freelancer_min_days,
-            1.0
+            -
+            self.freelancer_min_days,
+            1.0,
         )
 
-        price_distance = abs(
-            float(offer_a["price"])
-            -
-            float(offer_b["price"])
-        ) / price_range
+        price_distance = (
+            abs(
+                float(offer_a["price"])
+                -
+                float(offer_b["price"])
+            )
+            /
+            price_range
+        )
 
-        days_distance = abs(
-            float(offer_a["timeline_days"])
-            -
-            float(offer_b["timeline_days"])
-        ) / days_range
+        days_distance = (
+            abs(
+                float(offer_a["timeline_days"])
+                -
+                float(offer_b["timeline_days"])
+            )
+            /
+            days_range
+        )
 
         return (
             0.70 * price_distance
@@ -482,38 +473,31 @@ class NegotiationEngine:
         )
 
     # =========================================================
-    # CHECK NEAR AGREEMENT
+    # NEAR AGREEMENT
     # =========================================================
 
     def _is_near_agreement(
         self,
         client_offer,
-        freelancer_offer
+        freelancer_offer,
     ):
 
         distance = self._offer_distance(
             client_offer,
-            freelancer_offer
+            freelancer_offer,
         )
 
-        # 5% normalized distance is considered close enough
-        # to attempt a compromise.
-
-        return distance <= 0.05
+        return distance <= 0.08
 
     # =========================================================
-    # CALCULATE COMPROMISE
+    # COMPROMISE
     # =========================================================
 
     def _calculate_compromise(
         self,
         client_offer,
-        freelancer_offer
+        freelancer_offer,
     ):
-
-        # -----------------------------------------------------
-        # PRICE
-        # -----------------------------------------------------
 
         client_price = float(
             client_offer["price"]
@@ -523,16 +507,6 @@ class NegotiationEngine:
             freelancer_offer["price"]
         )
 
-        price = (
-            client_price
-            +
-            freelancer_price
-        ) / 2.0
-
-        # -----------------------------------------------------
-        # TIMELINE
-        # -----------------------------------------------------
-
         client_days = float(
             client_offer["timeline_days"]
         )
@@ -541,382 +515,191 @@ class NegotiationEngine:
             freelancer_offer["timeline_days"]
         )
 
+        # -----------------------------------------------------
+        # PRICE
+        # -----------------------------------------------------
+
+        # Slightly freelancer-friendly midpoint.
+        price = (
+            (client_price * 0.45)
+            +
+            (freelancer_price * 0.55)
+        )
+
+        # -----------------------------------------------------
+        # TIMELINE
+        # -----------------------------------------------------
+
         days = (
-            client_days
+            (client_days * 0.45)
             +
-            freelancer_days
-        ) / 2.0
-
-        # -----------------------------------------------------
-        # HARD CONSTRAINT CLAMP
-        # -----------------------------------------------------
-
-        price = max(
-            self.freelancer_min_price,
-            price
+            (freelancer_days * 0.55)
         )
 
-        price = min(
-            self.client_budget,
-            price
-        )
-
-        days = max(
-            self.freelancer_min_days,
-            days
-        )
-
-        days = min(
-            self.client_maximum_days,
-            days
-        )
-
-        return {
-
-            "price": round(
-                price,
-                2
-            ),
-
-            "timeline_days": round(
-                days,
-                2
-            )
+        compromise = {
+            "price": price,
+            "timeline_days": days,
         }
 
+        return self._clamp_offer(
+            compromise
+        )
+
     # =========================================================
-    # FORCE CONTROLLED CONCESSION
+    # AGREEMENT
     # =========================================================
 
-    def _controlled_client_concession(
+    def _set_agreement(
         self,
-        current_offer,
-        round_number
+        price,
+        timeline_days,
     ):
 
-        progress = (
-            round_number
-            /
-            self.max_rounds
+        self.agreement = True
+
+        self.final_price = round(
+            float(price),
+            2,
         )
 
-        progress = max(
-            0.0,
-            min(
-                1.0,
-                progress
-            )
+        self.final_timeline_days = round(
+            float(timeline_days),
+            2,
         )
 
-        # Client moves from target toward maximum.
-
-        target_price = (
-            self.client_target_budget
-            +
-            (
-                self.client_budget
-                -
-                self.client_target_budget
-            )
-            * progress
-        )
-
-        current_price = float(
-            current_offer["price"]
-        )
-
-        # Move at least partially toward target.
-
-        new_price = (
-            current_price
-            +
-            target_price
-        ) / 2.0
-
-        new_price = min(
-            new_price,
-            self.client_budget
-        )
-
-        new_price = max(
-            new_price,
-            self.freelancer_min_price
-        )
-
-        # Timeline.
-
-        target_days = (
-            self.client_desired_days
-            +
-            (
-                self.client_maximum_days
-                -
-                self.client_desired_days
-            )
-            * progress
-        )
-
-        current_days = float(
-            current_offer["timeline_days"]
-        )
-
-        new_days = (
-            current_days
-            +
-            target_days
-        ) / 2.0
-
-        new_days = min(
-            new_days,
-            self.client_maximum_days
-        )
-
-        new_days = max(
-            new_days,
-            self.freelancer_min_days
-        )
-
-        return {
-
-            "price": round(
-                new_price,
-                2
-            ),
-
-            "timeline_days": round(
-                new_days,
-                2
-            )
-        }
+        self.failure_reason = None
 
     # =========================================================
-    # FORCE CONTROLLED FREELANCER CONCESSION
+    # ACCEPT COMPROMISE
     # =========================================================
 
-    def _controlled_freelancer_concession(
+    def _try_compromise(
         self,
-        current_offer,
-        round_number
+        client_offer,
+        freelancer_offer,
+        round_number,
+        action="COMPROMISE_ACCEPTED",
     ):
 
-        progress = (
-            round_number
-            /
-            self.max_rounds
+        if not client_offer:
+            return False
+
+        if not freelancer_offer:
+            return False
+
+        compromise = self._calculate_compromise(
+            client_offer,
+            freelancer_offer,
         )
 
-        progress = max(
-            0.0,
-            min(
-                1.0,
-                progress
-            )
-        )
-
-        # Freelancer moves from preferred price
-        # toward minimum price.
-
-        target_price = (
-            self.freelancer_preferred_price
-            -
-            (
-                self.freelancer_preferred_price
-                -
-                self.freelancer_min_price
-            )
-            * progress
-        )
-
-        current_price = float(
-            current_offer["price"]
-        )
-
-        new_price = (
-            current_price
-            +
-            target_price
-        ) / 2.0
-
-        new_price = max(
-            new_price,
-            self.freelancer_min_price
-        )
-
-        new_price = min(
-            new_price,
-            self.client_budget
-        )
-
-        # Timeline.
-
-        target_days = (
-            self.freelancer_preferred_days
-            -
-            (
-                self.freelancer_preferred_days
-                -
-                self.freelancer_min_days
-            )
-            * progress
-        )
-
-        current_days = float(
-            current_offer["timeline_days"]
-        )
-
-        new_days = (
-            current_days
-            +
-            target_days
-        ) / 2.0
-
-        new_days = max(
-            new_days,
-            self.freelancer_min_days
-        )
-
-        new_days = min(
-            new_days,
-            self.client_maximum_days
-        )
-
-        return {
-
-            "price": round(
-                new_price,
-                2
-            ),
-
-            "timeline_days": round(
-                new_days,
-                2
-            )
-        }
-
-    # =========================================================
-    # MAKE UNIQUE OFFER
-    # =========================================================
-
-    def _make_unique_offer(
-        self,
-        candidate,
-        agent,
-        round_number
-    ):
-
-        if not self._validate_offer(
-            candidate
+        if not self._is_feasible(
+            compromise["price"],
+            compromise["timeline_days"],
         ):
-            return None
+            return False
 
-        # Already unique.
-        if not self._is_duplicate_offer(
-            candidate["price"],
-            candidate["timeline_days"]
+        # -----------------------------------------------------
+        # IMPORTANT:
+        # If both offers are already close enough and the
+        # compromise is inside both hard reservation zones,
+        # settlement is valid.
+        # -----------------------------------------------------
+
+        if not self._is_near_agreement(
+            client_offer,
+            freelancer_offer,
         ):
-            return candidate
+            return False
 
-        # -----------------------------------------------------
-        # Try small controlled adjustments.
-        # -----------------------------------------------------
-
-        price = float(
-            candidate["price"]
+        client_decision = (
+            self.client_agent.evaluate_offer(
+                price=compromise["price"],
+                timeline_days=compromise["timeline_days"],
+                round_number=round_number,
+            )
         )
 
-        days = float(
-            candidate["timeline_days"]
+        freelancer_decision = (
+            self.freelancer_agent.evaluate_offer(
+                client_price=compromise["price"],
+                client_days=compromise["timeline_days"],
+                round_number=round_number,
+            )
         )
 
-        if agent == "CLIENT":
+        # -----------------------------------------------------
+        # NORMAL BOTH-AGREE PATH
+        # -----------------------------------------------------
 
-            price_step = max(
-                self.client_budget * 0.01,
-                1.0
+        if (
+            client_decision == "ACCEPT"
+            and
+            freelancer_decision == "ACCEPT"
+        ):
+
+            self._record_offer(
+                round_number,
+                "SYSTEM",
+                action,
+                compromise,
             )
 
-            days_step = max(
-                self.client_maximum_days * 0.02,
-                1.0
+            self._set_agreement(
+                compromise["price"],
+                compromise["timeline_days"],
             )
 
-            for _ in range(5):
+            return True
 
-                price = min(
-                    self.client_budget,
-                    price + price_step
-                )
+        # -----------------------------------------------------
+        # LATE-ROUND FEASIBLE SETTLEMENT
+        # -----------------------------------------------------
 
-                days = min(
-                    self.client_maximum_days,
-                    days + days_step
-                )
+        # If both parties are within their hard reservation
+        # limits and we are near the end, settle instead of
+        # allowing endless oscillation.
+        if round_number >= max(
+            3,
+            int(self.max_rounds * 0.80),
+        ):
 
-                candidate = {
-
-                    "price": round(
-                        price,
-                        2
-                    ),
-
-                    "timeline_days": round(
-                        days,
-                        2
-                    )
-                }
-
-                if not self._is_duplicate_offer(
-                    candidate["price"],
-                    candidate["timeline_days"]
-                ):
-                    return candidate
-
-        else:
-
-            price_step = max(
-                self.freelancer_preferred_price
-                * 0.01,
-                1.0
+            client_feasible = (
+                compromise["price"]
+                <= self.client_budget
+                and
+                compromise["timeline_days"]
+                <= self.client_maximum_days
             )
 
-            days_step = max(
-                self.freelancer_preferred_days
-                * 0.02,
-                1.0
+            freelancer_feasible = (
+                compromise["price"]
+                >= self.freelancer_min_price
+                and
+                compromise["timeline_days"]
+                >= self.freelancer_min_days
             )
 
-            for _ in range(5):
+            if (
+                client_feasible
+                and
+                freelancer_feasible
+            ):
 
-                price = max(
-                    self.freelancer_min_price,
-                    price - price_step
+                self._record_offer(
+                    round_number,
+                    "SYSTEM",
+                    "LATE_ROUND_SETTLEMENT",
+                    compromise,
                 )
 
-                days = max(
-                    self.freelancer_min_days,
-                    days - days_step
+                self._set_agreement(
+                    compromise["price"],
+                    compromise["timeline_days"],
                 )
 
-                candidate = {
+                return True
 
-                    "price": round(
-                        price,
-                        2
-                    ),
-
-                    "timeline_days": round(
-                        days,
-                        2
-                    )
-                }
-
-                if not self._is_duplicate_offer(
-                    candidate["price"],
-                    candidate["timeline_days"]
-                ):
-                    return candidate
-
-        return None
+        return False
 
     # =========================================================
     # NEGOTIATE
@@ -924,21 +707,20 @@ class NegotiationEngine:
 
     def negotiate(self):
 
-        # -----------------------------------------------------
+        # =====================================================
         # RESET
-        # -----------------------------------------------------
+        # =====================================================
 
         self.history = []
-
         self.previous_offers = []
 
         self.agreement = False
-
         self.final_price = None
-
         self.final_timeline_days = None
-
         self.failure_reason = None
+
+        self.client_agent.reset()
+        self.freelancer_agent.reset()
 
         # =====================================================
         # PRE-CHECK
@@ -972,6 +754,10 @@ class NegotiationEngine:
             self.client_agent.get_initial_offer()
         )
 
+        current_offer = self._clamp_offer(
+            current_offer
+        )
+
         if not self._validate_offer(
             current_offer
         ):
@@ -982,42 +768,11 @@ class NegotiationEngine:
 
             return self._build_result()
 
-        # Make sure initial offer is globally feasible.
-
-        if not self._is_feasible(
-            current_offer["price"],
-            current_offer["timeline_days"]
-        ):
-
-            current_offer = {
-                "price": round(
-                    max(
-                        self.freelancer_min_price,
-                        min(
-                            self.client_budget,
-                            current_offer["price"]
-                        )
-                    ),
-                    2
-                ),
-
-                "timeline_days": round(
-                    max(
-                        self.freelancer_min_days,
-                        min(
-                            self.client_maximum_days,
-                            current_offer["timeline_days"]
-                        )
-                    ),
-                    2
-                )
-            }
-
         self._record_offer(
             1,
             "CLIENT",
             "INITIAL_OFFER",
-            current_offer
+            current_offer,
         )
 
         # =====================================================
@@ -1026,7 +781,7 @@ class NegotiationEngine:
 
         for round_number in range(
             1,
-            self.max_rounds + 1
+            self.max_rounds + 1,
         ):
 
             # =================================================
@@ -1037,7 +792,7 @@ class NegotiationEngine:
                 self.freelancer_agent.evaluate_offer(
                     client_price=current_offer["price"],
                     client_days=current_offer["timeline_days"],
-                    round_number=round_number
+                    round_number=round_number,
                 )
             )
 
@@ -1046,12 +801,11 @@ class NegotiationEngine:
             # -------------------------------------------------
 
             if (
-                freelancer_decision
-                == "ACCEPT"
+                freelancer_decision == "ACCEPT"
                 and
                 self._is_feasible(
                     current_offer["price"],
-                    current_offer["timeline_days"]
+                    current_offer["timeline_days"],
                 )
             ):
 
@@ -1059,12 +813,12 @@ class NegotiationEngine:
                     round_number,
                     "FREELANCER",
                     "ACCEPT",
-                    current_offer
+                    current_offer,
                 )
 
                 self._set_agreement(
                     current_offer["price"],
-                    current_offer["timeline_days"]
+                    current_offer["timeline_days"],
                 )
 
                 return self._build_result()
@@ -1075,69 +829,26 @@ class NegotiationEngine:
 
             if freelancer_decision == "REJECT":
 
-                # Try compromise before final rejection.
-
-                freelancer_last = (
+                previous_freelancer = (
                     self._last_offer_by_agent(
                         "FREELANCER"
                     )
                 )
 
-                if freelancer_last:
+                if previous_freelancer:
 
-                    compromise = (
-                        self._calculate_compromise(
-                            current_offer,
-                            freelancer_last
-                        )
-                    )
-
-                    if self._is_feasible(
-                        compromise["price"],
-                        compromise["timeline_days"]
+                    if self._try_compromise(
+                        current_offer,
+                        previous_freelancer,
+                        round_number,
                     ):
-
-                        client_ok = (
-                            self.client_agent.evaluate_offer(
-                                compromise["price"],
-                                compromise["timeline_days"],
-                                round_number=round_number
-                            )
-                        )
-
-                        freelancer_ok = (
-                            self.freelancer_agent.evaluate_offer(
-                                compromise["price"],
-                                compromise["timeline_days"],
-                                round_number=round_number
-                            )
-                        )
-
-                        if (
-                            client_ok == "ACCEPT"
-                            and
-                            freelancer_ok == "ACCEPT"
-                        ):
-
-                            self._record_offer(
-                                round_number,
-                                "SYSTEM",
-                                "COMPROMISE_ACCEPTED",
-                                compromise
-                            )
-
-                            self._set_agreement(
-                                compromise["price"],
-                                compromise["timeline_days"]
-                            )
-
-                            return self._build_result()
+                        return self._build_result()
 
                 self._record_offer(
                     round_number,
                     "FREELANCER",
                     "REJECT",
-                    current_offer
+                    current_offer,
                 )
 
                 self.failure_reason = (
@@ -1154,67 +865,54 @@ class NegotiationEngine:
                 self.freelancer_agent.make_counter_offer(
                     client_price=current_offer["price"],
                     client_days=current_offer["timeline_days"],
-                    round_number=round_number
+                    round_number=round_number,
+                    client_budget=self.client_budget,
                 )
             )
 
-            # -------------------------------------------------
-            # UNIQUE FREELANCER COUNTER
-            # -------------------------------------------------
-
-            freelancer_counter = (
-                self._make_unique_offer(
-                    freelancer_counter,
-                    "FREELANCER",
-                    round_number
-                )
+            freelancer_counter = self._clamp_offer(
+                freelancer_counter
             )
 
-            if freelancer_counter is None:
+            # -------------------------------------------------
+            # DUPLICATE PROTECTION
+            # -------------------------------------------------
 
-                # Attempt compromise.
+            if self._is_duplicate_offer(
+                freelancer_counter["price"],
+                freelancer_counter["timeline_days"],
+            ):
 
-                compromise = (
+                # Move directly toward compromise.
+                freelancer_counter = (
                     self._calculate_compromise(
                         current_offer,
                         {
                             "price":
                                 self.freelancer_preferred_price,
-
                             "timeline_days":
-                                self.freelancer_preferred_days
-                        }
+                                self.freelancer_preferred_days,
+                        },
                     )
                 )
 
-                if (
-                    self._is_feasible(
-                        compromise["price"],
-                        compromise["timeline_days"]
-                    )
-                    and
-                    not self._is_duplicate_offer(
-                        compromise["price"],
-                        compromise["timeline_days"]
-                    )
-                ):
+            if self._is_duplicate_offer(
+                freelancer_counter["price"],
+                freelancer_counter["timeline_days"],
+            ):
 
-                    freelancer_counter = compromise
+                self.failure_reason = (
+                    "Freelancer could not generate "
+                    "a new offer."
+                )
 
-                else:
-
-                    self.failure_reason = (
-                        "No new feasible freelancer offer "
-                        "could be generated."
-                    )
-
-                    return self._build_result()
+                return self._build_result()
 
             self._record_offer(
                 round_number,
                 "FREELANCER",
                 "COUNTER",
-                freelancer_counter
+                freelancer_counter,
             )
 
             # =================================================
@@ -1225,8 +923,7 @@ class NegotiationEngine:
                 self.client_agent.evaluate_offer(
                     price=freelancer_counter["price"],
                     timeline_days=freelancer_counter["timeline_days"],
-                    quality_score=1.0,
-                    round_number=round_number
+                    round_number=round_number,
                 )
             )
 
@@ -1235,12 +932,11 @@ class NegotiationEngine:
             # -------------------------------------------------
 
             if (
-                client_decision
-                == "ACCEPT"
+                client_decision == "ACCEPT"
                 and
                 self._is_feasible(
                     freelancer_counter["price"],
-                    freelancer_counter["timeline_days"]
+                    freelancer_counter["timeline_days"],
                 )
             ):
 
@@ -1248,12 +944,12 @@ class NegotiationEngine:
                     round_number,
                     "CLIENT",
                     "ACCEPT",
-                    freelancer_counter
+                    freelancer_counter,
                 )
 
                 self._set_agreement(
                     freelancer_counter["price"],
-                    freelancer_counter["timeline_days"]
+                    freelancer_counter["timeline_days"],
                 )
 
                 return self._build_result()
@@ -1268,7 +964,7 @@ class NegotiationEngine:
                     round_number,
                     "CLIENT",
                     "REJECT",
-                    freelancer_counter
+                    freelancer_counter,
                 )
 
                 self.failure_reason = (
@@ -1278,61 +974,16 @@ class NegotiationEngine:
                 return self._build_result()
 
             # =================================================
-            # CHECK NEAR AGREEMENT
+            # TRY COMPROMISE
             # =================================================
 
-            if self._is_near_agreement(
+            if self._try_compromise(
                 current_offer,
-                freelancer_counter
+                freelancer_counter,
+                round_number,
             ):
 
-                compromise = (
-                    self._calculate_compromise(
-                        current_offer,
-                        freelancer_counter
-                    )
-                )
-
-                if self._is_feasible(
-                    compromise["price"],
-                    compromise["timeline_days"]
-                ):
-
-                    client_check = (
-                        self.client_agent.evaluate_offer(
-                            compromise["price"],
-                            compromise["timeline_days"],
-                            round_number=round_number
-                        )
-                    )
-
-                    freelancer_check = (
-                        self.freelancer_agent.evaluate_offer(
-                            compromise["price"],
-                            compromise["timeline_days"],
-                            round_number=round_number
-                        )
-                    )
-
-                    if (
-                        client_check == "ACCEPT"
-                        and
-                        freelancer_check == "ACCEPT"
-                    ):
-
-                        self._record_offer(
-                            round_number,
-                            "SYSTEM",
-                            "COMPROMISE_ACCEPTED",
-                            compromise
-                        )
-
-                        self._set_agreement(
-                            compromise["price"],
-                            compromise["timeline_days"]
-                        )
-
-                        return self._build_result()
+                return self._build_result()
 
             # =================================================
             # CLIENT COUNTER
@@ -1343,99 +994,62 @@ class NegotiationEngine:
                     freelancer_price=freelancer_counter["price"],
                     freelancer_days=freelancer_counter["timeline_days"],
                     round_number=round_number,
-                    freelancer_min_price=self.freelancer_min_price,
-                    freelancer_min_days=self.freelancer_min_days
                 )
             )
 
-            # -------------------------------------------------
-            # MAKE UNIQUE CLIENT OFFER
-            # -------------------------------------------------
-
-            client_counter = (
-                self._make_unique_offer(
-                    client_counter,
-                    "CLIENT",
-                    round_number
-                )
-            )
-
-            if client_counter is None:
-
-                # Try controlled concession.
-
-                client_counter = (
-                    self._controlled_client_concession(
-                        freelancer_counter,
-                        round_number
-                    )
-                )
-
-                client_counter = (
-                    self._make_unique_offer(
-                        client_counter,
-                        "CLIENT",
-                        round_number
-                    )
-                )
-
-            if client_counter is None:
-
-                self.failure_reason = (
-                    "No new feasible client offer "
-                    "could be generated."
-                )
-
-                return self._build_result()
-
-            # -------------------------------------------------
-            # FEASIBILITY
-            # -------------------------------------------------
-
-            if not self._is_feasible(
-                client_counter["price"],
-                client_counter["timeline_days"]
-            ):
-
-                client_counter = (
-                    self._controlled_client_concession(
-                        client_counter,
-                        round_number
-                    )
-                )
-
-            if not self._validate_offer(
+            client_counter = self._clamp_offer(
                 client_counter
+            )
+
+            # -------------------------------------------------
+            # DUPLICATE PROTECTION
+            # -------------------------------------------------
+
+            if self._is_duplicate_offer(
+                client_counter["price"],
+                client_counter["timeline_days"],
+            ):
+
+                client_counter = (
+                    self._calculate_compromise(
+                        freelancer_counter,
+                        {
+                            "price":
+                                self.client_target_budget,
+                            "timeline_days":
+                                self.client_desired_days,
+                        },
+                    )
+                )
+
+            client_counter = self._clamp_offer(
+                client_counter
+            )
+
+            if self._is_duplicate_offer(
+                client_counter["price"],
+                client_counter["timeline_days"],
             ):
 
                 self.failure_reason = (
-                    "Client generated an invalid counter offer."
+                    "Client could not generate "
+                    "a new offer."
                 )
 
                 return self._build_result()
-
-            # -------------------------------------------------
-            # RECORD
-            # -------------------------------------------------
 
             self._record_offer(
                 round_number,
                 "CLIENT",
                 "COUNTER",
-                client_counter
+                client_counter,
             )
-
-            # -------------------------------------------------
-            # NEXT ROUND
-            # -------------------------------------------------
 
             current_offer = client_counter
 
         # =====================================================
-        # MAX ROUNDS
+        # FINAL SETTLEMENT ATTEMPT
         # =====================================================
-
-        # One final compromise attempt.
 
         client_last = (
             self._last_offer_by_agent(
@@ -1458,50 +1072,49 @@ class NegotiationEngine:
             final_compromise = (
                 self._calculate_compromise(
                     client_last,
-                    freelancer_last
+                    freelancer_last,
                 )
             )
 
             if self._is_feasible(
                 final_compromise["price"],
-                final_compromise["timeline_days"]
+                final_compromise["timeline_days"],
             ):
 
-                client_check = (
-                    self.client_agent.evaluate_offer(
-                        final_compromise["price"],
-                        final_compromise["timeline_days"],
-                        round_number=self.max_rounds
-                    )
-                )
-
-                freelancer_check = (
-                    self.freelancer_agent.evaluate_offer(
-                        final_compromise["price"],
-                        final_compromise["timeline_days"],
-                        round_number=self.max_rounds
-                    )
-                )
-
+                # At the end of the maximum rounds, if the
+                # compromise satisfies both hard reservation
+                # values, settle the negotiation.
                 if (
-                    client_check == "ACCEPT"
+                    final_compromise["price"]
+                    >= self.freelancer_min_price
                     and
-                    freelancer_check == "ACCEPT"
+                    final_compromise["price"]
+                    <= self.client_budget
+                    and
+                    final_compromise["timeline_days"]
+                    >= self.freelancer_min_days
+                    and
+                    final_compromise["timeline_days"]
+                    <= self.client_maximum_days
                 ):
 
                     self._record_offer(
                         self.max_rounds,
                         "SYSTEM",
                         "FINAL_COMPROMISE_ACCEPTED",
-                        final_compromise
+                        final_compromise,
                     )
 
                     self._set_agreement(
                         final_compromise["price"],
-                        final_compromise["timeline_days"]
+                        final_compromise["timeline_days"],
                     )
 
                     return self._build_result()
+
+        # =====================================================
+        # FAILURE
+        # =====================================================
 
         self.failure_reason = (
             f"No agreement reached within "
@@ -1517,24 +1130,15 @@ class NegotiationEngine:
     def _build_result(self):
 
         return {
-
-            "agreement":
-                self.agreement,
-
-            "final_price":
-                self.final_price,
-
+            "agreement": self.agreement,
+            "final_price": self.final_price,
             "final_timeline_days":
                 self.final_timeline_days,
-
-            "rounds":
-                self._calculate_rounds(),
-
+            "rounds": self._calculate_rounds(),
             "failure_reason":
                 self.failure_reason,
-
             "history":
-                self.history.copy()
+                self.history.copy(),
         }
 
     # =========================================================
@@ -1544,7 +1148,6 @@ class NegotiationEngine:
     def _calculate_rounds(self):
 
         if not self.history:
-
             return 0
 
         return max(

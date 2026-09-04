@@ -1,5 +1,12 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+    useEffect,
+    useState
+} from "react";
+
+import {
+    useNavigate,
+    useParams
+} from "react-router-dom";
 
 import api from "../services/api";
 
@@ -13,13 +20,28 @@ function FreelancerDashboard() {
     const { freelancerId } = useParams();
 
 
-    const [freelancer, setFreelancer] = useState(null);
+    const [
+        freelancer,
+        setFreelancer
+    ] = useState(null);
 
-    const [requests, setRequests] = useState([]);
 
-    const [loading, setLoading] = useState(true);
+    const [
+        requests,
+        setRequests
+    ] = useState([]);
 
-    const [message, setMessage] = useState("");
+
+    const [
+        loading,
+        setLoading
+    ] = useState(true);
+
+
+    const [
+        message,
+        setMessage
+    ] = useState("");
 
 
     // ========================================================
@@ -34,12 +56,13 @@ function FreelancerDashboard() {
 
                 setLoading(true);
 
+                setMessage("");
 
-                const response = await api.get(
 
-                    `/freelancer/dashboard/${freelancerId}`
-
-                );
+                const response =
+                    await api.get(
+                        `/freelancer/dashboard/${freelancerId}`
+                    );
 
 
                 setFreelancer(
@@ -51,12 +74,14 @@ function FreelancerDashboard() {
                     response.data.negotiation_requests || []
                 );
 
-
             }
 
             catch (error) {
 
-                console.error(error);
+                console.error(
+                    "Freelancer dashboard error:",
+                    error
+                );
 
 
                 setMessage(
@@ -78,7 +103,11 @@ function FreelancerDashboard() {
         };
 
 
-        fetchDashboard();
+        if (freelancerId) {
+
+            fetchDashboard();
+
+        }
 
     }, [freelancerId]);
 
@@ -97,7 +126,18 @@ function FreelancerDashboard() {
             "freelancer_name"
         );
 
-        navigate("/freelancer-register");
+        localStorage.removeItem(
+            "freelancer_token"
+        );
+
+        localStorage.removeItem(
+            "freelancer"
+        );
+
+
+        navigate(
+            "/freelancer-login"
+        );
 
     };
 
@@ -128,7 +168,7 @@ function FreelancerDashboard() {
 
 
     // ========================================================
-    // ERROR
+    // ERROR / FREELANCER NOT FOUND
     // ========================================================
 
     if (!freelancer) {
@@ -143,16 +183,22 @@ function FreelancerDashboard() {
                         Freelancer not found
                     </h2>
 
+
                     <p>
                         {message}
                     </p>
 
+
                     <button
                         onClick={() =>
-                            navigate("/freelancer-register")
+                            navigate(
+                                "/freelancer-login"
+                            )
                         }
                     >
-                        Register Freelancer
+
+                        Freelancer Login
+
                     </button>
 
                 </div>
@@ -163,6 +209,84 @@ function FreelancerDashboard() {
 
     }
 
+
+    // ========================================================
+    // NEGOTIATION STATUS
+    //
+    // Backend can return a negotiation in any of these
+    // states after AI negotiation is completed.
+    // ========================================================
+
+    const completedRequests =
+        requests.filter(
+
+            (request) =>
+
+                [
+                    "NEGOTIATION_COMPLETED",
+                    "CLIENT_ACCEPTED",
+                    "FREELANCER_ACCEPTED",
+                    "BOTH_ACCEPTED"
+                ].includes(
+                    request.status
+                )
+
+        );
+
+
+    // ========================================================
+    // STATUS TEXT
+    // ========================================================
+
+    const getStatusText = (status) => {
+
+        switch (status) {
+
+            case "NEGOTIATION_COMPLETED":
+
+                return "Negotiation Completed";
+
+            case "CLIENT_ACCEPTED":
+
+                return "Client Accepted - Waiting for Freelancer";
+
+            case "FREELANCER_ACCEPTED":
+
+                return "Freelancer Accepted - Waiting for Client";
+
+            case "BOTH_ACCEPTED":
+
+                return "Both Accepted - Contract Ready";
+
+            default:
+
+                return status || "Unknown";
+
+        }
+
+    };
+
+
+    // ========================================================
+    // DECISION TEXT
+    // ========================================================
+
+    const getDecisionText = (decision) => {
+
+        if (!decision) {
+
+            return "WAITING";
+
+        }
+
+        return decision;
+
+    };
+
+
+    // ========================================================
+    // MAIN DASHBOARD
+    // ========================================================
 
     return (
 
@@ -176,9 +300,7 @@ function FreelancerDashboard() {
             <nav className="dashboard-nav">
 
                 <h2>
-
                     AI Freelance Platform
-
                 </h2>
 
 
@@ -202,15 +324,17 @@ function FreelancerDashboard() {
 
                 <h1>
 
-                    Welcome, {freelancer.full_name} 👋
+                    Welcome,{" "}
+
+                    {freelancer.full_name}
+
+                    {" "}👋
 
                 </h1>
 
 
                 <p>
-
                     Freelancer Dashboard
-
                 </p>
 
 
@@ -264,7 +388,8 @@ function FreelancerDashboard() {
                             Professional Title:
                         </strong>{" "}
 
-                        {freelancer.title || "Not specified"}
+                        {freelancer.title ||
+                            "Not specified"}
 
                     </p>
 
@@ -275,7 +400,8 @@ function FreelancerDashboard() {
                             Skills:
                         </strong>{" "}
 
-                        {freelancer.skills || "Not specified"}
+                        {freelancer.skills ||
+                            "Not specified"}
 
                     </p>
 
@@ -297,7 +423,8 @@ function FreelancerDashboard() {
                             Country:
                         </strong>{" "}
 
-                        {freelancer.country || "Not specified"}
+                        {freelancer.country ||
+                            "Not specified"}
 
                     </p>
 
@@ -305,136 +432,326 @@ function FreelancerDashboard() {
 
 
                 {/* =================================================
-                    NEGOTIATION REQUESTS
+                    NEGOTIATED PROJECTS
                 ================================================= */}
 
                 <div className="negotiation-section">
 
                     <h2>
-
-                        Negotiation Requests
-
+                        Negotiated Projects
                     </h2>
 
 
-                    <p>
-
-                        Pending Requests:{" "}
-
-                        <strong>
-                            {requests.length}
-                        </strong>
-
-                    </p>
-
-
                     {
+                        completedRequests.length === 0
 
-                        requests.length === 0
+                        ?
 
-                            ?
+                        (
 
-                            (
+                            <div>
 
                                 <p>
-
-                                    No pending negotiation requests.
-
+                                    No negotiated projects available yet.
                                 </p>
 
-                            )
+                            </div>
 
-                            :
+                        )
 
-                            (
+                        :
 
-                                requests.map((request) => (
+                        (
 
-                                    <div
+                            <div>
 
-                                        className="negotiation-request"
+                                {
+                                    completedRequests.map(
+                                        (request) => {
 
-                                        key={request.request_id}
-
-                                    >
-
-                                        <h3>
-
-                                            New Project Request
-
-                                        </h3>
+                                            const result =
+                                                request.negotiation_result || {};
 
 
-                                        <p>
+                                            return (
 
-                                            <strong>
-                                                Request ID:
-                                            </strong>{" "}
-
-                                            {request.request_id}
-
-                                        </p>
-
-
-                                        <p>
-
-                                            <strong>
-                                                Project ID:
-                                            </strong>{" "}
-
-                                            {request.project_id}
-
-                                        </p>
+                                                <div
+                                                    className="negotiation-request"
+                                                    key={
+                                                        request.request_id
+                                                    }
+                                                >
 
 
-                                        <p>
+                                                    {/* =================================================
+                                                        NEGOTIATION STATUS
+                                                    ================================================= */}
 
-                                            <strong>
-                                                Status:
-                                            </strong>{" "}
+                                                    <h3>
 
-                                            {request.status}
+                                                        {getStatusText(
+                                                            request.status
+                                                        )}
 
-                                        </p>
+                                                    </h3>
 
 
-                                        <button
+                                                    {/* =================================================
+                                                        REQUEST ID
+                                                    ================================================= */}
 
-                                            onClick={() => {
+                                                    <p>
 
-                                                navigate(
-                                                    `/negotiation/${request.request_id}`
-                                                );
+                                                        <strong>
+                                                            Request ID:
+                                                        </strong>{" "}
 
-                                            }}
+                                                        {
+                                                            request.request_id
+                                                        }
 
-                                        >
+                                                    </p>
 
-                                            View Negotiation
 
-                                        </button>
+                                                    {/* =================================================
+                                                        PROJECT ID
+                                                    ================================================= */}
 
-                                    </div>
+                                                    <p>
 
-                                ))
+                                                        <strong>
+                                                            Project ID:
+                                                        </strong>{" "}
 
-                            )
+                                                        {
+                                                            request.project_id
+                                                        }
 
+                                                    </p>
+
+
+                                                    {/* =================================================
+                                                        STATUS
+                                                    ================================================= */}
+
+                                                    <p>
+
+                                                        <strong>
+                                                            Status:
+                                                        </strong>{" "}
+
+                                                        {
+                                                            request.status
+                                                        }
+
+                                                    </p>
+
+
+                                                    {/* =================================================
+                                                        FINAL NEGOTIATED PRICE
+                                                    ================================================= */}
+
+                                                    {
+                                                        result.final_price !==
+                                                        undefined &&
+
+                                                        (
+
+                                                            <p>
+
+                                                                <strong>
+                                                                    Final Price:
+                                                                </strong>{" "}
+
+                                                                $
+
+                                                                {
+                                                                    Number(
+                                                                        result.final_price
+                                                                    ).toLocaleString(
+                                                                        undefined,
+                                                                        {
+                                                                            minimumFractionDigits: 2,
+                                                                            maximumFractionDigits: 2
+                                                                        }
+                                                                    )
+                                                                }
+
+                                                            </p>
+
+                                                        )
+                                                    }
+
+
+                                                    {/* =================================================
+                                                        FINAL NEGOTIATED TIMELINE
+                                                    ================================================= */}
+
+                                                    {
+                                                        result.final_timeline_days !==
+                                                        undefined &&
+
+                                                        (
+
+                                                            <p>
+
+                                                                <strong>
+                                                                    Final Timeline:
+                                                                </strong>{" "}
+
+                                                                {
+                                                                    result.final_timeline_days
+                                                                }
+
+                                                                {" "}days
+
+                                                            </p>
+
+                                                        )
+                                                    }
+
+
+                                                    {/* =================================================
+                                                        AI NEGOTIATION ROUNDS
+                                                    ================================================= */}
+
+                                                    {
+                                                        result.rounds !==
+                                                        undefined &&
+
+                                                        (
+
+                                                            <p>
+
+                                                                <strong>
+                                                                    Negotiation Rounds:
+                                                                </strong>{" "}
+
+                                                                {
+                                                                    result.rounds
+                                                                }
+
+                                                            </p>
+
+                                                        )
+                                                    }
+
+
+                                                    {/* =================================================
+                                                        CLIENT DECISION
+                                                    ================================================= */}
+
+                                                    <p>
+
+                                                        <strong>
+                                                            Client Decision:
+                                                        </strong>{" "}
+
+                                                        {
+                                                            getDecisionText(
+                                                                request.client_decision
+                                                            )
+                                                        }
+
+                                                    </p>
+
+
+                                                    {/* =================================================
+                                                        FREELANCER DECISION
+                                                    ================================================= */}
+
+                                                    <p>
+
+                                                        <strong>
+                                                            Freelancer Decision:
+                                                        </strong>{" "}
+
+                                                        {
+                                                            getDecisionText(
+                                                                request.freelancer_decision
+                                                            )
+                                                        }
+
+                                                    </p>
+
+
+                                                    {/* =================================================
+                                                        CONTRACT STATUS
+                                                    ================================================= */}
+
+                                                    {
+                                                        request.contract_status &&
+
+                                                        (
+
+                                                            <p>
+
+                                                                <strong>
+                                                                    Contract Status:
+                                                                </strong>{" "}
+
+                                                                {
+                                                                    request.contract_status
+                                                                }
+
+                                                            </p>
+
+                                                        )
+                                                    }
+
+
+                                                    {/* =================================================
+                                                        VIEW FINAL TERMS
+                                                    ================================================= */}
+
+                                                    <button
+
+                                                        onClick={() =>
+                                                            navigate(
+                                                                `/negotiation/${request.request_id}?role=freelancer`
+                                                            )
+                                                        }
+
+                                                    >
+
+                                                        View Final Terms
+
+                                                    </button>
+
+
+                                                </div>
+
+                                            );
+
+                                        }
+
+                                    )
+                                }
+
+                            </div>
+
+                        )
                     }
 
                 </div>
 
 
-                {
+                {/* =================================================
+                    ERROR / INFORMATION MESSAGE
+                ================================================= */}
 
+                {
                     message &&
 
-                    <p className="message">
+                    (
 
-                        {message}
+                        <p className="message">
 
-                    </p>
+                            {message}
 
+                        </p>
+
+                    )
                 }
 
 
