@@ -65,7 +65,7 @@ def generate_response(
         response = client.chat.completions.create(
 
             model=
-            "llama-3.1-8b-instant",
+            "openai/gpt-oss-120b",
 
 
             messages=messages,

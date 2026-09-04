@@ -26,3 +26,11 @@ complexity_model/
 github_cleaned.csv
 repo_metadata.json
 repo_metadata_sample.csv
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
