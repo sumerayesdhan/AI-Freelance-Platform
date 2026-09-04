@@ -8,6 +8,7 @@ import {
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 
 
@@ -61,7 +62,7 @@ function App() {
                     path="/"
 
                     element={
-                        <Navigate to="/register" />
+                        <Landing />
                     }
 
                 />
@@ -233,7 +234,7 @@ function App() {
                     path="*"
 
                     element={
-                        <Navigate to="/register" />
+                        <Landing />
                     }
 
                 />

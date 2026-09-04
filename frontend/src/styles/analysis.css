@@ -2,7 +2,7 @@
 
     min-height:100vh;
 
-    background:#0f172a;
+    background:#f8f8f8;
 
     padding:40px;
 
@@ -18,7 +18,7 @@
 
     margin:auto;
 
-    background:#111827;
+    background:#e3e4e7;
 
     padding:35px;
 
@@ -88,7 +88,7 @@
 
 .metric-card{
 
-    background:#1e293b;
+    background:#eeeef0;
 
     padding:25px;
 
@@ -136,7 +136,7 @@
 
 .summary-card{
 
-    background:#111827;
+    background:#f0f1f4;
 
     padding:30px;
 
@@ -181,3 +181,5 @@
     margin:8px;
 
 }
+
+.analysis-container{background:#f7f9f7;color:var(--text)}.analysis-card,.metric-card{background:#fff;color:var(--text);border:1px solid var(--line-strong);box-shadow:0 14px 34px rgba(47,77,56,.06)}.analysis-card h1,.analysis-card h2,.analysis-card h3,.metric-card h1{color:#709b3b}.analysis-card p,.analysis-card li,.info-item{color:var(--muted)}.primary-btn{background:var(--lime);color:#19301b}

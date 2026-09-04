@@ -14,6 +14,7 @@ from app.routes.freelancer_dashboard import (
 )
 from app.routes.negotiation import router as negotiation_router
 from app.utils.auth import get_current_user
+from app.services.auth_service import get_client_by_email
 
 
 
@@ -243,6 +244,8 @@ def dashboard(
 
 ):
 
+    client = get_client_by_email(current_user)
+
     return {
 
 
@@ -251,6 +254,9 @@ def dashboard(
 
 
         "email":
-        current_user
+        current_user,
+
+        "full_name":
+        client.get("full_name", "") if client else ""
 
     }

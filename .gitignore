@@ -16,6 +16,10 @@ frontend/dist/
 .vscode/
 
 
+*.local
+.env
+.env.*
+!.env.example
 # System
 
 .DS_Store

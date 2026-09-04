@@ -6,7 +6,8 @@ from app.models.project import project_document
 
 from app.services.project_service import (
     create_project,
-    get_project_by_id
+    get_project_by_id,
+    get_client_projects
 )
 
 from app.utils.auth import get_current_user
@@ -20,6 +21,26 @@ router = APIRouter(
     tags=["Projects"]
 
 )
+
+
+@router.get("/history")
+def get_project_history(
+    user_email: str = Depends(get_current_user)
+):
+    projects = get_client_projects(user_email)
+
+    return {
+        "projects": [
+            {
+                "project_id": str(project["_id"]),
+                "title": project.get("title", "Untitled project"),
+                "description": project.get("description", ""),
+                "status": project.get("status", "submitted"),
+                "created_at": project.get("created_at")
+            }
+            for project in projects
+        ]
+    }
 
 
 
