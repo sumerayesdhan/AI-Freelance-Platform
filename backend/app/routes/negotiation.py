@@ -718,6 +718,246 @@ def _build_negotiation_parameters(
 
 
 # ============================================================
+# CONTRACT / TIMELINE AGENT HELPERS
+# ============================================================
+
+
+def _clean_text(value, fallback="Project work"):
+
+    if value is None:
+        return fallback
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        str(value)
+    ).strip()
+
+    return text if text else fallback
+
+
+
+def build_contract_summary(
+    project,
+    negotiation_result,
+    freelancer=None,
+    project_reference=None,
+):
+
+    project_title = _clean_text(
+        project.get("title"),
+        "Project"
+    )
+
+    project_description = _clean_text(
+        project.get("description"),
+        "User registration/login, product catalog/listing, search and filter, shopping cart, implementation, testing, and maintenance support."
+    )
+
+    freelancer_name = (
+        freelancer.get("name")
+        if freelancer and freelancer.get("name")
+        else "Freelancer"
+    )
+
+    freelancer_id = (
+        freelancer.get("freelancer_id")
+        if freelancer and freelancer.get("freelancer_id") is not None
+        else None
+    )
+
+    freelancer_email = (
+        freelancer.get("email")
+        if freelancer and freelancer.get("email")
+        else (
+            generate_freelancer_email(freelancer_id)
+            if freelancer_id is not None
+            else "N/A"
+        )
+    )
+
+    freelancer_profile = {
+        "name": freelancer.get("name") if freelancer else "Freelancer",
+        "email": freelancer_email,
+        "title": freelancer.get("title") if freelancer else None,
+        "skills": freelancer.get("skills") if freelancer else [],
+        "hourly_rate": freelancer.get("hourly_rate") if freelancer else None,
+        "country": freelancer.get("country") if freelancer else None,
+        "freelancer_id": freelancer_id,
+    }
+
+    final_price = (
+        negotiation_result.get(
+            "final_price",
+            0
+        )
+        if negotiation_result
+        else 0
+    )
+
+    timeline_days = (
+        negotiation_result.get(
+            "final_timeline_days",
+            30
+        )
+        if negotiation_result
+        else 30
+    )
+
+    scope_keywords = [
+        "login",
+        "registration",
+        "catalog",
+        "listing",
+        "search",
+        "filter",
+        "cart",
+        "checkout",
+        "dashboard",
+        "api",
+        "testing",
+        "deployment",
+        "bug",
+        "fix",
+        "design",
+        "auth",
+    ]
+
+    description_lower = project_description.lower()
+    matched_scope = [
+        keyword
+        for keyword in scope_keywords
+        if keyword in description_lower
+    ]
+
+    if matched_scope:
+        scope = ", ".join(
+            {
+                item: True
+                for item in matched_scope
+            }.keys()
+        )
+    else:
+        scope = (
+            "User registration/login, "
+            "product catalog/listing, "
+            "search and filter, shopping cart, "
+            "implementation, testing, and "
+            "reasonable defect fixes"
+        )
+
+    estimated_hours = max(
+        20,
+        int(round(float(timeline_days) * 8.0))
+    )
+
+    safe_reference = project_reference or "N/A"
+    download_filename = f"project-contract-{safe_reference}.txt"
+
+    return {
+        "project_title": project_title,
+        "project_reference": safe_reference,
+        "parties": {
+            "client": "Client",
+            "freelancer": freelancer_name,
+        },
+        "freelancer_profile": freelancer_profile,
+        "scope": scope,
+        "fixed_price": float(final_price),
+        "estimated_hours": estimated_hours,
+        "timeline_days": int(round(float(timeline_days))),
+        "deadline_days": int(round(float(timeline_days))),
+        "approvals": {
+            "client": "Approved",
+            "freelancer": "Approved",
+        },
+        "status": "Contract ready",
+        "download_enabled": True,
+        "download_filename": download_filename,
+        "note": (
+            "This contract reflects the negotiated scope and fixed project price."
+        )
+    }
+
+
+
+def build_timeline_summary(
+    project,
+    negotiation_result,
+    complexity_analysis=None,
+):
+
+    total_days = (
+        negotiation_result.get(
+            "final_timeline_days",
+            30
+        )
+        if negotiation_result
+        else 30
+    )
+
+    total_days = max(7, int(round(float(total_days))))
+
+    base_phases = [
+        {
+            "name": "Discovery & planning",
+            "weight": 0.20,
+            "description": "Requirements review, architecture planning, and milestone alignment.",
+        },
+        {
+            "name": "UX & design",
+            "weight": 0.25,
+            "description": "UI structure, workflows, and visual design refinement.",
+        },
+        {
+            "name": "Build & integration",
+            "weight": 0.35,
+            "description": "Core implementation, feature wiring, and system integration.",
+        },
+        {
+            "name": "QA & fixes",
+            "weight": 0.20,
+            "description": "Testing, bug triage, polish, and final release checklist.",
+        },
+    ]
+
+    phases = []
+    running_day = 1
+
+    for index, phase in enumerate(base_phases):
+        days = int(round(total_days * phase["weight"]))
+        if index == len(base_phases) - 1:
+            days = max(1, total_days - sum(item["days"] for item in phases))
+
+        phase_record = {
+            "name": phase["name"],
+            "days": days,
+            "start_day": running_day,
+            "end_day": running_day + days - 1,
+            "description": phase["description"],
+        }
+
+        phases.append(phase_record)
+        running_day += days
+
+    if sum(item["days"] for item in phases) < total_days:
+        phases[-1]["days"] += total_days - sum(item["days"] for item in phases)
+        phases[-1]["end_day"] = phases[-1]["start_day"] + phases[-1]["days"] - 1
+
+    summary = (
+        f"The project is planned across {total_days} days with a phased delivery cycle "
+        f"for discovery, implementation, quality review, and final release support."
+    )
+
+    return {
+        "project_title": _clean_text(project.get("title"), "Project"),
+        "total_days": total_days,
+        "phases": phases,
+        "summary": summary,
+    }
+
+
+# ============================================================
 # CREATE NEGOTIATION REQUEST
 # ============================================================
 
@@ -1460,6 +1700,84 @@ def auto_negotiate(
         "contract_status":
             "NOT_READY"
     }
+
+
+# ============================================================
+# CONTRACT / TIMELINE AGENT OUTPUTS
+# ============================================================
+
+@router.get("/{request_id}/contract")
+def get_contract_agent_output(request_id: str):
+
+    negotiation_request = (
+        negotiation_requests_collection.find_one(
+            {
+                "request_id": request_id
+            }
+        )
+    )
+
+    if negotiation_request is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Negotiation request not found"
+        )
+
+    if negotiation_request.get("status") != "BOTH_ACCEPTED":
+        raise HTTPException(
+            status_code=409,
+            detail="Contract is generated only after both client and freelancer approve the final terms."
+        )
+
+    project_id = negotiation_request.get("project_id")
+    project = _find_project(project_id)
+
+    freelancer = negotiation_request.get("freelancer") or freelancers_collection.find_one(
+        {"freelancer_id": negotiation_request.get("freelancer_id")},
+        {"_id": 0, "password": 0},
+    )
+
+    return build_contract_summary(
+        project=project or {},
+        negotiation_result=negotiation_request.get("negotiation_result") or {},
+        freelancer=freelancer or {},
+        project_reference=str(project_id)[:20] if project_id else "N/A",
+    )
+
+
+@router.get("/{request_id}/timeline")
+def get_timeline_agent_output(request_id: str):
+
+    negotiation_request = (
+        negotiation_requests_collection.find_one(
+            {
+                "request_id": request_id
+            }
+        )
+    )
+
+    if negotiation_request is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Negotiation request not found"
+        )
+
+    if negotiation_request.get("status") != "BOTH_ACCEPTED":
+        raise HTTPException(
+            status_code=409,
+            detail="Timeline is generated only after both client and freelancer approve the final terms."
+        )
+
+    project_id = negotiation_request.get("project_id")
+    project = _find_project(project_id)
+
+    complexity_document = _find_complexity_analysis(project_id)
+
+    return build_timeline_summary(
+        project=project or {},
+        negotiation_result=negotiation_request.get("negotiation_result") or {},
+        complexity_analysis=complexity_document,
+    )
 
 
 # ============================================================
