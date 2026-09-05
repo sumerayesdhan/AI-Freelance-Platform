@@ -43,6 +43,12 @@ import FreelancerDashboard
 import NegotiationPage
     from "./pages/NegotiationPage";
 
+import ContractViewPage
+    from "./pages/ContractViewPage";
+
+import TimelineViewPage
+    from "./pages/TimelineViewPage";
+
 
 function App() {
 
@@ -220,6 +226,26 @@ function App() {
 
                     element={
                         <NegotiationPage />
+                    }
+
+                />
+
+                <Route
+
+                    path="/negotiation/:requestId/contract"
+
+                    element={
+                        <ContractViewPage />
+                    }
+
+                />
+
+                <Route
+
+                    path="/negotiation/:requestId/timeline"
+
+                    element={
+                        <TimelineViewPage />
                     }
 
                 />

@@ -56,6 +56,15 @@ function NegotiationPage() {
         setMessage
     ] = useState("");
 
+    const [
+        contractSummary,
+        setContractSummary
+    ] = useState(null);
+
+    const [
+        timelineSummary,
+        setTimelineSummary
+    ] = useState(null);
 
     // =========================================================
     // LOAD NEGOTIATION
@@ -110,6 +119,43 @@ function NegotiationPage() {
         loadNegotiation();
 
     }, [requestId]);
+
+
+    const loadAgentOutputs = async () => {
+
+        try {
+
+            const [contractResponse, timelineResponse] = await Promise.all([
+                api.get(`/negotiation/${requestId}/contract`),
+                api.get(`/negotiation/${requestId}/timeline`)
+            ]);
+
+            setContractSummary(contractResponse.data);
+            setTimelineSummary(timelineResponse.data);
+
+        }
+
+        catch (error) {
+
+            console.error("Agent output error:", error);
+
+        }
+
+    };
+
+
+    useEffect(() => {
+
+        if (
+            negotiation &&
+            negotiation.negotiation_result?.agreement &&
+            negotiation.client_decision === "ACCEPT" &&
+            negotiation.freelancer_decision === "ACCEPT"
+        ) {
+            loadAgentOutputs();
+        }
+
+    }, [negotiation]);
 
 
     // =========================================================
@@ -291,6 +337,22 @@ function NegotiationPage() {
         role === "client"
             ? clientDecision
             : freelancerDecision;
+
+    const isContractReady =
+        negotiation.status === "BOTH_ACCEPTED" ||
+        negotiation.contract_status === "CONTRACT_READY";
+
+    const goToContract = () => {
+        if (isContractReady) {
+            navigate(`/negotiation/${requestId}/contract`);
+        }
+    };
+
+    const goToTimeline = () => {
+        if (isContractReady) {
+            navigate(`/negotiation/${requestId}/timeline`);
+        }
+    };
 
 
     // =========================================================
@@ -733,8 +795,7 @@ function NegotiationPage() {
 
 
                                     {
-                                        contractStatus ===
-                                        "CONTRACT_READY"
+                                        isContractReady
 
                                             ?
 
@@ -742,8 +803,8 @@ function NegotiationPage() {
 
                                                 <p>
                                                     ✅ Both client and freelancer
-                                                    accepted. Contract is ready
-                                                    for generation.
+                                                    accepted. Contract and timeline
+                                                    are ready to be reviewed and downloaded.
                                                 </p>
 
                                             )
@@ -753,7 +814,7 @@ function NegotiationPage() {
                                             (
 
                                                 <p>
-                                                    Contract will be generated
+                                                    Contract and timeline will be generated
                                                     only after both parties accept.
                                                 </p>
 
@@ -762,6 +823,44 @@ function NegotiationPage() {
                                     }
 
                                 </div>
+
+
+                                {
+                                    isContractReady && (
+                                        <div style={{ display: "flex", gap: "12px", marginTop: "24px", marginBottom: "20px" }}>
+                                            <button
+                                                type="button"
+                                                onClick={goToContract}
+                                                style={{
+                                                    background: "#cfeea0",
+                                                    color: "#1f3d3a",
+                                                    border: "1px solid #d3d7d0",
+                                                    padding: "12px 18px",
+                                                    borderRadius: "8px",
+                                                    fontWeight: 700,
+                                                    cursor: "pointer"
+                                                }}
+                                            >
+                                                View Contract
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={goToTimeline}
+                                                style={{
+                                                    background: "#cfeea0",
+                                                    color: "#1f3d3a",
+                                                    border: "1px solid #d3d7d0",
+                                                    padding: "12px 18px",
+                                                    borderRadius: "8px",
+                                                    fontWeight: 700,
+                                                    cursor: "pointer"
+                                                }}
+                                            >
+                                                View Timeline
+                                            </button>
+                                        </div>
+                                    )
+                                }
 
 
                             </>
