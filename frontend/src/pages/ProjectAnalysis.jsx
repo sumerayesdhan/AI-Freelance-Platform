@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import api from "../services/api";
 
 import "../styles/analysis.css";
+import ClientHeader from "../components/ClientHeader";
+import ClientSidebar from "../components/ClientSidebar";
 
 
 
@@ -142,6 +144,10 @@ function ProjectAnalysis(){
 
 
         <div className="analysis-container">
+
+            <ClientSidebar />
+
+            <ClientHeader />
 
 
 

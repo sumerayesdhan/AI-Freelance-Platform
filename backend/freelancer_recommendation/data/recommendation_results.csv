@@ -1,156 +1,156 @@
 freelancer_id,freelancer_name,title,matching_skills,required_skills,cosine_similarity,skill_match,experience_score,job_success,hourly_rate,budget_compatibility,country_match,recommendation_probability,prediction,rank
-16,Wasi U.,full-stack web developer  django  react  node  python web scraping,"django, python, react, sql","django, python, react, sql",0.4745810031890869,1.0,0.33360266639733366,1.0,20.0,0.5,0,0.993551,1,1
-13,Ajay B.,python full stack- dashboard  data science  analytics  ai/ml  nlp  api,"django, python, react","django, python, react, sql",0.435538649559021,0.75,0.5881224118775882,0.92,25.0,0.5,0,0.9914384,1,2
-108,Rohit K.,"expert database, code & devops architect   full stack developer","django, python, react","django, python, react, sql",0.43619564175605774,0.75,0.30501969498030507,1.0,35.0,0.5,0,0.9883394,1,3
-17,Uttam A.,data engineer   sql   ai/ml   nlp  power bi   kibana   dashboard   api,"django, python, react, sql","django, python, react, sql",0.41098636388778687,1.0,0.3312796687203313,0.87,25.0,0.5,0,0.9831339,1,4
-21,Mani V.,"python, data science, analytics, ai/ml, dashboard, etl pipeline, nlp","python, react, sql","django, python, react, sql",0.39700445532798767,0.75,0.3590546409453591,0.94,30.0,0.5,0,0.98136204,1,5
-145,Muhammad Junaid A.,full stack   python   django   javascript   react   node.js   laravel,"django, python, react","django, python, react, sql",0.4496152997016907,0.75,0.07181092818907181,1.0,25.0,0.5,0,0.977786,1,6
-35,Zeeshan A.,senior full stack developer   python   node.js   react.js   ai,"django, python, react","django, python, react, sql",0.45564794540405273,0.75,0.09706090293909707,0.98,30.0,0.5,0,0.977103,1,7
-117,Shubham S.,data extraction django/flask,"django, python, sql","django, python, react, sql",0.4471839666366577,0.75,0.29259670740329263,0.93,25.0,0.5,0,0.9741387,1,8
-46,vikas k.,ror   node   next   angular   react   aws   spree   data scraping,"django, python, react","django, python, react, sql",0.35809382796287537,0.75,0.2213917786082214,1.0,25.0,0.5,0,0.97354364,1,9
-150,Virender B.,senior software developer with 6+ yoe in java & python,"django, python, sql","django, python, react, sql",0.4776022732257843,0.75,0.057771942228057774,1.0,30.0,0.5,0,0.9694986,1,10
-106,Priyanka R.,"full stack developer - python, node, ai/ml, analytics, dashboard, api","django, python, react","django, python, react, sql",0.3190266489982605,0.75,0.3435006564993435,0.99,25.0,0.5,0,0.96567184,1,11
-140,Sahaj G.,expert - full stack software engineer   mobile app   web app   ai/ml,"python, react, sql","django, python, react, sql",0.42182043194770813,0.75,0.045247954752045245,0.66,15.0,0.5,0,0.9644319,1,12
-139,AILYAH .,python developer   django/flask   web scraping   automation,"django, python, react","django, python, react, sql",0.4394439458847046,0.75,0.05635794364205636,0.0,17.0,0.5,0,0.94758373,1,13
-133,Ehtisham R.,excel   vba   zapier   google sheets   access   mac   power bi,"python, sql","django, python, react, sql",0.33202439546585083,0.5,0.952934047065953,0.93,40.0,0.5,0,0.92388153,1,14
-7,Devendra R.,odoo expert   odoo consultant   ai & ml   data scientist,"python, react","django, python, react, sql",0.38144439458847046,0.5,0.3785476214523786,0.97,35.0,0.5,0,0.8902814,1,15
-15,Yabebal F.,generative ai & prompt engineer + ai developer & consultant,"python, react, sql","django, python, react, sql",0.3237324059009552,0.75,0.025047974952025043,0.0,25.0,0.5,0,0.87306106,1,16
-20,Muhammad Ameer H.,python/flask/chatgpt   machine learning   ai   web scraping,"python, sql","django, python, react, sql",0.3633382320404053,0.5,0.35602464397535605,0.89,45.0,0.5,0,0.8730583,1,17
-32,Mahmoud D.,"excel, pbi, sql expert, data analyst, loughborough engineering, mba",sql,"django, python, react, sql",0.3591309189796448,0.25,1.0,1.0,30.0,0.5,0,0.8657929,1,18
-14,Shankar M.,open ai   gen ai   chatgpt   blockchain architect   cto   azure   aws,"python, react","django, python, react, sql",0.34115952253341675,0.5,0.42793657206342794,0.97,100.0,0.5,0,0.8521372,1,19
-34,Junaid U.,data engineer,"python, sql","django, python, react, sql",0.38915014266967773,0.5,0.15584284415715585,1.0,30.0,0.5,0,0.84242135,1,20
-96,Abdul R.,expert data scientist & full stack developer: generative ai specialist,"python, react","django, python, react, sql",0.38406801223754883,0.5,0.09302090697909303,1.0,35.0,0.5,0,0.8369201,1,21
-104,Muhammad Faheem S.,cloud engineer   big data engineer,"python, react","django, python, react, sql",0.3734710216522217,0.5,0.1322088677911322,1.0,30.0,0.5,0,0.80568045,1,22
-126,Roy L.,"vba, microsoft access, excel, sql server, sharepoint, azure, dataverse",sql,"django, python, react, sql",0.43925487995147705,0.25,0.4096555903444097,0.89,25.0,0.5,0,0.7951658,1,23
-9,Mahabubur R.,"metabase expert, data analyst, sql + google looker studio +bigquery","python, sql","django, python, react, sql",0.37035152316093445,0.5,0.13917786082213918,1.0,30.0,0.5,0,0.7949738,1,24
-120,Arif S.,generative ai engineer   webflow   wized   xano,"python, react","django, python, react, sql",0.35905885696411133,0.5,0.036056963943036056,0.89,35.0,0.5,0,0.77974063,1,25
-22,Nidhi B.,"data scientist, ai/ml enthusiast and technical content writer","python, sql","django, python, react, sql",0.20646895468235016,0.5,0.11150388849611151,1.0,40.0,0.5,0,0.7793731,1,26
-43,Md Omor Faruk B.,web scraping  data scraping  data mining   data analysis,python,"django, python, react, sql",0.3099975883960724,0.25,0.7492172507827493,1.0,20.0,0.5,0,0.7668884,1,27
-48,Varun D.,"consulting   outsourcing   it staffing - software, web, app , e-com","react, sql","django, python, react, sql",0.395302951335907,0.5,0.03777396222603777,0.96,28.0,0.5,0,0.76604193,1,28
-33,Parv Y.,"data scientist (web scrapping, etl, ml, nlp)","python, sql","django, python, react, sql",0.37375032901763916,0.5,0.07574992425007575,0.96,15.0,0.5,0,0.7313108,1,29
-41,Ahmad I.,machine learning   artificial intelligence   python development,"django, python","django, python, react, sql",0.25205543637275696,0.5,0.09221290778709221,1.0,10.0,0.5,0,0.70182264,1,30
-18,Emmanuel O.,data analyst   sql   tableau   excel   python   power bi,"python, sql","django, python, react, sql",0.38099610805511475,0.5,0.08019391980608019,0.89,14.99,0.5,0,0.6990231,1,31
-45,Nabeel F.,data engineer   databricks   gcp   azure   aws   snowflake   ai,"python, sql","django, python, react, sql",0.32698243856430054,0.5,0.15786284213715787,1.0,30.0,0.5,0,0.68094736,1,32
-131,Ehab K.,senior ai engineer,"python, sql","django, python, react, sql",0.22454755008220673,0.5,0.06706393293606706,1.0,50.0,0.5,0,0.6742113,1,33
-40,Mfonabasi I.,expert data entry specialist - data manager - web researcher,,"django, python, react, sql",0.4301188290119171,0.0,0.9464700535299465,0.99,20.0,0.5,0,0.6527076,1,34
-50,Pratik D.,"seasoned backend developer/ technical writer/ java, sql, nosql, r, etl",sql,"django, python, react, sql",0.3383714556694031,0.25,0.37703262296737705,1.0,29.0,0.5,0,0.650388,1,35
-98,Muhammad Sarwar Jahan M.,expert applied data scientist & analyst,"python, sql","django, python, react, sql",0.325877845287323,0.5,0.036965963034036965,1.0,60.0,0.5,0,0.64193255,1,36
-95,Ali A.,data analyst   sql   python   automation   machine learning,"python, sql","django, python, react, sql",0.3416402339935303,0.5,0.10423189576810424,1.0,25.0,0.5,0,0.63812214,1,37
-148,Olusegun F.,proficient data analyst   engineer,"python, sql","django, python, react, sql",0.33440276980400085,0.5,0.04878295121704878,1.0,30.0,0.5,0,0.6348747,1,38
-1,Abeer K.,data scientist   web scraping engineer,"python, sql","django, python, react, sql",0.34328728914260864,0.5,0.25371174628825377,0.97,25.0,0.5,0,0.6314973,1,39
-115,Dave C.,ai specialist   machine learning engineer   data science expert,"python, react","django, python, react, sql",0.33690768480300903,0.5,0.035854964145035854,1.0,45.0,0.5,0,0.6224702,1,40
-53,Fahad A.,"expert in power bi, excel, data analysis, sql, word, powerpoint &visio",sql,"django, python, react, sql",0.31447476148605347,0.25,0.5411574588425412,0.71,30.0,0.5,0,0.6035215,1,41
-5,Muhammad Noman B.,data science   python projects   machine learning ai assignments r gui,"django, python","django, python, react, sql",0.3453314006328583,0.5,0.015048984951015048,0.82,25.0,0.5,0,0.6023831,1,42
-44,Noushad A.,"web scraper, data scientist, python developer",python,"django, python, react, sql",0.28270646929740906,0.25,0.34420765579234425,1.0,25.0,0.5,0,0.6011101,1,43
-116,Paulo O.,microsoft certified   power bi expert   report   dashboard consultant,"python, sql","django, python, react, sql",0.3052540421485901,0.5,0.18240581759418242,1.0,55.0,0.5,0,0.5863123,1,44
-122,Mohammed A.,data analyst   python  sql  web scraping & browser automation expert,"python, sql","django, python, react, sql",0.3062620759010315,0.5,0.03444096555903444,1.0,16.0,0.5,0,0.56801605,1,45
-11,Fasih U.,data engineer   big data   airflow   python   etl   pyspark   sql,"python, sql","django, python, react, sql",0.3452030420303345,0.5,0.10190889809110192,1.0,15.0,0.5,0,0.5663441,1,46
-12,Islam A.,"transforming data into profit: python, data science, and ai expertise","python, sql","django, python, react, sql",0.3418222963809967,0.5,0.05524694475305525,0.91,60.0,0.5,0,0.5606037,1,47
-103,Madjid E.,web scraping expert   etl developer,"python, sql","django, python, react, sql",0.35262584686279297,0.5,0.037874962125037874,0.93,38.0,0.5,0,0.5426524,1,48
-54,MD. Shahriar Al Kasib Khan S.,tableau   looker   dbt   google data studio   power bi   sql expert,"python, sql","django, python, react, sql",0.3245563805103302,0.5,0.11766488233511765,0.96,35.0,0.5,0,0.5383426,1,49
-138,Abdul M.,data engineer & analytics expert   aws   quicksight/datastudio pro,"python, sql","django, python, react, sql",0.3893725275993347,0.5,0.057569942430057565,0.23,11.11,0.5,0,0.5221389,1,50
-47,Malik Haseeb H.,saas developer   deep learning   open ai   nlp   saas mvp,python,"django, python, react, sql",0.34402698278427124,0.25,0.1635188364811635,1.0,36.0,0.5,0,0.51815104,1,51
-113,Salma H.,machine learning engineer,"python, sql","django, python, react, sql",0.27800899744033813,0.5,0.005554994445005555,1.0,30.0,0.5,0,0.46335343,0,52
-4,Jason K.,data science & ai expert- senior machine learning engineer at linkedin,python,"django, python, react, sql",0.27442696690559387,0.25,0.2847187152812848,1.0,500.0,0.5,0,0.45826182,0,53
-66,Ishtiaque A.,data analyst   tibco spotfire   power bi   tableau   singlestore   etl,"python, sql","django, python, react, sql",0.3696697950363159,0.5,0.019492980507019492,0.97,20.0,0.5,0,0.44786575,0,54
-112,Soban A.,data scientist   machine learning expert,python,"django, python, react, sql",0.26931947469711304,0.25,0.24522775477224523,1.0,15.0,0.5,0,0.42819247,0,55
-137,Nesma A.,machine learning   artificial intelligence,"python, sql","django, python, react, sql",0.22405469417572021,0.5,0.0104029895970104,0.9,20.0,0.5,0,0.42317802,0,56
-135,Hossam H.,data scientist  data analyst  data visualization,"python, sql","django, python, react, sql",0.307710736989975,0.5,0.09584890415109584,1.0,10.0,0.5,0,0.42255342,0,57
-124,Faiz R.,data scientist   machine learning   computer vision   nlp   aws   sql,"python, sql","django, python, react, sql",0.3511608839035034,0.5,0.014745985254014746,0.97,20.0,0.5,0,0.4174092,0,58
-63,Naveen K.,motivated seller leads - usa real estate list building,,"django, python, react, sql",0.25055885314941406,0.0,0.8433491566508434,1.0,4.44,0.5,0,0.37788972,0,59
-64,Michael E.,"certified project manager, analytics guru, business improvement junkie",,"django, python, react, sql",0.43718069791793823,0.0,0.4218765781234219,1.0,125.0,0.5,0,0.36302254,0,60
-29,Muhammad Gulraiz H.,"web researcher, lead generation, real estate, data entry, va",,"django, python, react, sql",0.3752082288265228,0.0,0.7155842844157156,0.99,5.5,0.5,0,0.3548881,0,61
-24,Sakshi B.,"writer: article, blog, academic writing expert+ data analyst, power bi",,"django, python, react, sql",0.24522998929023743,0.0,0.7808302191697809,1.0,7.99,0.5,0,0.3426729,0,62
-28,Snehit D.,python developer & web scraping expert who speaks argentinian spanish,python,"django, python, react, sql",0.2838937044143677,0.25,0.13917786082213918,1.0,10.0,0.5,0,0.34028965,0,63
-23,Nick V.,analytics wizard for cloud-based   ph.d. data engineer & analyst,sql,"django, python, react, sql",0.3310624063014984,0.25,0.11382688617311382,1.0,65.0,0.5,0,0.33170575,0,64
-152,Matias W.,"ai & machine learning   machine learning model, machine learning, sql","python, sql","django, python, react, sql",0.224430650472641,0.5,0.006867993132006868,1.0,15.0,0.5,0,0.31133398,0,65
-56,Sumy A.,"b2b lead generation, contact list building, prospect list, data mining",,"django, python, react, sql",0.33138418197631836,0.0,0.861024138975861,0.83,6.5,0.5,0,0.31077442,0,66
-111,Zahida A.,market research   data analysis   virtual assistant   lead generation,,"django, python, react, sql",0.3831312954425812,0.0,0.5015654984345016,1.0,7.0,0.5,0,0.3028127,0,67
-101,Ahmed S.,"data scientist, python developer","python, sql","django, python, react, sql",0.38050827383995056,0.5,0.0008079991920008084,0.0,25.0,0.5,0,0.2928606,0,68
-125,Musabbir Ahmed A.,robotics and automation engineer,python,"django, python, react, sql",0.3217187225818634,0.25,0.13624886375113623,0.92,30.0,0.5,0,0.268449,0,69
-136,Sk. Shahidul I.,"senior product researcher   amazon, shopify - pl, wholesale   datadive",,"django, python, react, sql",0.38679617643356323,0.0,0.593980406019594,1.0,14.95,0.5,0,0.25043568,0,70
-26,Muhammad N.,website and linkedin data scrapping and lead generation expert,python,"django, python, react, sql",0.34189891815185547,0.25,0.13018886981113018,0.77,10.0,0.5,0,0.24876732,0,71
-153,Antu C.,"b2b email finder, business email lookup, email, corporate email search",,"django, python, react, sql",0.34514737129211426,0.0,0.594889405110595,0.97,6.0,0.5,0,0.24660687,0,72
-52,Marvin S.,individualized data analysis - we offer a scientific approach for you.,python,"django, python, react, sql",0.37908676266670227,0.25,0.048176951823048174,1.0,40.0,0.5,0,0.23610175,0,73
-61,Ebrahim A.,senior data engineer,"python, sql","django, python, react, sql",0.35394546389579773,0.5,0.07968892031107969,0.0,20.0,0.5,0,0.22500612,0,74
-105,Ishaan N.,"data science, quant modelling   finance   ex-morgan stanley, jp morgan",python,"django, python, react, sql",0.3496551513671875,0.25,0.08615291384708615,1.0,50.0,0.5,0,0.22396728,0,75
-154,Adnane R.,"automation & ai expert (python, gpt, ml, excel, data visual, rpa, js)",python,"django, python, react, sql",0.3503251075744629,0.25,0.0703969296030704,1.0,50.0,0.5,0,0.22143412,0,76
-38,Bashir A.,"virtual assistant   website maintenance, lead generation, seo expert",,"django, python, react, sql",0.3761410713195801,0.0,0.34319765680234326,0.98,5.99,0.5,0,0.21847254,0,77
-25,Rajveer S.,full stack developer   web application development   google workspace,,"django, python, react, sql",0.41759413480758667,0.0,0.5397434602565397,0.95,35.0,0.5,0,0.21690024,0,78
-59,Ashraful Islam E.,data analyst    excel expert    powerpoint presentation,"python, sql","django, python, react, sql",0.3511211574077606,0.5,0.0,0.0,10.0,0.5,0,0.21567765,0,79
-127,Chris H.,healthcare ai and app expert   harvard health data scientist,sql,"django, python, react, sql",0.35542452335357666,0.25,0.05969094030905969,1.0,120.0,0.5,0,0.21224041,0,80
-30,Muhammad U.,b2b lead generation/zoominfo/contact list/sales leads/linkedin sales,,"django, python, react, sql",0.4103837013244629,0.0,0.33612766387233617,0.96,18.0,0.5,0,0.20859604,0,81
-37,Zeyad M.,data scientist   machine learning engineer,python,"django, python, react, sql",0.21023960411548615,0.25,0.0407029592970407,1.0,40.0,0.5,0,0.2045574,0,82
-147,Faizan S.,"lead generation , list building & data entry expert",,"django, python, react, sql",0.3496524691581726,0.0,0.38703161296838706,0.91,3.0,0.5,0,0.19263126,0,83
-6,Pragyesh S.,professional academic writer and coach,python,"django, python, react, sql",0.21496757864952087,0.25,0.14533885466114535,0.86,20.0,0.5,0,0.18250552,0,84
-141,Misty M.,b2b lead generation  web research  list building  sourcing specialist,,"django, python, react, sql",0.40963214635849,0.0,0.2711847288152712,1.0,33.0,0.5,0,0.1785632,0,85
-3,"Ramil, Jr. A.",excel   vba   macros   google sheets expert,,"django, python, react, sql",0.2842026948928833,0.0,0.7051812948187053,1.0,60.0,0.5,0,0.17367399,0,86
-102,Yousef W.,rpa developer  ai & automation engineer   data scientist,"python, sql","django, python, react, sql",0.19652250409126282,0.5,0.0817089182910817,0.0,5.0,0.5,0,0.17096232,0,87
-39,Ajit T.,tech admin va - excel & gsheets   data entry   etl   email lists,,"django, python, react, sql",0.46408089995384216,0.0,0.21573578426421572,1.0,22.5,0.5,0,0.14973633,0,88
-143,Robert O.,battle-tested upwork strategy - earn more. free up time to enjoy life,,"django, python, react, sql",0.21479766070842743,0.0,0.6648823351176649,0.99,77.77,0.5,0,0.14907336,0,89
-51,Eishwar c.,expert lead generation-data entry-email finding-list building,,"django, python, react, sql",0.2843175530433655,0.0,0.5716594283405717,0.97,5.0,0.5,0,0.14414325,0,90
-10,Trenton S.,data analysis and insights   transforming data actionable business,"python, sql","django, python, react, sql",0.3174315094947815,0.5,0.013836986163013836,0.0,45.0,0.5,0,0.14118004,0,91
-31,Aveen F.,senior data scientist,"python, sql","django, python, react, sql",0.30260634422302246,0.5,0.004342995657004343,0.0,30.0,0.5,0,0.13951053,0,92
-129,Khan M.,data scraping & analysis   machine learning   google sheets   python,python,"django, python, react, sql",0.293568879365921,0.25,0.05140894859105141,1.0,45.0,0.5,0,0.13575499,0,93
-149,Meer Naib K.,"full stack python developer , data and ml engineer",python,"django, python, react, sql",0.3415047526359558,0.25,0.001312998687001312,1.0,21.0,0.5,0,0.13457859,0,94
-97,Khan Bahadar K.,academic writing expert   academic (copy) editing and proofreading,python,"django, python, react, sql",0.1969332993030548,0.25,0.06665993334006666,1.0,25.0,0.5,0,0.11900316,0,95
-57,Aamir I.,data scientist/analyst   statistician   quantitative researcher,"python, sql","django, python, react, sql",0.3012566566467285,0.5,0.07968892031107969,0.0,70.0,0.5,0,0.113683335,0,96
-121,K R.,certified data scientist i python expert   ai/ml   4+ years experience,python,"django, python, react, sql",0.2762228846549988,0.25,0.007574992425007577,0.98,50.0,0.5,0,0.112957925,0,97
-36,Sana S.,graphic design & presentation design   data entry & admin support,,"django, python, react, sql",0.31035473942756653,0.0,0.4732855267144733,1.0,38.0,0.5,0,0.10726907,0,98
-128,Matthew S.,epidemiologist and data scientist,python,"django, python, react, sql",0.16616210341453552,0.25,0.004342995657004343,1.0,75.0,0.5,0,0.08884428,0,99
-107,yassine g.,data scientist,python,"django, python, react, sql",0.33977770805358887,0.25,0.11221088778911222,0.83,20.0,0.5,0,0.086150594,0,100
-49,Muhammad M.,lead generation and data entry expert,,"django, python, react, sql",0.3034898638725281,0.0,0.45651954348045654,1.0,10.0,0.5,0,0.08563891,0,101
-130,Terrence C.,statistical consultant   data analyst   researcher,,"django, python, react, sql",0.25761038064956665,0.0,0.5347944652055348,1.0,50.0,0.5,0,0.08421614,0,102
-119,Mohamed A.,data scientist,python,"django, python, react, sql",0.23784059286117554,0.25,0.022623977376022626,1.0,25.0,0.5,0,0.08087556,0,103
-123,James S.,ph.d. data analyst/statistician - program evaluator - editor/reviewer,,"django, python, react, sql",0.3392745852470398,0.0,0.31320068679931323,1.0,125.0,0.5,0,0.08014171,0,104
-151,Ali Y.,research expert   web research   virtual assistant   lead generation,,"django, python, react, sql",0.3214161694049835,0.0,0.40854459145540856,0.94,10.0,0.5,0,0.07692895,0,105
-155,Parthsarthi D.,expert social media manager   youtube   instagram   twitter   fb,,"django, python, react, sql",0.255565345287323,0.0,0.3914756085243915,1.0,20.0,0.5,0,0.07672762,0,106
-109,Faizan Z.,creative freelancer: helping businesses grow and succeed,,"django, python, react, sql",0.3222839832305908,0.0,0.2302797697202303,0.9,12.0,0.5,0,0.07221763,0,107
-110,Ismail H.,data science-ml-dl-rl-ai-mathematics-hpc- statistics-quant trading,python,"django, python, react, sql",0.3532867431640625,0.25,0.049691950308049695,0.32,50.0,0.5,0,0.05849375,0,108
-142,Md Mujammel H.,"digital marketing, online research, writing, web development",,"django, python, react, sql",0.28484171628952026,0.0,0.31320068679931323,0.98,18.0,0.5,0,0.055831663,0,109
-99,Abdul W.,zoominfo pro   lexisnexis   tlo   linkedin   lead generation   emails,,"django, python, react, sql",0.20392876863479614,0.0,0.5150994849005152,1.0,7.0,0.5,0,0.048559435,0,110
-2,Nikola M.,researcher,,"django, python, react, sql",0.3355346918106079,0.0,0.23623876376123623,0.97,15.0,0.5,0,0.0396845,0,111
-27,Pavel A.,"gpt-4, chatgpt, llms, generative ai product expert",,"django, python, react, sql",0.29608285427093506,0.0,0.3906676093323907,0.84,150.0,0.5,0,0.035364065,0,112
-42,Rajab S.,lead generation   information retrieval   remote support   crm_entries,,"django, python, react, sql",0.4119802713394165,0.0,0.14947985052014948,0.93,4.0,0.5,0,0.028944027,0,113
-19,Doreen B.,"adept phd copyeditor, white paper, business plan and academic writer.",,"django, python, react, sql",0.21629220247268677,0.0,0.33370366629633375,0.95,40.0,0.5,0,0.028085234,0,114
-55,Ahmed o.,ph.d inorganic and analytical chemistry and chemical formulator,,"django, python, react, sql",0.20712554454803467,0.0,0.3804666195333805,1.0,20.0,0.5,0,0.026417818,0,115
-62,Arjun V.,power bi   tableau   nlp   etl   azure   aws   8+ yoe,,"django, python, react, sql",0.39477217197418213,0.0,0.15917584082415917,1.0,45.0,0.5,0,0.026045287,0,116
-134,Manish A.,"project manager - pmp, csm",,"django, python, react, sql",0.4137125015258789,0.0,0.0812039187960812,0.94,25.0,0.5,0,0.022980185,0,117
-58,Ugonna B.,"detailed va    expert in web mining, ai data scraping, and research.",,"django, python, react, sql",0.33705246448516846,0.0,0.004443995556004443,1.0,15.0,0.5,0,0.013658441,0,118
-146,Amaury H.,machine learning/data science expert,python,"django, python, react, sql",0.1853126585483551,0.25,0.2988587011412989,0.0,22.22,0.5,0,0.01156168,0,119
-100,Aleksei Z.,data analysis & visualization   data science,python,"django, python, react, sql",0.25714975595474243,0.25,0.0817089182910817,0.0,20.0,0.5,0,0.011148287,0,120
-65,Marlon B.,"financial auditor, certified public accountant & data analysis",,"django, python, react, sql",0.3235566318035126,0.0,0.08615291384708615,1.0,7.0,0.5,0,0.010836037,0,121
-8,Dr . M Mansoor M.,expert medical writer   medical researcher  academic writer  doctor,,"django, python, react, sql",0.15700221061706543,0.0,0.31643268356731646,0.98,59.99,0.5,0,0.010799218,0,122
-118,Sergio P.,"ai & machine learning   c, c++, python, data science, nlp, statistics",python,"django, python, react, sql",0.21543963253498077,0.25,0.07968892031107969,0.0,18.0,0.5,0,0.010698067,0,123
-144,Muhammad Umer F.,data science aficionado   data analyst   automation engineer,,"django, python, react, sql",0.40430960059165955,0.0,0.004948995051004949,0.87,25.0,0.5,0,0.009318743,0,124
-132,Konstantin B.,"aws-certified devops architect   cloud solutions   aws, gcp, azure",,"django, python, react, sql",0.28107574582099915,0.0,0.08615291384708615,1.0,60.0,0.5,0,0.008441715,0,125
-114,Ahlem K.,business intelligence developer,,"django, python, react, sql",0.39027899503707886,0.0,0.022320977679022323,0.86,50.0,0.5,0,0.0053081247,0,126
-60,Bakht M.,"experienced coding, data science & machine learning instructor",,"django, python, react, sql",0.23514500260353088,0.0,0.08847591152408847,1.0,20.0,0.5,0,0.0040019085,0,127
-76,    wikipedia.org botany close the tooltip  ,,,"django, python, react, sql",0.09001340717077255,0.0,,,,0.5,0,9.555952e-05,0,128
-87,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,129
-86,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,130
-91,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,131
-84,    wikipedia.org biology close the tooltip  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,132
-75,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,133
-73,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,134
-89,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,135
-88,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,136
-78,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,137
-77,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,138
-90,    wikipedia.org botany close the tooltip  ,,,"django, python, react, sql",0.09001340717077255,0.0,,,,0.5,0,9.555952e-05,0,139
-67,Syeda F.,"articles, seo content, and scientific writing pro",,"django, python, react, sql",0.09157200157642365,0.0,,,,0.5,0,9.555952e-05,0,140
-83,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,141
-82,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,142
-74,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,143
-72,  ,,,"django, python, react, sql",0.09001340717077255,0.0,,,,0.5,0,9.555952e-05,0,144
-70,    wikipedia.org biology close the tooltip  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,145
-69,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,146
-68,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,147
-79,    wikipedia.org product description close the tooltip  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,148
-94,"  a product description is a structured format of presenting information about a product. ar...""",,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,149
-92,  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,150
-80,  a product description is a structured format of presenting information about a product. article writing close the tooltip  ,,,"django, python, react, sql",0.09001342952251434,0.0,,,,0.5,0,9.555952e-05,0,151
-93,    wikipedia.org product description close the tooltip  ,,,"django, python, react, sql",0.09001344442367554,0.0,,,,0.5,0,9.555952e-05,0,152
-81,"  an article is ...""",20,,"django, python, react, sql",0.037092529237270355,0.0,,,99.0,0.5,0,7.343067e-05,0,153
-85,  biology is a natural science concerned with the study of life and living organisms, including their structure,,"django, python, react, sql",0.02819492295384407,0.0,,,,0.5,0,6.4909094e-05,0,154
-71,  biology is a natural science concerned with the study of life and living organisms, including their structure,,"django, python, react, sql",0.02819492295384407,0.0,,,,0.5,0,6.4909094e-05,0,155
+40,Mfonabasi I.,expert data entry specialist - data manager - web researcher,,,0.12267620861530304,0.0,0.9464700535299465,0.99,20.0,0.5,0,0.9660346,1,1
+133,Ehtisham R.,excel   vba   zapier   google sheets   access   mac   power bi,,,0.0890631228685379,0.0,0.952934047065953,0.93,40.0,0.5,0,0.9430763,1,2
+56,Sumy A.,"b2b lead generation, contact list building, prospect list, data mining",,,0.1463424563407898,0.0,0.861024138975861,0.83,6.5,0.5,0,0.94282424,1,3
+24,Sakshi B.,"writer: article, blog, academic writing expert+ data analyst, power bi",,,0.12074457108974457,0.0,0.7808302191697809,1.0,7.99,0.5,0,0.93820184,1,4
+32,Mahmoud D.,"excel, pbi, sql expert, data analyst, loughborough engineering, mba",,,0.06257348507642746,0.0,1.0,1.0,30.0,0.5,0,0.9361467,1,5
+29,Muhammad Gulraiz H.,"web researcher, lead generation, real estate, data entry, va",,,0.16137222945690155,0.0,0.7155842844157156,0.99,5.5,0.5,0,0.92333496,1,6
+43,Md Omor Faruk B.,web scraping  data scraping  data mining   data analysis,,,0.23016245663166046,0.0,0.7492172507827493,1.0,20.0,0.5,0,0.9177058,1,7
+153,Antu C.,"b2b email finder, business email lookup, email, corporate email search",,,0.16908030211925507,0.0,0.594889405110595,0.97,6.0,0.5,0,0.86062956,1,8
+63,Naveen K.,motivated seller leads - usa real estate list building,,,0.0711725726723671,0.0,0.8433491566508434,1.0,4.44,0.5,0,0.8355605,1,9
+111,Zahida A.,market research   data analysis   virtual assistant   lead generation,,,0.19166286289691925,0.0,0.5015654984345016,1.0,7.0,0.5,0,0.8128414,1,10
+38,Bashir A.,"virtual assistant   website maintenance, lead generation, seo expert",,,0.25796031951904297,0.0,0.34319765680234326,0.98,5.99,0.5,0,0.7572967,1,11
+25,Rajveer S.,full stack developer   web application development   google workspace,,,0.24201463162899017,0.0,0.5397434602565397,0.95,35.0,0.5,0,0.65695876,1,12
+51,Eishwar c.,expert lead generation-data entry-email finding-list building,,,0.1391831785440445,0.0,0.5716594283405717,0.97,5.0,0.5,0,0.62424827,1,13
+136,Sk. Shahidul I.,"senior product researcher   amazon, shopify - pl, wholesale   datadive",,,0.15917924046516418,0.0,0.593980406019594,1.0,14.95,0.5,0,0.619392,1,14
+49,Muhammad M.,lead generation and data entry expert,,,0.2255103886127472,0.0,0.45651954348045654,1.0,10.0,0.5,0,0.6180564,1,15
+143,Robert O.,battle-tested upwork strategy - earn more. free up time to enjoy life,,,0.09791752696037292,0.0,0.6648823351176649,0.99,77.77,0.5,0,0.58523464,1,16
+13,Ajay B.,python full stack- dashboard  data science  analytics  ai/ml  nlp  api,,,0.20328707993030548,0.0,0.5881224118775882,0.92,25.0,0.5,0,0.55238813,1,17
+99,Abdul W.,zoominfo pro   lexisnexis   tlo   linkedin   lead generation   emails,,,0.18568739295005798,0.0,0.5150994849005152,1.0,7.0,0.5,0,0.5062289,1,18
+55,Ahmed o.,ph.d inorganic and analytical chemistry and chemical formulator,,,0.2621035575866699,0.0,0.3804666195333805,1.0,20.0,0.5,0,0.49558625,0,19
+14,Shankar M.,open ai   gen ai   chatgpt   blockchain architect   cto   azure   aws,,,0.14882990717887878,0.0,0.42793657206342794,0.97,100.0,0.5,0,0.45899242,0,20
+64,Michael E.,"certified project manager, analytics guru, business improvement junkie",,,0.15439751744270325,0.0,0.4218765781234219,1.0,125.0,0.5,0,0.45358145,0,21
+3,"Ramil, Jr. A.",excel   vba   macros   google sheets expert,,,0.05663996562361717,0.0,0.7051812948187053,1.0,60.0,0.5,0,0.4432641,0,22
+30,Muhammad U.,b2b lead generation/zoominfo/contact list/sales leads/linkedin sales,,,0.20509731769561768,0.0,0.33612766387233617,0.96,18.0,0.5,0,0.43040884,0,23
+147,Faizan S.,"lead generation , list building & data entry expert",,,0.13942381739616394,0.0,0.38703161296838706,0.91,3.0,0.5,0,0.4232781,0,24
+142,Md Mujammel H.,"digital marketing, online research, writing, web development",,,0.22101926803588867,0.0,0.31320068679931323,0.98,18.0,0.5,0,0.36616507,0,25
+16,Wasi U.,full-stack web developer  django  react  node  python web scraping,,,0.229373037815094,0.0,0.33360266639733366,1.0,20.0,0.5,0,0.32181093,0,26
+155,Parthsarthi D.,expert social media manager   youtube   instagram   twitter   fb,,,0.17215314507484436,0.0,0.3914756085243915,1.0,20.0,0.5,0,0.30507103,0,27
+151,Ali Y.,research expert   web research   virtual assistant   lead generation,,,0.19146254658699036,0.0,0.40854459145540856,0.94,10.0,0.5,0,0.29968897,0,28
+44,Noushad A.,"web scraper, data scientist, python developer",,,0.22927579283714294,0.0,0.34420765579234425,1.0,25.0,0.5,0,0.25258213,0,29
+130,Terrence C.,statistical consultant   data analyst   researcher,,,0.019645104184746742,0.0,0.5347944652055348,1.0,50.0,0.5,0,0.18636757,0,30
+36,Sana S.,graphic design & presentation design   data entry & admin support,,,0.012308506295084953,0.0,0.4732855267144733,1.0,38.0,0.5,0,0.15819056,0,31
+50,Pratik D.,"seasoned backend developer/ technical writer/ java, sql, nosql, r, etl",,,0.12772409617900848,0.0,0.37703262296737705,1.0,29.0,0.5,0,0.11876861,0,32
+141,Misty M.,b2b lead generation  web research  list building  sourcing specialist,,,0.14618752896785736,0.0,0.2711847288152712,1.0,33.0,0.5,0,0.10680183,0,33
+39,Ajit T.,tech admin va - excel & gsheets   data entry   etl   email lists,,,0.19262133538722992,0.0,0.21573578426421572,1.0,22.5,0.5,0,0.102673054,0,34
+126,Roy L.,"vba, microsoft access, excel, sql server, sharepoint, azure, dataverse",,,0.1588015854358673,0.0,0.4096555903444097,0.89,25.0,0.5,0,0.09458074,0,35
+109,Faizan Z.,creative freelancer: helping businesses grow and succeed,,,0.14067676663398743,0.0,0.2302797697202303,0.9,12.0,0.5,0,0.08873326,0,36
+123,James S.,ph.d. data analyst/statistician - program evaluator - editor/reviewer,,,0.09488219022750854,0.0,0.31320068679931323,1.0,125.0,0.5,0,0.08819206,0,37
+7,Devendra R.,odoo expert   odoo consultant   ai & ml   data scientist,,,0.10228515416383743,0.0,0.3785476214523786,0.97,35.0,0.5,0,0.07715948,0,38
+27,Pavel A.,"gpt-4, chatgpt, llms, generative ai product expert",,,0.12065014243125916,0.0,0.3906676093323907,0.84,150.0,0.5,0,0.07633515,0,39
+4,Jason K.,data science & ai expert- senior machine learning engineer at linkedin,,,0.07692743837833405,0.0,0.2847187152812848,1.0,500.0,0.5,0,0.061991606,0,40
+53,Fahad A.,"expert in power bi, excel, data analysis, sql, word, powerpoint &visio",,,0.07146577537059784,0.0,0.5411574588425412,0.71,30.0,0.5,0,0.057783943,0,41
+108,Rohit K.,"expert database, code & devops architect   full stack developer",,,0.13840414583683014,0.0,0.30501969498030507,1.0,35.0,0.5,0,0.05756612,0,42
+21,Mani V.,"python, data science, analytics, ai/ml, dashboard, etl pipeline, nlp",,,0.12350340187549591,0.0,0.3590546409453591,0.94,30.0,0.5,0,0.05394932,0,43
+106,Priyanka R.,"full stack developer - python, node, ai/ml, analytics, dashboard, api",,,0.13363726437091827,0.0,0.3435006564993435,0.99,25.0,0.5,0,0.051691495,0,44
+58,Ugonna B.,"detailed va    expert in web mining, ai data scraping, and research.",,,0.218880295753479,0.0,0.004443995556004443,1.0,15.0,0.5,0,0.03737676,0,45
+28,Snehit D.,python developer & web scraping expert who speaks argentinian spanish,,,0.24106968939304352,0.0,0.13917786082213918,1.0,10.0,0.5,0,0.034488123,0,46
+2,Nikola M.,researcher,,,0.13460296392440796,0.0,0.23623876376123623,0.97,15.0,0.5,0,0.0342263,0,47
+117,Shubham S.,data extraction django/flask,,,0.178430438041687,0.0,0.29259670740329263,0.93,25.0,0.5,0,0.033127647,0,48
+46,vikas k.,ror   node   next   angular   react   aws   spree   data scraping,,,0.1455584168434143,0.0,0.2213917786082214,1.0,25.0,0.5,0,0.03187581,0,49
+1,Abeer K.,data scientist   web scraping engineer,,,0.15414094924926758,0.0,0.25371174628825377,0.97,25.0,0.5,0,0.029485978,0,50
+17,Uttam A.,data engineer   sql   ai/ml   nlp  power bi   kibana   dashboard   api,,,0.14957019686698914,0.0,0.3312796687203313,0.87,25.0,0.5,0,0.029311653,0,51
+22,Nidhi B.,"data scientist, ai/ml enthusiast and technical content writer",,,0.22849835455417633,0.0,0.11150388849611151,1.0,40.0,0.5,0,0.028859545,0,52
+47,Malik Haseeb H.,saas developer   deep learning   open ai   nlp   saas mvp,,,0.13369232416152954,0.0,0.1635188364811635,1.0,36.0,0.5,0,0.028111659,0,53
+35,Zeeshan A.,senior full stack developer   python   node.js   react.js   ai,,,0.21263208985328674,0.0,0.09706090293909707,0.98,30.0,0.5,0,0.026108934,0,54
+20,Muhammad Ameer H.,python/flask/chatgpt   machine learning   ai   web scraping,,,0.0956648737192154,0.0,0.35602464397535605,0.89,45.0,0.5,0,0.022196084,0,55
+129,Khan M.,data scraping & analysis   machine learning   google sheets   python,,,0.2303183376789093,0.0,0.05140894859105141,1.0,45.0,0.5,0,0.0220319,0,56
+96,Abdul R.,expert data scientist & full stack developer: generative ai specialist,,,0.1934487223625183,0.0,0.09302090697909303,1.0,35.0,0.5,0,0.021210415,0,57
+42,Rajab S.,lead generation   information retrieval   remote support   crm_entries,,,0.18373343348503113,0.0,0.14947985052014948,0.93,4.0,0.5,0,0.020074522,0,58
+154,Adnane R.,"automation & ai expert (python, gpt, ml, excel, data visual, rpa, js)",,,0.19151276350021362,0.0,0.0703969296030704,1.0,50.0,0.5,0,0.019457422,0,59
+8,Dr . M Mansoor M.,expert medical writer   medical researcher  academic writer  doctor,,,0.0451946035027504,0.0,0.31643268356731646,0.98,59.99,0.5,0,0.01915935,0,60
+112,Soban A.,data scientist   machine learning expert,,,0.04568735137581825,0.0,0.24522775477224523,1.0,15.0,0.5,0,0.01734482,0,61
+122,Mohammed A.,data analyst   python  sql  web scraping & browser automation expert,,,0.22226959466934204,0.0,0.03444096555903444,1.0,16.0,0.5,0,0.015425855,0,62
+33,Parv Y.,"data scientist (web scrapping, etl, ml, nlp)",,,0.20719881355762482,0.0,0.07574992425007575,0.96,15.0,0.5,0,0.015112335,0,63
+52,Marvin S.,individualized data analysis - we offer a scientific approach for you.,,,0.1956040859222412,0.0,0.048176951823048174,1.0,40.0,0.5,0,0.014592983,0,64
+60,Bakht M.,"experienced coding, data science & machine learning instructor",,,0.19327965378761292,0.0,0.08847591152408847,1.0,20.0,0.5,0,0.0134550715,0,65
+115,Dave C.,ai specialist   machine learning engineer   data science expert,,,0.20652097463607788,0.0,0.035854964145035854,1.0,45.0,0.5,0,0.013156723,0,66
+19,Doreen B.,"adept phd copyeditor, white paper, business plan and academic writer.",,,-0.055350132286548615,0.0,0.33370366629633375,0.95,40.0,0.5,0,0.009125551,0,67
+145,Muhammad Junaid A.,full stack   python   django   javascript   react   node.js   laravel,,,0.1527625173330307,0.0,0.07181092818907181,1.0,25.0,0.5,0,0.008493061,0,68
+65,Marlon B.,"financial auditor, certified public accountant & data analysis",,,0.12538912892341614,0.0,0.08615291384708615,1.0,7.0,0.5,0,0.008424868,0,69
+150,Virender B.,senior software developer with 6+ yoe in java & python,,,0.1634703427553177,0.0,0.057771942228057774,1.0,30.0,0.5,0,0.008223951,0,70
+105,Ishaan N.,"data science, quant modelling   finance   ex-morgan stanley, jp morgan",,,0.14903581142425537,0.0,0.08615291384708615,1.0,50.0,0.5,0,0.007936707,0,71
+125,Musabbir Ahmed A.,robotics and automation engineer,,,0.1450698971748352,0.0,0.13624886375113623,0.92,30.0,0.5,0,0.007865826,0,72
+104,Muhammad Faheem S.,cloud engineer   big data engineer,,,0.10618838667869568,0.0,0.1322088677911322,1.0,30.0,0.5,0,0.007389533,0,73
+140,Sahaj G.,expert - full stack software engineer   mobile app   web app   ai/ml,,,0.2364075481891632,0.0,0.045247954752045245,0.66,15.0,0.5,0,0.007368992,0,74
+9,Mahabubur R.,"metabase expert, data analyst, sql + google looker studio +bigquery",,,0.12118139863014221,0.0,0.13917786082213918,1.0,30.0,0.5,0,0.0070868223,0,75
+26,Muhammad N.,website and linkedin data scrapping and lead generation expert,,,0.1975616216659546,0.0,0.13018886981113018,0.77,10.0,0.5,0,0.0070853867,0,76
+95,Ali A.,data analyst   sql   python   automation   machine learning,,,0.1125233918428421,0.0,0.10423189576810424,1.0,25.0,0.5,0,0.007020499,0,77
+116,Paulo O.,microsoft certified   power bi expert   report   dashboard consultant,,,0.05586782842874527,0.0,0.18240581759418242,1.0,55.0,0.5,0,0.0062571997,0,78
+41,Ahmad I.,machine learning   artificial intelligence   python development,,,0.10838823020458221,0.0,0.09221290778709221,1.0,10.0,0.5,0,0.006086859,0,79
+144,Muhammad Umer F.,data science aficionado   data analyst   automation engineer,,,0.23317253589630127,0.0,0.004948995051004949,0.87,25.0,0.5,0,0.00599292,0,80
+97,Khan Bahadar K.,academic writing expert   academic (copy) editing and proofreading,,,0.07679629325866699,0.0,0.06665993334006666,1.0,25.0,0.5,0,0.005916117,0,81
+120,Arif S.,generative ai engineer   webflow   wized   xano,,,0.17181424796581268,0.0,0.036056963943036056,0.89,35.0,0.5,0,0.005909794,0,82
+103,Madjid E.,web scraping expert   etl developer,,,0.16542623937129974,0.0,0.037874962125037874,0.93,38.0,0.5,0,0.005908604,0,83
+12,Islam A.,"transforming data into profit: python, data science, and ai expertise",,,0.12377829849720001,0.0,0.05524694475305525,0.91,60.0,0.5,0,0.005421739,0,84
+23,Nick V.,analytics wizard for cloud-based   ph.d. data engineer & analyst,,,0.047089383006095886,0.0,0.11382688617311382,1.0,65.0,0.5,0,0.0052365237,0,85
+134,Manish A.,"project manager - pmp, csm",,,0.103325754404068,0.0,0.0812039187960812,0.94,25.0,0.5,0,0.004921843,0,86
+62,Arjun V.,power bi   tableau   nlp   etl   azure   aws   8+ yoe,,,0.05508270114660263,0.0,0.15917584082415917,1.0,45.0,0.5,0,0.004541992,0,87
+127,Chris H.,healthcare ai and app expert   harvard health data scientist,,,0.06547693908214569,0.0,0.05969094030905969,1.0,120.0,0.5,0,0.0041087703,0,88
+107,yassine g.,data scientist,,,0.18744371831417084,0.0,0.11221088778911222,0.83,20.0,0.5,0,0.0037116338,0,89
+113,Salma H.,machine learning engineer,,,0.1431012749671936,0.0,0.005554994445005555,1.0,30.0,0.5,0,0.0034924385,0,90
+124,Faiz R.,data scientist   machine learning   computer vision   nlp   aws   sql,,,0.11521945893764496,0.0,0.014745985254014746,0.97,20.0,0.5,0,0.003444922,0,91
+119,Mohamed A.,data scientist,,,0.1372617483139038,0.0,0.022623977376022626,1.0,25.0,0.5,0,0.0033732746,0,92
+132,Konstantin B.,"aws-certified devops architect   cloud solutions   aws, gcp, azure",,,0.0525326207280159,0.0,0.08615291384708615,1.0,60.0,0.5,0,0.0033387486,0,93
+131,Ehab K.,senior ai engineer,,,0.07022571563720703,0.0,0.06706393293606706,1.0,50.0,0.5,0,0.003244569,0,94
+34,Junaid U.,data engineer,,,0.013737320899963379,0.0,0.15584284415715585,1.0,30.0,0.5,0,0.0029338454,0,95
+54,MD. Shahriar Al Kasib Khan S.,tableau   looker   dbt   google data studio   power bi   sql expert,,,0.05862545594573021,0.0,0.11766488233511765,0.96,35.0,0.5,0,0.0027454933,0,96
+6,Pragyesh S.,professional academic writer and coach,,,0.008318142965435982,0.0,0.14533885466114535,0.86,20.0,0.5,0,0.0026469636,0,97
+98,Muhammad Sarwar Jahan M.,expert applied data scientist & analyst,,,0.056564219295978546,0.0,0.036965963034036965,1.0,60.0,0.5,0,0.0025779512,0,98
+11,Fasih U.,data engineer   big data   airflow   python   etl   pyspark   sql,,,0.05806833878159523,0.0,0.10190889809110192,1.0,15.0,0.5,0,0.002444376,0,99
+128,Matthew S.,epidemiologist and data scientist,,,0.08556786179542542,0.0,0.004342995657004343,1.0,75.0,0.5,0,0.0024293177,0,100
+149,Meer Naib K.,"full stack python developer , data and ml engineer",,,0.11903976649045944,0.0,0.001312998687001312,1.0,21.0,0.5,0,0.0024124563,0,101
+45,Nabeel F.,data engineer   databricks   gcp   azure   aws   snowflake   ai,,,0.006525139324367046,0.0,0.15786284213715787,1.0,30.0,0.5,0,0.0023842212,0,102
+48,Varun D.,"consulting   outsourcing   it staffing - software, web, app , e-com",,,0.07108531892299652,0.0,0.03777396222603777,0.96,28.0,0.5,0,0.0023118772,0,103
+37,Zeyad M.,data scientist   machine learning engineer,,,0.03833256661891937,0.0,0.0407029592970407,1.0,40.0,0.5,0,0.0021445213,0,104
+137,Nesma A.,machine learning   artificial intelligence,,,0.11220919340848923,0.0,0.0104029895970104,0.9,20.0,0.5,0,0.001927962,0,105
+135,Hossam H.,data scientist  data analyst  data visualization,,,0.01648593693971634,0.0,0.09584890415109584,1.0,10.0,0.5,0,0.0018531379,0,106
+148,Olusegun F.,proficient data analyst   engineer,,,0.02936388924717903,0.0,0.04878295121704878,1.0,30.0,0.5,0,0.0018005035,0,107
+146,Amaury H.,machine learning/data science expert,,,0.149258553981781,0.0,0.2988587011412989,0.0,22.22,0.5,0,0.0017915061,0,108
+121,K R.,certified data scientist i python expert   ai/ml   4+ years experience,,,0.07735861092805862,0.0,0.007574992425007577,0.98,50.0,0.5,0,0.0015753681,0,109
+18,Emmanuel O.,data analyst   sql   tableau   excel   python   power bi,,,0.03894253075122833,0.0,0.08019391980608019,0.89,14.99,0.5,0,0.0015004184,0,110
+66,Ishtiaque A.,data analyst   tibco spotfire   power bi   tableau   singlestore   etl,,,0.06837926805019379,0.0,0.019492980507019492,0.97,20.0,0.5,0,0.0013838658,0,111
+5,Muhammad Noman B.,data science   python projects   machine learning ai assignments r gui,,,0.1044904887676239,0.0,0.015048984951015048,0.82,25.0,0.5,0,0.0011490855,0,112
+152,Matias W.,"ai & machine learning   machine learning model, machine learning, sql",,,0.019893687218427658,0.0,0.006867993132006868,1.0,15.0,0.5,0,0.0008653475,0,113
+114,Ahlem K.,business intelligence developer,,,0.046086035668849945,0.0,0.022320977679022323,0.86,50.0,0.5,0,0.0007840187,0,114
+110,Ismail H.,data science-ml-dl-rl-ai-mathematics-hpc- statistics-quant trading,,,0.20379653573036194,0.0,0.049691950308049695,0.32,50.0,0.5,0,0.00077074737,0,115
+138,Abdul M.,data engineer & analytics expert   aws   quicksight/datastudio pro,,,0.09766805171966553,0.0,0.057569942430057565,0.23,11.11,0.5,0,0.000530459,0,116
+139,AILYAH .,python developer   django/flask   web scraping   automation,,,0.16615866124629974,0.0,0.05635794364205636,0.0,17.0,0.5,0,0.0005256064,0,117
+57,Aamir I.,data scientist/analyst   statistician   quantitative researcher,,,0.09940992295742035,0.0,0.07968892031107969,0.0,70.0,0.5,0,0.00041180666,0,118
+102,Yousef W.,rpa developer  ai & automation engineer   data scientist,,,0.08648979663848877,0.0,0.0817089182910817,0.0,5.0,0.5,0,0.00032419656,0,119
+81,"  an article is ...""",20,,,0.11598251760005951,0.0,,,99.0,0.5,0,0.00030847065,0,120
+118,Sergio P.,"ai & machine learning   c, c++, python, data science, nlp, statistics",,,0.09872831404209137,0.0,0.07968892031107969,0.0,18.0,0.5,0,0.000308004,0,121
+101,Ahmed S.,"data scientist, python developer",,,0.13357840478420258,0.0,0.0008079991920008084,0.0,25.0,0.5,0,0.0003056763,0,122
+15,Yabebal F.,generative ai & prompt engineer + ai developer & consultant,,,0.09213557839393616,0.0,0.025047974952025043,0.0,25.0,0.5,0,0.00027327656,0,123
+31,Aveen F.,senior data scientist,,,0.08590026944875717,0.0,0.004342995657004343,0.0,30.0,0.5,0,0.00024470783,0,124
+69,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,125
+68,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,126
+76,    wikipedia.org botany close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,127
+72,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,128
+88,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,129
+89,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,130
+91,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,131
+83,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,132
+82,"  search engine optimization (seo) is the process of improving the visibility of a website or a web page in search engines via the """"natural"""" or un-paid (""""organic"""" or """"algorithmic"""") search results.",,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,133
+78,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,134
+75,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,135
+77,  botany is the science of plant life and a branch of biology. also called plant science(s) or plant biology.,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,136
+87,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,137
+86,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,138
+90,    wikipedia.org botany close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,139
+92,  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,140
+84,    wikipedia.org biology close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,141
+80,  a product description is a structured format of presenting information about a product. article writing close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,142
+79,    wikipedia.org product description close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,143
+94,"  a product description is a structured format of presenting information about a product. ar...""",,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,144
+70,    wikipedia.org biology close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,145
+73,    wikipedia.org editing & proofreading citation style writing close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,146
+74,  writing is a medium of communication that represents language through the inscription of signs and symbols.,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,147
+93,    wikipedia.org product description close the tooltip  ,,,,0.115128293633461,0.0,,,,0.5,0,0.00023409721,0,148
+100,Aleksei Z.,data analysis & visualization   data science,,,0.06635648757219315,0.0,0.0817089182910817,0.0,20.0,0.5,0,0.00022387033,0,149
+61,Ebrahim A.,senior data engineer,,,0.07104485481977463,0.0,0.07968892031107969,0.0,20.0,0.5,0,0.00022343597,0,150
+71,  biology is a natural science concerned with the study of life and living organisms, including their structure,,,0.06379802525043488,0.0,,,,0.5,0,0.0001455014,0,151
+85,  biology is a natural science concerned with the study of life and living organisms, including their structure,,,0.06379802525043488,0.0,,,,0.5,0,0.0001455014,0,152
+67,Syeda F.,"articles, seo content, and scientific writing pro",,,0.05482395738363266,0.0,,,,0.5,0,0.0001443986,0,153
+59,Ashraful Islam E.,data analyst    excel expert    powerpoint presentation,,,0.055198002606630325,0.0,0.0,0.0,10.0,0.5,0,0.00012979472,0,154
+10,Trenton S.,data analysis and insights   transforming data actionable business,,,-0.020283451303839684,0.0,0.013836986163013836,0.0,45.0,0.5,0,0.00011255885,0,155

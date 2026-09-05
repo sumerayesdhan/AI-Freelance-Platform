@@ -1,159 +1,275 @@
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate
 } from "react-router-dom";
 
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 
-import RequirementAssistance from "./pages/RequirementAssistance";
 
-import RequirementSummaryPage from "./pages/RequirementSummaryPage";
+import RequirementAssistance
+    from "./pages/RequirementAssistance";
 
-import ProjectAnalysis from "./pages/ProjectAnalysis";
 
+import FreelancerLogin
+    from "./pages/FreelancerLogin";
 
 
-function App(){
+import RequirementSummaryPage
+    from "./pages/RequirementSummaryPage";
 
 
-  return (
+import ProjectAnalysis
+    from "./pages/ProjectAnalysis";
 
-    <BrowserRouter>
 
+import FreelancerRecommendationPage
+    from "./pages/FreelancerRecommendationPage";
 
-      <Routes>
 
+import FreelancerRegister
+    from "./pages/FreelancerRegister";
 
-        {/* Default */}
 
-        <Route
+import FreelancerDashboard
+    from "./pages/FreelancerDashboard";
 
-          path="/"
 
-          element={
-            <Navigate to="/register" />
-          }
+import NegotiationPage
+    from "./pages/NegotiationPage";
 
-        />
+import ContractViewPage
+    from "./pages/ContractViewPage";
 
+import TimelineViewPage
+    from "./pages/TimelineViewPage";
 
 
-        {/* Authentication */}
+function App() {
 
-        <Route
+    return (
 
-          path="/register"
+        <BrowserRouter>
 
-          element={
-            <Register/>
-          }
+            <Routes>
 
-        />
 
+                {/* =================================================
+                    DEFAULT
+                ================================================= */}
 
+                <Route
 
-        <Route
+                    path="/"
 
-          path="/login"
+                    element={
+                        <Landing />
+                    }
 
-          element={
-            <Login/>
-          }
+                />
 
-        />
 
+                {/* =================================================
+                    CLIENT AUTHENTICATION
+                ================================================= */}
 
+                <Route
 
+                    path="/register"
 
+                    element={
+                        <Register />
+                    }
 
-        {/* Dashboard */}
+                />
 
-        <Route
 
-          path="/dashboard"
+                <Route
 
-          element={
-            <Dashboard/>
-          }
+                    path="/login"
 
-        />
+                    element={
+                        <Login />
+                    }
 
+                />
 
 
+                {/* =================================================
+                    FREELANCER AUTHENTICATION
+                ================================================= */}
 
+                <Route
 
-        {/* Requirement Gathering */}
+                    path="/freelancer-register"
 
-        <Route
+                    element={
+                        <FreelancerRegister />
+                    }
 
-          path="/requirement-assistance/:projectId"
+                />
 
-          element={
-            <RequirementAssistance/>
-          }
 
-        />
+                <Route
 
+                    path="/freelancer-login"
 
+                    element={
+                        <FreelancerLogin />
+                    }
 
+                />
 
 
-        {/* Requirement Result */}
+                {/* =================================================
+                    FREELANCER DASHBOARD
+                ================================================= */}
 
-        <Route
+                <Route
 
-          path="/requirement-summary/:projectId"
+                    path="/freelancer-dashboard/:freelancerId"
 
-          element={
-            <RequirementSummaryPage/>
-          }
+                    element={
+                        <FreelancerDashboard />
+                    }
 
-        />
+                />
 
 
+                {/* =================================================
+                    CLIENT DASHBOARD
+                ================================================= */}
 
+                <Route
 
+                    path="/dashboard"
 
-        {/* Final Analysis */}
+                    element={
+                        <Dashboard />
+                    }
 
-        <Route
+                />
 
-          path="/project/:projectId/analysis"
 
-          element={
-            <ProjectAnalysis/>
-          }
+                {/* =================================================
+                    REQUIREMENT GATHERING
+                ================================================= */}
 
-        />
+                <Route
 
+                    path="/requirement-assistance/:projectId"
 
+                    element={
+                        <RequirementAssistance />
+                    }
 
+                />
 
 
-        {/* Unknown URLs */}
+                {/* =================================================
+                    REQUIREMENT RESULT
+                ================================================= */}
 
-        <Route
+                <Route
 
-          path="*"
+                    path="/requirement-summary/:projectId"
 
-          element={
-            <Navigate to="/register"/>
-          }
+                    element={
+                        <RequirementSummaryPage />
+                    }
 
-        />
+                />
 
 
-      </Routes>
+                {/* =================================================
+                    PROJECT ANALYSIS
+                ================================================= */}
 
+                <Route
 
-    </BrowserRouter>
+                    path="/project/:projectId/analysis"
 
-  );
+                    element={
+                        <ProjectAnalysis />
+                    }
+
+                />
+
+
+                {/* =================================================
+                    FREELANCER RECOMMENDATION
+                ================================================= */}
+
+                <Route
+
+                    path="/freelancers/:projectId"
+
+                    element={
+                        <FreelancerRecommendationPage />
+                    }
+
+                />
+
+
+                {/* =================================================
+                    NEGOTIATION
+                ================================================= */}
+
+                <Route
+
+                    path="/negotiation/:requestId"
+
+                    element={
+                        <NegotiationPage />
+                    }
+
+                />
+
+                <Route
+
+                    path="/negotiation/:requestId/contract"
+
+                    element={
+                        <ContractViewPage />
+                    }
+
+                />
+
+                <Route
+
+                    path="/negotiation/:requestId/timeline"
+
+                    element={
+                        <TimelineViewPage />
+                    }
+
+                />
+
+
+                {/* =================================================
+                    UNKNOWN URL
+                ================================================= */}
+
+                <Route
+
+                    path="*"
+
+                    element={
+                        <Landing />
+                    }
+
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+
+    );
 
 }
 

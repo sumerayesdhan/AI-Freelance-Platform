@@ -7,8 +7,14 @@ from app.database.mongodb import db
 from app.routes.auth import router as auth_router
 from app.routes.project import router as project_router
 from app.routes.conversation import router as conversation_router
-
+from app.routes.freelancer import router as freelancer_router
+from app.routes.freelancer_auth import router as freelancer_auth_router
+from app.routes.freelancer_dashboard import (
+    router as freelancer_dashboard_router
+)
+from app.routes.negotiation import router as negotiation_router
 from app.utils.auth import get_current_user
+from app.services.auth_service import get_client_by_email
 
 
 
@@ -92,7 +98,21 @@ app.include_router(
 
 )
 
+app.include_router(
+    freelancer_router
+)
 
+app.include_router(
+    freelancer_auth_router
+)
+
+app.include_router(
+    freelancer_dashboard_router
+)
+
+app.include_router(
+    negotiation_router
+)
 
 # -----------------------------
 # Startup Check
@@ -224,6 +244,8 @@ def dashboard(
 
 ):
 
+    client = get_client_by_email(current_user)
+
     return {
 
 
@@ -232,6 +254,9 @@ def dashboard(
 
 
         "email":
-        current_user
+        current_user,
+
+        "full_name":
+        client.get("full_name", "") if client else ""
 
     }

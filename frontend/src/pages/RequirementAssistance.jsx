@@ -7,8 +7,10 @@ import api from "../services/api";
 import RequirementChat from "./RequirementChat";
 
 import RequirementSummary from "../components/RequirementSummary";
-
+import ClientHeader from "../components/ClientHeader";
+import ClientSidebar from "../components/ClientSidebar";
 import "../styles/chat.css";
+
 
 
 
@@ -175,6 +177,10 @@ function RequirementAssistance(){
 
 
         <div className="chat-page">
+
+            <ClientSidebar />
+
+            <ClientHeader />
 
 
 
