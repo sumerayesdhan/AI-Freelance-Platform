@@ -14,20 +14,22 @@ PROJECT_ROOT = os.path.dirname(
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from environment.negotiation_env import NegotiationEnv
+from environment.client_negotiation_env import (
+    ClientNegotiationEnv
+)
 
 
 def main():
 
     print("=" * 70)
-    print("IMPROVED FREELANCER PPO TRAINING")
+    print("IMPROVED CLIENT PPO TRAINING")
     print("=" * 70)
 
     # ---------------------------------------------------------
     # Training environment
     # ---------------------------------------------------------
 
-    env = NegotiationEnv(
+    env = ClientNegotiationEnv(
         max_rounds=10
     )
 
@@ -44,7 +46,7 @@ def main():
     # Evaluation environment
     # ---------------------------------------------------------
 
-    eval_env = NegotiationEnv(
+    eval_env = ClientNegotiationEnv(
         max_rounds=10
     )
 
@@ -57,12 +59,12 @@ def main():
         best_model_save_path=os.path.join(
             PROJECT_ROOT,
             "models",
-            "freelancer_ppo_best"
+            "client_ppo_best"
         ),
         log_path=os.path.join(
             PROJECT_ROOT,
             "training",
-            "freelancer_eval"
+            "client_eval"
         ),
         eval_freq=10000,
         deterministic=True,
@@ -70,7 +72,7 @@ def main():
     )
 
     # ---------------------------------------------------------
-    # PPO model
+    # PPO
     # ---------------------------------------------------------
 
     print("\nCreating PPO model...")
@@ -106,7 +108,7 @@ def main():
         tensorboard_log=os.path.join(
             PROJECT_ROOT,
             "training",
-            "tensorboard_freelancer"
+            "tensorboard_client"
         )
     )
 
@@ -124,22 +126,20 @@ def main():
     final_path = os.path.join(
         PROJECT_ROOT,
         "models",
-        "freelancer_ppo_v3"
+        "client_ppo_v2"
     )
 
     model.save(final_path)
 
     print("\n" + "=" * 70)
-    print("FREELANCER PPO TRAINING COMPLETE")
+    print("CLIENT PPO TRAINING COMPLETE")
     print("=" * 70)
 
     print("\nFinal model:")
-    print("models/freelancer_ppo_v3.zip")
+    print("models/client_ppo_v2.zip")
 
     print("\nBest evaluation model:")
-    print(
-        "models/freelancer_ppo_best/best_model.zip"
-    )
+    print("models/client_ppo_best/best_model.zip")
 
 
 if __name__ == "__main__":

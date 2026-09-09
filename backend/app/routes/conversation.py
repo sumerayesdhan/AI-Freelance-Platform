@@ -170,20 +170,6 @@ def generate_analysis(project_id: str):
         )
 
     # -------------------------------------
-    # Check requirement completion
-    # -------------------------------------
-
-    if not conversation_doc.get(
-        "completed",
-        False
-    ):
-
-        raise HTTPException(
-            status_code=400,
-            detail="Requirement gathering not completed"
-        )
-
-    # -------------------------------------
     # Check existing requirement analysis
     # -------------------------------------
 
@@ -231,6 +217,13 @@ def generate_analysis(project_id: str):
     conversation = get_conversation(
         project_id
     )
+
+    if not conversation:
+
+        raise HTTPException(
+            status_code=400,
+            detail="Conversation has no messages"
+        )
 
     # -------------------------------------
     # Requirement Understanding Agent

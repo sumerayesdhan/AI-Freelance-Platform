@@ -3,36 +3,31 @@ from gymnasium import spaces
 import numpy as np
 
 
-class NegotiationEnv(gym.Env):
+class ClientNegotiationEnv(gym.Env):
     """
-    PPO training environment for the freelancer.
+    PPO training environment for the client.
 
-    The freelancer learns to:
-
-        - protect minimum acceptable price
-        - maximize profitable price
-        - respect minimum timeline
-        - negotiate gradually
+    The client learns to:
+        - protect its budget
+        - negotiate price
+        - negotiate timeline
         - accept reasonable offers
-        - reject clearly bad offers
-        - reach agreements efficiently
+        - reject unacceptable offers
+        - reach agreement efficiently
+
+    The environment uses a simulated freelancer response.
     """
 
     metadata = {"render_modes": ["human"]}
 
-    def __init__(
-        self,
-        max_rounds=10,
-        render_mode=None
-    ):
-
+    def __init__(self, max_rounds=10, render_mode=None):
         super().__init__()
 
         self.max_rounds = max_rounds
         self.render_mode = render_mode
 
         # -----------------------------------------------------
-        # Limits
+        # Negotiation limits
         # -----------------------------------------------------
 
         self.min_price = 400.0
@@ -47,13 +42,13 @@ class NegotiationEnv(gym.Env):
 
         self.action_space = spaces.Discrete(7)
 
-        # 0 Accept
-        # 1 Reject
-        # 2 Lower price 10%
-        # 3 Lower price 5%
-        # 4 Increase price 5%
-        # 5 Request shorter timeline
-        # 6 Balanced counter
+        # 0 -> Accept
+        # 1 -> Reject
+        # 2 -> Decrease price 10%
+        # 3 -> Decrease price 5%
+        # 4 -> Increase price 5%
+        # 5 -> Request shorter timeline
+        # 6 -> Balanced counter
 
         # -----------------------------------------------------
         # Observation
@@ -76,7 +71,6 @@ class NegotiationEnv(gym.Env):
         self.client_target_price = 0.0
 
         self.freelancer_min_price = 0.0
-        self.freelancer_preferred_price = 0.0
         self.freelancer_initial_price = 0.0
 
         self.client_desired_days = 0.0
@@ -96,7 +90,7 @@ class NegotiationEnv(gym.Env):
         self.round_number = 0
 
         # -----------------------------------------------------
-        # Client
+        # Generate scenario
         # -----------------------------------------------------
 
         self.client_budget = float(
@@ -106,30 +100,16 @@ class NegotiationEnv(gym.Env):
             )
         )
 
+        # Client has an internal target below its maximum budget.
         self.client_target_price = (
             self.client_budget
-            * self.np_random.uniform(
-                0.75,
-                0.90
-            )
+            * self.np_random.uniform(0.75, 0.90)
         )
-
-        # -----------------------------------------------------
-        # Freelancer
-        # -----------------------------------------------------
 
         self.freelancer_min_price = float(
             self.np_random.uniform(
                 650.0,
                 850.0
-            )
-        )
-
-        self.freelancer_preferred_price = (
-            self.freelancer_min_price
-            + self.np_random.uniform(
-                100.0,
-                300.0
             )
         )
 
@@ -139,10 +119,6 @@ class NegotiationEnv(gym.Env):
                 1400.0
             )
         )
-
-        # -----------------------------------------------------
-        # Timeline
-        # -----------------------------------------------------
 
         self.client_desired_days = float(
             self.np_random.uniform(
@@ -187,12 +163,12 @@ class NegotiationEnv(gym.Env):
         terminated = False
         truncated = False
 
+        # -----------------------------------------------------
+        # Apply client action
+        # -----------------------------------------------------
+
         old_price = self.current_price
         old_days = self.current_days
-
-        # -----------------------------------------------------
-        # Apply freelancer action
-        # -----------------------------------------------------
 
         self._apply_action(action)
 
@@ -206,11 +182,14 @@ class NegotiationEnv(gym.Env):
 
                 terminated = True
 
-                reward = self._agreement_reward()
+                reward = self._calculate_agreement_reward()
 
             else:
 
-                reward = -30.0
+                # Invalid acceptance
+                terminated = False
+
+                reward = -25.0
 
         # -----------------------------------------------------
         # REJECT
@@ -218,70 +197,50 @@ class NegotiationEnv(gym.Env):
 
         elif action == 1:
 
+            # Rejecting a feasible negotiation is undesirable.
             if self._is_offer_acceptable():
 
-                reward = -40.0
+                reward = -35.0
 
             else:
 
-                reward = -5.0
+                reward = -10.0
 
             terminated = True
 
         # -----------------------------------------------------
-        # COUNTER
+        # COUNTER OFFER
         # -----------------------------------------------------
 
         else:
 
-            # -------------------------------------------------
-            # Price movement toward preferred price
-            # -------------------------------------------------
-
+            # Reward useful movement toward target.
             old_distance = abs(
-                old_price
-                - self.freelancer_preferred_price
+                old_price -
+                self.client_target_price
             )
 
             new_distance = abs(
-                self.current_price
-                - self.freelancer_preferred_price
+                self.current_price -
+                self.client_target_price
             )
 
-            price_improvement = (
-                old_distance
-                - new_distance
+            improvement = (
+                old_distance -
+                new_distance
             )
 
-            reward += (
-                price_improvement
-                / 20.0
-            )
+            reward += improvement / 20.0
 
-            # -------------------------------------------------
-            # Reward profitable offers
-            # -------------------------------------------------
+            # Penalize moving outside budget.
+            if self.current_price > self.client_budget:
+                reward -= 20.0
 
-            if (
-                self.current_price
-                >= self.freelancer_min_price
-            ):
-
-                reward += 2.0
-
-            else:
-
-                reward -= 15.0
-
-            # -------------------------------------------------
-            # Timeline
-            # -------------------------------------------------
-
+            # Reward staying within acceptable timeline.
             if (
                 self.current_days
-                >= self.freelancer_min_days
+                <= self.client_desired_days + 5
             ):
-
                 reward += 2.0
 
         # -----------------------------------------------------
@@ -296,26 +255,24 @@ class NegotiationEnv(gym.Env):
 
                 reward -= 20.0
 
+        # -----------------------------------------------------
+        # Observation
+        # -----------------------------------------------------
+
         observation = self._get_observation()
 
         info = {
             "client_budget": self.client_budget,
-            "client_target_price":
-                self.client_target_price,
-            "freelancer_min_price":
-                self.freelancer_min_price,
-            "freelancer_preferred_price":
-                self.freelancer_preferred_price,
+            "client_target_price": self.client_target_price,
+            "freelancer_min_price": self.freelancer_min_price,
             "freelancer_initial_price":
                 self.freelancer_initial_price,
             "client_desired_days":
                 self.client_desired_days,
             "freelancer_min_days":
                 self.freelancer_min_days,
-            "current_price":
-                self.current_price,
-            "current_days":
-                self.current_days,
+            "current_price": self.current_price,
+            "current_days": self.current_days,
             "agreement": (
                 terminated
                 and action == 0
@@ -337,47 +294,49 @@ class NegotiationEnv(gym.Env):
 
     def _apply_action(self, action):
 
+        # ACCEPT
         if action == 0:
             return
 
+        # REJECT
         if action == 1:
             return
 
-        # Lower price 10%
+        # DECREASE PRICE 10%
         if action == 2:
 
             self.current_price *= 0.90
 
-        # Lower price 5%
+        # DECREASE PRICE 5%
         elif action == 3:
 
             self.current_price *= 0.95
 
-        # Increase price 5%
+        # INCREASE PRICE 5%
         elif action == 4:
 
             self.current_price *= 1.05
 
-        # Request shorter timeline
+        # SHORTER TIMELINE
         elif action == 5:
 
             self.current_days -= 2.0
 
-        # Balanced counter
+        # BALANCED COUNTER
         elif action == 6:
 
             self.current_price = (
                 self.current_price
-                + self.freelancer_preferred_price
+                + self.client_target_price
             ) / 2.0
 
             self.current_days = (
                 self.current_days
-                + self.freelancer_min_days
+                + self.client_desired_days
             ) / 2.0
 
         # -----------------------------------------------------
-        # Keep negotiation feasible
+        # Safety limits
         # -----------------------------------------------------
 
         self.current_price = np.clip(
@@ -389,11 +348,11 @@ class NegotiationEnv(gym.Env):
         self.current_days = np.clip(
             self.current_days,
             self.freelancer_min_days,
-            self.max_days
+            self.client_desired_days + 10.0
         )
 
     # =========================================================
-    # ACCEPTANCE
+    # ACCEPTANCE CHECK
     # =========================================================
 
     def _is_offer_acceptable(self):
@@ -423,32 +382,26 @@ class NegotiationEnv(gym.Env):
     # AGREEMENT REWARD
     # =========================================================
 
-    def _agreement_reward(self):
+    def _calculate_agreement_reward(self):
 
-        # Profit above minimum price
-        profit_margin = (
-            self.current_price
-            - self.freelancer_min_price
+        # -----------------------------------------------------
+        # Price efficiency
+        # -----------------------------------------------------
+
+        price_saving = (
+            self.client_budget
+            - self.current_price
         )
 
-        profit_score = (
-            profit_margin
+        price_score = (
+            price_saving
             / self.client_budget
-        ) * 60.0
+        ) * 50.0
 
-        # Prefer closer-to-preferred price
-        preferred_difference = abs(
-            self.current_price
-            - self.freelancer_preferred_price
-        )
+        # -----------------------------------------------------
+        # Timeline quality
+        # -----------------------------------------------------
 
-        preferred_score = max(
-            0.0,
-            25.0
-            - preferred_difference / 10.0
-        )
-
-        # Timeline
         timeline_difference = abs(
             self.current_days
             - self.client_desired_days
@@ -456,22 +409,30 @@ class NegotiationEnv(gym.Env):
 
         timeline_score = max(
             0.0,
-            20.0
-            - timeline_difference * 2.0
+            30.0
+            - (timeline_difference * 3.0)
         )
 
+        # -----------------------------------------------------
         # Efficiency
+        # -----------------------------------------------------
+
         round_penalty = (
             self.round_number * 2.0
         )
 
-        return (
+        # -----------------------------------------------------
+        # Final reward
+        # -----------------------------------------------------
+
+        reward = (
             50.0
-            + profit_score
-            + preferred_score
+            + price_score
             + timeline_score
             - round_penalty
         )
+
+        return reward
 
     # =========================================================
     # OBSERVATION

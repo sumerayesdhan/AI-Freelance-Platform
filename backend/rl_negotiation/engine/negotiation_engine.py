@@ -1,5 +1,5 @@
-from rl_negotiation.agents.client_agent import ClientAgent
-from rl_negotiation.agents.freelancer_ppo_agent import FreelancerPPOAgent
+from agents.client_agent import ClientAgent
+from agents.freelancer_ppo_agent import FreelancerPPOAgent
 
 class NegotiationEngine:
     """

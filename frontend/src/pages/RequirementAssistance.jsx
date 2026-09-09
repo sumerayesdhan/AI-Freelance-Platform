@@ -101,7 +101,7 @@ function RequirementAssistance(){
             const response =
             await api.get(
 
-            `/conversation/understand/${projectId}`
+            `/conversation/analysis/${projectId}`
 
             );
 
