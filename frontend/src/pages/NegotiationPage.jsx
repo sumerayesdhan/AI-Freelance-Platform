@@ -57,6 +57,12 @@ function NegotiationPage() {
     ] = useState("");
 
 
+    const [
+        showNegotiationProcess,
+        setShowNegotiationProcess
+    ] = useState(false);
+
+
     // =========================================================
     // LOAD NEGOTIATION
     // =========================================================
@@ -67,23 +73,37 @@ function NegotiationPage() {
 
             setLoading(true);
 
-
             const response =
                 await api.get(
                     `/negotiation/${requestId}`
                 );
 
 
+            if (
+                response.data.status ===
+                "BOTH_ACCEPTED"
+            ) {
+
+                navigate(
+                    `/contract-workspace/${requestId}?role=${role}`
+                );
+
+                return;
+            }
+
+
             setNegotiation(
                 response.data
             );
-
 
         }
 
         catch (error) {
 
-            console.error(error);
+            console.error(
+                "Failed to load negotiation:",
+                error
+            );
 
 
             setMessage(
@@ -116,7 +136,9 @@ function NegotiationPage() {
     // HUMAN ACCEPT / REJECT
     // =========================================================
 
-    const submitDecision = async (decision) => {
+    const submitDecision = async (
+        decision
+    ) => {
 
         try {
 
@@ -128,7 +150,9 @@ function NegotiationPage() {
             let endpoint;
 
 
-            if (role === "client") {
+            if (
+                role === "client"
+            ) {
 
                 endpoint =
                     `/negotiation/request/${requestId}/client-decision`;
@@ -151,11 +175,9 @@ function NegotiationPage() {
                     null,
 
                     {
-
                         params: {
                             decision
                         }
-
                     }
 
                 );
@@ -165,6 +187,48 @@ function NegotiationPage() {
                 "Decision response:",
                 response.data
             );
+
+
+            // -------------------------------------------------
+            // BOTH ACCEPTED
+            // -------------------------------------------------
+
+            if (
+                response.data.status ===
+                "BOTH_ACCEPTED"
+            ) {
+
+                navigate(
+                    `/contract-workspace/${requestId}?role=${role}`
+                );
+
+                return;
+            }
+
+
+            // -------------------------------------------------
+            // CLIENT REJECTED
+            // -------------------------------------------------
+
+            if (
+
+                role === "client" &&
+
+                decision === "REJECT" &&
+
+                response.data.status ===
+                "REJECTED_BY_CLIENT"
+
+            ) {
+
+                navigate(
+                    `/freelancers/${encodeURIComponent(
+                        negotiation.project_id
+                    )}`
+                );
+
+                return;
+            }
 
 
             setMessage(
@@ -259,6 +323,10 @@ function NegotiationPage() {
     }
 
 
+    // =========================================================
+    // NEGOTIATION DATA
+    // =========================================================
+
     const result =
         negotiation.negotiation_result;
 
@@ -285,6 +353,12 @@ function NegotiationPage() {
 
     const contractStatus =
         negotiation.contract_status;
+
+
+    const history =
+        negotiation.negotiation_history ||
+        negotiation.history ||
+        [];
 
 
     const myDecision =
@@ -320,6 +394,7 @@ function NegotiationPage() {
 
                     <p>
                         Request ID:{" "}
+
                         <strong>
                             {requestId}
                         </strong>
@@ -342,6 +417,10 @@ function NegotiationPage() {
 
         <div className="dashboard-container">
 
+
+            {/* =================================================
+                NAVIGATION
+            ================================================= */}
 
             <nav className="dashboard-nav">
 
@@ -422,6 +501,49 @@ function NegotiationPage() {
                 </p>
 
 
+                {
+                    negotiation.status ===
+                    "NEGOTIATING"
+
+                        &&
+
+                    (
+
+                        <p>
+                            AI negotiation in progress...
+                        </p>
+
+                    )
+                }
+
+
+                {/* =================================================
+                    NEGOTIATION PROCESS BUTTON
+                ================================================= */}
+
+                {
+                    history.length > 0
+
+                        &&
+
+                    (
+
+                        <button
+                            className="negotiation-process-button"
+
+                            onClick={() =>
+                                setShowNegotiationProcess(
+                                    true
+                                )
+                            }
+                        >
+                            View Negotiation Process
+                        </button>
+
+                    )
+                }
+
+
                 {/* =================================================
                     AGREEMENT
                 ================================================= */}
@@ -458,6 +580,7 @@ function NegotiationPage() {
                                         {" "}
 
                                         $
+
                                         {
                                             Number(
                                                 finalPrice
@@ -544,7 +667,6 @@ function NegotiationPage() {
 
                                     </p>
 
-
                                 </div>
 
 
@@ -585,16 +707,20 @@ function NegotiationPage() {
 
                                                 {
                                                     myDecision === "ACCEPT" &&
+
                                                     freelancerDecision === null &&
+
                                                     role === "client"
 
                                                         ?
 
                                                         (
+
                                                             <p>
                                                                 Waiting for the freelancer
                                                                 to accept the final terms.
                                                             </p>
+
                                                         )
 
                                                         :
@@ -605,23 +731,26 @@ function NegotiationPage() {
 
                                                 {
                                                     myDecision === "ACCEPT" &&
+
                                                     clientDecision === null &&
+
                                                     role === "freelancer"
 
                                                         ?
 
                                                         (
+
                                                             <p>
                                                                 Waiting for the client
                                                                 to accept the final terms.
                                                             </p>
+
                                                         )
 
                                                         :
 
                                                         null
                                                 }
-
 
                                             </div>
 
@@ -641,8 +770,14 @@ function NegotiationPage() {
 
                                                     {
                                                         role === "client"
-                                                            ? "Client Decision"
-                                                            : "Freelancer Decision"
+
+                                                            ?
+
+                                                            "Client Decision"
+
+                                                            :
+
+                                                            "Freelancer Decision"
                                                     }
 
                                                 </h2>
@@ -680,8 +815,14 @@ function NegotiationPage() {
 
                                                         {
                                                             decisionLoading
-                                                                ? "Submitting..."
-                                                                : "Accept Terms"
+
+                                                                ?
+
+                                                                "Submitting..."
+
+                                                                :
+
+                                                                "Accept Terms"
                                                         }
 
                                                     </button>
@@ -763,7 +904,6 @@ function NegotiationPage() {
 
                                 </div>
 
-
                             </>
 
                         )
@@ -791,7 +931,9 @@ function NegotiationPage() {
 
 
                 {
-                    message &&
+                    message
+
+                        &&
 
                     <p
                         className="message"
@@ -806,6 +948,149 @@ function NegotiationPage() {
 
 
             </div>
+
+
+            {/* =====================================================
+                NEGOTIATION PROCESS MODAL
+            ===================================================== */}
+
+            {
+                showNegotiationProcess
+
+                    &&
+
+                (
+
+                    <div
+                        className="negotiation-process-overlay"
+
+                        role="dialog"
+
+                        aria-modal="true"
+
+                        aria-labelledby="negotiation-process-title"
+
+                        onClick={() =>
+                            setShowNegotiationProcess(false)
+                        }
+                    >
+
+                        <div
+                            className="negotiation-process-modal"
+
+                            onClick={(event) =>
+                                event.stopPropagation()
+                            }
+                        >
+
+
+                            <button
+                                className="negotiation-process-close"
+
+                                onClick={() =>
+                                    setShowNegotiationProcess(false)
+                                }
+
+                                aria-label="Close negotiation process"
+                            >
+                                ×
+                            </button>
+
+
+                            <h2 id="negotiation-process-title">
+                                Negotiation Process
+                            </h2>
+
+
+                            <p className="negotiation-process-summary">
+
+                                {result?.rounds || 0}
+
+                                {" "}
+
+                                rounds completed between the
+                                client and freelancer AI agents.
+
+                            </p>
+
+
+                            {/* =================================================
+                                NEGOTIATION HISTORY
+                                ACTION FIELD REMOVED
+                            ================================================= */}
+
+                            <div className="negotiation-process-list">
+
+                                {
+                                    history.map(
+                                        (event, index) => (
+
+                                            <div
+                                                className="negotiation-process-event"
+
+                                                key={
+                                                    `${event.round}-${event.agent}-${index}`
+                                                }
+                                            >
+
+                                                <strong>
+
+                                                    Round {event.round}
+
+                                                    {" - "}
+
+                                                    {
+                                                        event.agent === "client"
+                                                            ? "Client AI"
+                                                            : event.agent === "freelancer"
+                                                                ? "Freelancer AI"
+                                                                : event.agent
+                                                    }
+
+                                                </strong>
+
+
+                                                <span>
+
+                                                    Price: $
+
+                                                    {
+                                                        Number(
+                                                            event.price
+                                                        ).toFixed(2)
+                                                    }
+
+                                                    {" | "}
+
+                                                    Timeline:
+
+                                                    {" "}
+
+                                                    {event.timeline_days}
+
+                                                    {" "}
+
+                                                    days
+
+                                                </span>
+
+                                            </div>
+
+                                        )
+                                    )
+                                }
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                )
+
+            }
+
 
         </div>
 

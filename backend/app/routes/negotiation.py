@@ -13,6 +13,7 @@ from app.database.mongodb import (
     freelancers_collection,
     projects_collection,
     complexity_analysis_collection,
+    requirement_analysis_collection,
 )
 
 from app.schemas.negotiation_schema import (
@@ -23,12 +24,7 @@ from app.services.freelancer_service import (
     get_freelancer_by_id
 )
 
-# IMPORTANT:
-# Use the RULE-BASED negotiation engine.
-# DO NOT import rl_negotiation here.
-from rule_based_negotiation.engine.negotiation_engine import (
-    NegotiationEngine
-)
+from app.services.ppo_negotiation_service import run_ppo_negotiation
 
 
 router = APIRouter(
@@ -102,6 +98,48 @@ def _to_float(
     ):
 
         return default
+
+
+def _budget_from_requirement(project_id):
+    requirement_document = requirement_analysis_collection.find_one(
+        {"project_id": project_id}
+    ) or requirement_analysis_collection.find_one(
+        {"project_id": str(project_id)}
+    )
+
+    if requirement_document is None:
+        return None
+
+    analysis = requirement_document.get(
+        "analysis",
+        requirement_document
+    )
+
+    budget = analysis.get("budget_range")
+
+    if isinstance(budget, (list, tuple)) and budget:
+        values = [_to_float(value) for value in budget]
+        values = [value for value in values if value is not None]
+        return max(values) if values else None
+
+    if isinstance(budget, dict):
+        values = [
+            _to_float(budget.get("min")),
+            _to_float(budget.get("max")),
+            _to_float(budget.get("value")),
+        ]
+        values = [value for value in values if value is not None]
+        return max(values) if values else None
+
+    if isinstance(budget, str):
+        values = [
+            _to_float(value)
+            for value in re.findall(r"\d+(?:,\d{3})*(?:\.\d+)?", budget)
+        ]
+        values = [value for value in values if value is not None]
+        return max(values) if values else None
+
+    return _to_float(budget)
 
 
 # ============================================================
@@ -567,17 +605,21 @@ def _build_negotiation_parameters(
         risk_multiplier
     )
 
+    requested_budget = _budget_from_requirement(
+        project.get("_id")
+    )
+
     # ========================================================
     # FREELANCER RESERVATION PRICE
     # ========================================================
 
-    freelancer_min_price = max(
+    calculated_freelancer_min_price = max(
         hourly_rate * 8.0,
         adjusted_project_value * 0.55
     )
 
-    freelancer_preferred_price = max(
-        freelancer_min_price,
+    calculated_freelancer_preferred_price = max(
+        calculated_freelancer_min_price,
         adjusted_project_value * 0.85
     )
 
@@ -585,9 +627,27 @@ def _build_negotiation_parameters(
     # CLIENT BUDGET
     # ========================================================
 
-    client_budget = max(
-        freelancer_min_price,
+    calculated_client_budget = max(
+        calculated_freelancer_min_price,
         adjusted_project_value * 1.10
+    )
+
+    client_budget = max(
+        1.0,
+        requested_budget or calculated_client_budget
+    )
+
+    freelancer_min_price = min(
+        calculated_freelancer_min_price,
+        client_budget
+    )
+
+    freelancer_preferred_price = min(
+        max(
+            freelancer_min_price,
+            calculated_freelancer_preferred_price
+        ),
+        client_budget
     )
 
     client_target_budget = (
@@ -659,6 +719,18 @@ def _build_negotiation_parameters(
         "freelancer_preferred_days":
             round(
                 freelancer_preferred_days,
+                2
+            ),
+
+        "freelancer_initial_price":
+            round(
+                max(
+                    freelancer_preferred_price,
+                    min(
+                        adjusted_project_value * 1.15,
+                        client_budget
+                    )
+                ),
                 2
             ),
 
@@ -859,14 +931,21 @@ def create_negotiation_request(
                 "freelancer_id":
                     request.freelancer_id,
 
-                "status":
+                "$or": [
                     {
-                        "$in": [
-                            "PENDING",
-                            "NEGOTIATING",
-                            "NEGOTIATION_COMPLETED"
-                        ]
+                        "status": {
+                            "$in": [
+                                "PENDING",
+                                "NEGOTIATING"
+                            ]
+                        }
+                    },
+                    {
+                        "status": "NEGOTIATION_COMPLETED",
+                        "negotiation_engine":
+                            "PPO_CLIENT_V2_FREELANCER_V3"
                     }
+                ]
             }
         )
     )
@@ -1034,14 +1113,22 @@ def auto_negotiate(
     # ALREADY COMPLETED?
     # ========================================================
 
-    if negotiation_request.get(
-        "status"
-    ) in [
-        "NEGOTIATION_COMPLETED",
-        "NEGOTIATION_FAILED",
-        "CONTRACT_READY",
-        "BOTH_ACCEPTED"
-    ]:
+    request_status = negotiation_request.get("status")
+    current_engine = negotiation_request.get(
+        "negotiation_engine"
+    )
+
+    if (
+        request_status in [
+            "NEGOTIATION_FAILED",
+            "CONTRACT_READY",
+            "BOTH_ACCEPTED"
+        ]
+        or (
+            request_status == "NEGOTIATION_COMPLETED"
+            and current_engine == "PPO_CLIENT_V2_FREELANCER_V3"
+        )
+    ):
 
         return {
 
@@ -1213,53 +1300,13 @@ def auto_negotiate(
     )
 
     # ========================================================
-    # CREATE RULE-BASED ENGINE
+    # RUN PRODUCTION PPO NEGOTIATION
     # ========================================================
 
     try:
 
-        engine = NegotiationEngine(
-
-            client_budget=
-                parameters[
-                    "client_budget"
-                ],
-
-            client_target_budget=
-                parameters[
-                    "client_target_budget"
-                ],
-
-            client_desired_days=
-                parameters[
-                    "client_desired_days"
-                ],
-
-            client_maximum_days=
-                parameters[
-                    "client_maximum_days"
-                ],
-
-            freelancer_min_price=
-                parameters[
-                    "freelancer_min_price"
-                ],
-
-            freelancer_preferred_price=
-                parameters[
-                    "freelancer_preferred_price"
-                ],
-
-            freelancer_min_days=
-                parameters[
-                    "freelancer_min_days"
-                ],
-
-            freelancer_preferred_days=
-                parameters[
-                    "freelancer_preferred_days"
-                ],
-
+        result = run_ppo_negotiation(
+            parameters,
             max_rounds=10
         )
 
@@ -1290,47 +1337,7 @@ def auto_negotiate(
         raise HTTPException(
             status_code=500,
             detail=(
-                "Failed to initialize "
-                f"rule-based negotiation: {str(e)}"
-            )
-        )
-
-    # ========================================================
-    # RUN AUTONOMOUS NEGOTIATION
-    # ========================================================
-
-    try:
-
-        result = engine.negotiate()
-
-    except Exception as e:
-
-        negotiation_requests_collection.update_one(
-
-            {
-                "request_id":
-                    request_id
-            },
-
-            {
-                "$set": {
-
-                    "status":
-                        "NEGOTIATION_FAILED",
-
-                    "failure_reason":
-                        str(e),
-
-                    "updated_at":
-                        datetime.utcnow()
-                }
-            }
-        )
-
-        raise HTTPException(
-            status_code=500,
-            detail=(
-                "Autonomous negotiation failed: "
+                "Autonomous PPO negotiation failed: "
                 f"{str(e)}"
             )
         )
@@ -1397,6 +1404,11 @@ def auto_negotiate(
                 "negotiation_result":
                     negotiation_result,
 
+                "negotiation_reason":
+                    result.get(
+                        "failure_reason"
+                    ) or "Agreement reached by PPO agents",
+
                 "negotiation_history":
                     result["history"],
 
@@ -1410,6 +1422,9 @@ def auto_negotiate(
 
                 "contract_status":
                     "NOT_READY",
+
+                "negotiation_engine":
+                    "PPO_CLIENT_V2_FREELANCER_V3",
 
                 "updated_at":
                     datetime.utcnow()

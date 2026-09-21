@@ -1,8 +1,12 @@
+from datetime import datetime
+
+from bson import ObjectId
 from fastapi import APIRouter, HTTPException
 
 from app.database.mongodb import (
     freelancers_collection,
-    negotiation_requests_collection
+    negotiation_requests_collection,
+    projects_collection
 )
 
 
@@ -10,6 +14,45 @@ router = APIRouter(
     prefix="/freelancer",
     tags=["Freelancer Dashboard"]
 )
+
+
+def _serialize_project_value(value):
+    if isinstance(value, ObjectId):
+        return str(value)
+
+    if isinstance(value, datetime):
+        return value.isoformat()
+
+    if isinstance(value, dict):
+        return {
+            key: _serialize_project_value(item)
+            for key, item in value.items()
+        }
+
+    if isinstance(value, list):
+        return [_serialize_project_value(item) for item in value]
+
+    return value
+
+
+@router.get("/project/{project_id}")
+def freelancer_project_details(project_id: str):
+    try:
+        project = projects_collection.find_one(
+            {"_id": ObjectId(project_id)},
+            {"client_email": 0}
+        )
+    except Exception:
+        project = None
+
+    if project is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Project not found"
+        )
+
+    project["project_id"] = str(project.pop("_id"))
+    return _serialize_project_value(project)
 
 
 # ============================================================

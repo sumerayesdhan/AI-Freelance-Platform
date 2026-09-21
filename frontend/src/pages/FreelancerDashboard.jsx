@@ -44,6 +44,24 @@ function FreelancerDashboard() {
     ] = useState("");
 
 
+    const [
+        selectedProject,
+        setSelectedProject
+    ] = useState(null);
+
+
+    const [
+        projectLoading,
+        setProjectLoading
+    ] = useState(false);
+
+
+    const [
+        projectMessage,
+        setProjectMessage
+    ] = useState("");
+
+
     // ========================================================
     // FETCH FREELANCER DASHBOARD
     // ========================================================
@@ -139,6 +157,35 @@ function FreelancerDashboard() {
             "/freelancer-login"
         );
 
+    };
+
+
+    const viewProjectDetails = async (projectId) => {
+        try {
+            setProjectLoading(true);
+            setProjectMessage("");
+            setSelectedProject({ loading: true });
+
+            const response = await api.get(
+                `/freelancer/project/${projectId}`
+            );
+
+            setSelectedProject(response.data);
+        } catch (error) {
+            setSelectedProject(null);
+            setProjectMessage(
+                error.response?.data?.detail ||
+                "Failed to load project details"
+            );
+        } finally {
+            setProjectLoading(false);
+        }
+    };
+
+
+    const closeProjectDetails = () => {
+        setSelectedProject(null);
+        setProjectMessage("");
     };
 
 
@@ -290,7 +337,7 @@ function FreelancerDashboard() {
 
     return (
 
-        <div className="dashboard-container">
+        <div className="dashboard-container freelancer-dashboard">
 
 
             {/* =================================================
@@ -319,7 +366,7 @@ function FreelancerDashboard() {
                 MAIN DASHBOARD
             ================================================= */}
 
-            <div className="dashboard-card">
+            <div className="dashboard-card freelancer-dashboard-card">
 
 
                 <h1>
@@ -704,19 +751,29 @@ function FreelancerDashboard() {
                                                         VIEW FINAL TERMS
                                                     ================================================= */}
 
-                                                    <button
+                                                    <div className="negotiation-actions">
 
-                                                        onClick={() =>
-                                                            navigate(
-                                                                `/negotiation/${request.request_id}?role=freelancer`
-                                                            )
-                                                        }
+                                                        <button
+                                                            onClick={() =>
+                                                                viewProjectDetails(
+                                                                    request.project_id
+                                                                )
+                                                            }
+                                                        >
+                                                            View Project
+                                                        </button>
 
-                                                    >
+                                                        <button
+                                                            onClick={() =>
+                                                                navigate(
+                                                                    `/negotiation/${request.request_id}?role=freelancer`
+                                                                )
+                                                            }
+                                                        >
+                                                            View Final Terms
+                                                        </button>
 
-                                                        View Final Terms
-
-                                                    </button>
+                                                    </div>
 
 
                                                 </div>
@@ -756,6 +813,88 @@ function FreelancerDashboard() {
 
 
             </div>
+
+
+            {
+                (selectedProject || projectMessage) &&
+
+                (
+
+                    <div
+                        className="project-details-overlay"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="project-details-title"
+                        onClick={closeProjectDetails}
+                    >
+
+                        <div
+                            className="project-details-modal"
+                            onClick={(event) => event.stopPropagation()}
+                        >
+
+                            <button
+                                className="project-details-close"
+                                onClick={closeProjectDetails}
+                                aria-label="Close project details"
+                            >
+                                x
+                            </button>
+
+                            <h2 id="project-details-title">
+                                Project Description
+                            </h2>
+
+                            {
+                                projectLoading &&
+                                <p>Loading project details...</p>
+                            }
+
+                            {
+                                projectMessage &&
+                                <p className="message">{projectMessage}</p>
+                            }
+
+                            {
+                                selectedProject &&
+                                !selectedProject.loading &&
+                                (
+                                    <div className="project-details-content">
+                                        <h3>
+                                            {selectedProject.title || "Untitled project"}
+                                        </h3>
+
+                                        <p className="project-full-description">
+                                            {selectedProject.description || "No description provided."}
+                                        </p>
+
+                                        <dl>
+                                            <div>
+                                                <dt>Status</dt>
+                                                <dd>{selectedProject.status || "Submitted"}</dd>
+                                            </div>
+                                            <div>
+                                                <dt>Project ID</dt>
+                                                <dd>{selectedProject.project_id}</dd>
+                                            </div>
+                                            {
+                                                selectedProject.created_at &&
+                                                <div>
+                                                    <dt>Created</dt>
+                                                    <dd>{new Date(selectedProject.created_at).toLocaleString()}</dd>
+                                                </div>
+                                            }
+                                        </dl>
+                                    </div>
+                                )
+                            }
+
+                        </div>
+
+                    </div>
+
+                )
+            }
 
         </div>
 

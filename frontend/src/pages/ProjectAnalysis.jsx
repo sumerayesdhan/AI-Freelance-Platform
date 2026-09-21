@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import api from "../services/api";
 
@@ -13,6 +13,9 @@ function ProjectAnalysis(){
 
 
     const {projectId}=useParams();
+
+
+    const navigate=useNavigate();
 
 
     const [analysis,setAnalysis]=useState(null);
@@ -248,12 +251,11 @@ function ProjectAnalysis(){
 
                         </li>
 
+                        )
+
                     )
 
-                )
-
-                }
-
+                    }
 
                 </ul>
 
@@ -447,6 +449,14 @@ function ProjectAnalysis(){
 
 
                     </ul>
+
+
+                    <button
+                        className="primary-btn"
+                        onClick={() => navigate(`/freelancers/${projectId}`)}
+                    >
+                        Find Freelancers
+                    </button>
 
 
 

@@ -112,6 +112,11 @@ conversations_collection = (
 )
 
 
+contract_messages_collection = (
+    db["contract_messages"]
+)
+
+
 requirement_analysis_collection = (
     db["requirement_analysis"]
 )

@@ -10,6 +10,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
+import ClientStartPage from "./pages/ClientStartPage";
+import ProcessingProjectsPage from "./pages/ProcessingProjectsPage";
 
 
 import RequirementAssistance
@@ -42,6 +44,16 @@ import FreelancerDashboard
 
 import NegotiationPage
     from "./pages/NegotiationPage";
+
+
+import ContractWorkspace
+    from "./pages/ContractWorkspace";
+
+import ContractGenerationPage
+    from "./pages/ContractGenerationPage";
+
+import TimelineGenerationPage
+    from "./pages/TimelineGenerationPage";
 
 
 function App() {
@@ -150,6 +162,18 @@ function App() {
                 />
 
 
+                <Route
+                    path="/client-start"
+                    element={<ClientStartPage />}
+                />
+
+
+                <Route
+                    path="/processing-projects"
+                    element={<ProcessingProjectsPage />}
+                />
+
+
                 {/* =================================================
                     REQUIREMENT GATHERING
                 ================================================= */}
@@ -222,6 +246,29 @@ function App() {
                         <NegotiationPage />
                     }
 
+                />
+
+
+                <Route
+
+                    path="/contract-workspace/:requestId"
+
+                    element={
+                        <ContractWorkspace />
+                    }
+
+                />
+
+
+                <Route
+                    path="/contract/:requestId"
+                    element={<ContractGenerationPage />}
+                />
+
+
+                <Route
+                    path="/timeline/:requestId"
+                    element={<TimelineGenerationPage />}
                 />
 
 

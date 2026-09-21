@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import APIRouter, HTTPException
 
 from app.agents.requirement_understanding import (
@@ -28,6 +30,8 @@ from app.services.complexity_service import (
 )
 
 from app.database.mongodb import (
+    contract_messages_collection,
+    negotiation_requests_collection,
     requirement_analysis_collection,
     complexity_analysis_collection
 )
@@ -144,6 +148,83 @@ def chat(data: dict):
         "response": ai_response,
         "conversation": messages,
         "completed": completed
+    }
+
+
+# =====================================
+# CONTRACT WORKSPACE CHAT
+# =====================================
+
+def _contract_request(request_id: str):
+
+    request = negotiation_requests_collection.find_one(
+        {
+            "request_id": request_id
+        },
+        {
+            "_id": 0
+        }
+    )
+
+    if request is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Negotiation request not found"
+        )
+
+    return request
+
+
+@router.get("/contract/{request_id}")
+def get_contract_messages(request_id: str):
+
+    _contract_request(request_id)
+
+    messages = list(
+        contract_messages_collection.find(
+            {
+                "request_id": request_id
+            },
+            {
+                "_id": 0
+            }
+        ).sort("created_at", 1)
+    )
+
+    return {
+        "messages": messages
+    }
+
+
+@router.post("/contract/{request_id}")
+def add_contract_message(request_id: str, data: dict):
+
+    _contract_request(request_id)
+
+    message = str(data.get("message", "")).strip()
+    sender_role = str(data.get("sender_role", "")).strip().upper()
+
+    if not message or sender_role not in {"CLIENT", "FREELANCER"}:
+        raise HTTPException(
+            status_code=400,
+            detail="message and a valid sender_role are required"
+        )
+
+    contract_message = {
+        "request_id": request_id,
+        "message": message,
+        "sender_role": sender_role,
+        "created_at": datetime.utcnow()
+    }
+
+    contract_messages_collection.insert_one(contract_message)
+
+    return {
+        "message": "Contract message sent",
+        "conversation": {
+            **contract_message,
+            "created_at": contract_message["created_at"].isoformat()
+        }
     }
 
 
